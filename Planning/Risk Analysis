@@ -1,0 +1,11 @@
+This report contains information about the risk analysis of the project, including all likely risks and solutions.
+
+RISKS -> SOLUTIONS:
+  - sickness/abscence -> do not rely heavily on one member, evenly split  jobs. 
+  - lack of experience -> give extra estimation of scheduling to give mambers time to learn and get used to using libraries/code.
+  - hardware failiure -> keep local backups and cloud storage of all files. (including github files)
+  - software faliliure/compiler bugs (including travis ci) -> plan for bugs and failiure, choose the best software for the job.
+  - time management -> allocate a certain amount of hours for each person to work on the project. This will be estimated for each job.
+  
+
+  
