@@ -1,1 +1,13 @@
-language: c
+#Enable support for C++
+language: cpp
+
+#Choose gcc as compiler
+compiler: 
+  - gcc
+
+#Make
+script:
+  - mkdir build
+  - cd build
+  
+  #NOT COMPLETE
