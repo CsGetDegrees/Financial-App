@@ -1,11 +1,18 @@
-This report contains information about the risk analysis of the project, including all likely risks and solutions.
+RISK ANALYSIS
 
-RISKS -> SOLUTIONS:
-  - sickness/abscence -> do not rely heavily on one member, evenly split  jobs. 
-  - lack of experience -> give extra estimation of scheduling to give mambers time to learn and get used to using libraries/code.
-  - hardware failiure -> keep local backups and cloud storage of all files. (including github files)
-  - software faliliure/compiler bugs (including travis ci) -> plan for bugs and failiure, choose the best software for the job.
-  - time management -> allocate a certain amount of hours for each person to work on the project. This will be estimated for each job.
-  
+There are many risks that come into play when working on a team project. The following are the 5 most important risks, ranked
+in order of highest to lowest damage to the project (eg. cost, time damage).
 
-  
+RISKS
+  1 - Member Sickness / Absence (a member not being able to complete their workload)
+  2 - Lack of Experience (xcode, c++, objective c++)
+  3 - Hardware Failiure (project data being lost or corrupted)
+  4 - Software Failiure (compilers, other software breaking or containing project-breaking bugs)
+  5 - Time management (members have time in their days to work on the project)
+
+SOLUTIONS
+  1 - Do not rely heavily on one member, evenly split jobs so that work can be done in parallel
+  2 - For the estimations of our schedule, estimate slightly higher to give members time to learn code and get used to using software.
+  3 - Keep local backups and cloud storage of all files. (including github files, frequently)
+  4 - Plan for bugs and failure, choose the best software for the job.
+  5 - Allocate a certain amount of hours for each person to work on the project. This will be estimated for each job.
