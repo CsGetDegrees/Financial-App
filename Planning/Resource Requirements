@@ -18,6 +18,35 @@ We will be using:
  - github
  - google
  
- These resources will be used for development, testing, building and sharing the project, as well as learining the required skills.
+These resources will be used for development, testing, building and sharing the project, as well as learining the required skills.
  
- maintenance?
+For the inital stages of the project, we will be implementing the following requirements:
+
+o   The system should allow the user to add, edit, delete new expenses and keep track of those expenses. (in timeline format)
+o   The system should record the date and time of expenses and be editable.
+o   The system should be able to extract data from the memory and analyze it.
+o   The system should provide a view where users can scroll down to see their history. 
+o   The system should provide a budget setting.
+o   The system should allow user to specify/edit/delete their income.
+o   The system should allow the user to set/edit/delete a goal of their saving.
+o   The system should allow the user to set/edit/delete his/her upcoming(fixed) payments.
+o   The system should show the total expense of the user for a period of time.
+o   The system should provide a calendar date picker to allow the user to add a new expense to a past date.
+o   The system should allow automatically update balance for upcoming payments.
+o   The system should always take expense inputs as float/double with a format $.$$.
+o   The system should provide charts.
+o   The system should have the average living cost of a day/week/month
+
+
+These non-functional requirements will be implemented through the functional requirements:
+o   The report generation should be fast.
+o   The photo compress should be fast.
+o   The Email should be safe.
+o   Users should be able to recover their passwords if they forget them.
+o   The report should be in a proper size.
+o   Adding a new expense should be easy.
+o   Automatic (Fixed) payment should be generated automatically.
+o   The code should be portable.
+o   The code should be documented well.
+o   The UI should be clean and intuitive.
+
