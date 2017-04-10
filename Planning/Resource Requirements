@@ -1,1 +1,23 @@
 This document contains resource requirements for the project (price, schedule).
+
+We expect the project to take X hours total, spread over X weeks. Time is a resource and we have estimated that we will 
+induvidually work on the project for at least X hours per week, in order to finish on time.
+
+We have set up weekly meetings to discuss and communicate progress. We are using gihub for version control, and the 
+collection and sharing of files.
+
+The software we will be using for this project will all be free, we have predicted that there will be no cost involved at all.
+We will be using: 
+ - c++ in xcode
+ - objective c++ for GUI
+ - make
+ - gcc
+ - travis ci
+ - blackboard
+ - stack overflow
+ - github
+ - google
+ 
+ These resources will be used for development, testing, building and sharing the project, as well as learining the required skills.
+ 
+ maintenance?
