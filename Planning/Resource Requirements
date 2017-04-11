@@ -1,12 +1,16 @@
 This document contains resource requirements for the project (price, schedule).
 
 We expect the project to take X hours total, spread over X weeks. Time is a resource and we have estimated that we will 
-induvidually work on the project for at least X hours per week, in order to finish on time.
+induvidually work on the project for at least X hours per week, in order to finish on time. We will be splitting individual 
+jobs up into 1 week sprints, so that we can manage the project more efficiently and are able to keep track of what needs doing and when.
+
+The software we have decided to use for this project will all be free. **There may be a cost of publishing on the app store??**
+We will put Budgetable on the apple app store and it will be free for download. Overall, there will be no cost at all involved
+in this project.
 
 We have set up weekly meetings to discuss and communicate progress. We are using gihub for version control, and the 
 collection and sharing of files.
 
-The software we will be using for this project will all be free, we have predicted that there will be no cost involved at all.
 We will be using: 
  - c++ in xcode
  - objective c++ for GUI
