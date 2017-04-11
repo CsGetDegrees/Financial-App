@@ -14,5 +14,5 @@ SOLUTIONS
   1 - Do not rely heavily on one member, evenly split jobs so that work can be done in parallel
   2 - For the estimations of our schedule, estimate slightly higher to give members time to learn code and get used to using software.
   3 - Keep local backups and cloud storage of all files. (including github files, frequently)
-  4 - Plan for bugs and failure, choose the best software for the job.
+  4 - Plan for bugs and failure, choose the best software for the job. Test a lot! Use formal inspection.
   5 - Allocate a certain amount of hours for each person to work on the project. This will be estimated for each job.
