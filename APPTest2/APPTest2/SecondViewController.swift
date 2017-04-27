@@ -29,6 +29,8 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
     
         let cell = UITableViewCell()
         cell.textLabel?.text = list[indexPath.row]
+        cell.backgroundColor=UIColor.blue
+        cell.textLabel?.textColor = UIColor.red
         return(cell)
     }
     
