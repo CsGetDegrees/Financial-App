@@ -10,9 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var LA: UILabel!
-    @IBOutlet weak var IM: UIImageView!
-    @IBOutlet weak var TX: UITextField!
 
     @IBOutlet weak var RandomNum: UITextField!
     @IBOutlet weak var RandomNum1: UILabel!
@@ -40,8 +37,5 @@ class ViewController: UIViewController {
         popOverVC.didMove(toParentViewController: self)
     }
 
-    @IBAction func BackToMain(_ sender: Any) {
-        //performSegue(withIdentifier: "LastToBegin", sender: self)
-    }
 }
 

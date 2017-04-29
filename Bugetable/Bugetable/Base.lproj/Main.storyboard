@@ -59,50 +59,11 @@
                     <connections>
                         <outlet property="RandomNum" destination="kct-C3-pte" id="fpe-SI-u0G"/>
                         <segue destination="ahE-cm-7ic" kind="show" identifier="MainToFirst" id="DbS-KY-d8O"/>
-                        <segue destination="IbI-fo-WYG" kind="show" identifier="MainToPop" id="GuT-Nx-7Of"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="FNI-du-IRu">
-            <objects>
-                <viewController id="IbI-fo-WYG" customClass="ViewController" customModule="Bugetable" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="CET-Qz-mFm"/>
-                        <viewControllerLayoutGuide type="bottom" id="uCw-XK-jsz"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7Im-1R-mwU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s0t-mO-ipP">
-                                <rect key="frame" x="228" y="504" width="104" height="96"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Back"/>
-                                <connections>
-                                    <action selector="PopBack:" destination="IbI-fo-WYG" eventType="touchUpInside" id="Q25-BR-8Jq"/>
-                                </connections>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9vl-uL-gbS">
-                                <rect key="frame" x="67" y="144" width="240" height="329"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="popoverPresentation" popoverAnchorView="s0t-mO-ipP" id="rUD-JD-HBJ">
-                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                        </segue>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1xj-f4-IGO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="810" y="916"/>
+            <point key="canvasLocation" x="-361" y="184"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="yS8-HZ-BXz">
@@ -136,7 +97,4 @@
             <point key="canvasLocation" x="1184.8" y="116.49175412293854"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="rUD-JD-HBJ"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -17,7 +17,7 @@ class TableCell: UIViewController{
     
     override func viewDidLoad() {
     super.viewDidLoad()
-      TitleLabel.text = list[myIndex]
+        TitleLabel.text = list[myIndex]
         Information.text = introduction[myIndex]
         ImageView.image = UIImage(named: list[myIndex] + ".jpg")
     }
