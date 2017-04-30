@@ -38,6 +38,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                 <state key="normal" title="1st"/>
+                                <connections>
+                                    <segue destination="ked-5k-fBd" kind="show" id="9E1-b2-fgM"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtF-A3-GYf">
                                 <rect key="frame" x="140" y="381" width="53" height="53"/>
@@ -76,7 +79,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1782" y="-235"/>
+            <point key="canvasLocation" x="-1796" y="-258"/>
         </scene>
         <!--List-->
         <scene sceneID="qic-KF-oGm">
@@ -121,7 +124,95 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U2n-yN-Pl3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="208.80000000000001" y="70.614692653673174"/>
+            <point key="canvasLocation" x="30" y="-72"/>
+        </scene>
+        <!--Time Picker-->
+        <scene sceneID="4VY-OF-oxs">
+            <objects>
+                <viewController id="ked-5k-fBd" customClass="TimePicker" customModule="APPTest2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="l8B-07-C5K"/>
+                        <viewControllerLayoutGuide type="bottom" id="hFV-Gk-bdc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TC1-fy-B1C">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Time you choose" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dr1-K6-6dN">
+                                <rect key="frame" x="116" y="246" width="131" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CurrentTime" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8r-J2-LAN">
+                                <rect key="frame" x="18" y="110" width="327" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="b8r-J2-LAN" firstAttribute="top" secondItem="l8B-07-C5K" secondAttribute="bottom" constant="90" id="7cq-3F-2Ug"/>
+                            <constraint firstItem="dr1-K6-6dN" firstAttribute="top" secondItem="b8r-J2-LAN" secondAttribute="bottom" constant="109" id="UWt-qV-HCd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="b8r-J2-LAN" secondAttribute="trailing" constant="14" id="dlx-3c-xSv"/>
+                            <constraint firstItem="b8r-J2-LAN" firstAttribute="centerX" secondItem="dr1-K6-6dN" secondAttribute="centerX" id="gKm-ze-cWm"/>
+                            <constraint firstItem="b8r-J2-LAN" firstAttribute="leading" secondItem="TC1-fy-B1C" secondAttribute="leadingMargin" constant="2" id="hg8-mZ-0uQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="CurrentTime" destination="b8r-J2-LAN" id="KdU-78-4VT"/>
+                        <outlet property="TimePick" destination="dr1-K6-6dN" id="wvy-Jf-ftM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cxi-XZ-cem" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2534" y="450"/>
+        </scene>
+        <!--Time Picker-->
+        <scene sceneID="Te4-gP-ygR">
+            <objects>
+                <viewController id="JOc-gn-BPY" customClass="TimePicker" customModule="APPTest2" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9IT-QC-bDV"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qfg-Ux-zmN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rjQ-Ym-Ece">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CurrentTime" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xN-pA-kJ6">
+                                <rect key="frame" x="24" y="122" width="327" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Time you choose" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n8D-74-aD3">
+                                <rect key="frame" x="16" y="258" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2xN-pA-kJ6" firstAttribute="top" secondItem="9IT-QC-bDV" secondAttribute="bottom" constant="102" id="FAP-6Y-Snm"/>
+                            <constraint firstItem="2xN-pA-kJ6" firstAttribute="leading" secondItem="rjQ-Ym-Ece" secondAttribute="leadingMargin" constant="8" id="Hbt-M7-oCn"/>
+                            <constraint firstItem="n8D-74-aD3" firstAttribute="top" secondItem="2xN-pA-kJ6" secondAttribute="bottom" constant="109" id="byC-WN-teH"/>
+                            <constraint firstItem="n8D-74-aD3" firstAttribute="leading" secondItem="rjQ-Ym-Ece" secondAttribute="leadingMargin" id="gjY-v3-SYr"/>
+                            <constraint firstItem="2xN-pA-kJ6" firstAttribute="centerX" secondItem="rjQ-Ym-Ece" secondAttribute="centerX" id="uMA-ak-jsb"/>
+                            <constraint firstItem="n8D-74-aD3" firstAttribute="trailing" secondItem="rjQ-Ym-Ece" secondAttribute="trailingMargin" id="yMr-SU-svB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="CurrentTime" destination="2xN-pA-kJ6" id="APr-Se-r5n"/>
+                        <outlet property="TimePick" destination="n8D-74-aD3" id="eqR-H2-FDW"/>
+                        <outlet property="TimePicker" destination="n8D-74-aD3" id="rSD-Pu-cHc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ldv-TB-G2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1796" y="450.22488755622192"/>
         </scene>
         <!--Table Cell-->
         <scene sceneID="53Z-Cg-D1y">
@@ -204,7 +295,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r9l-RQ-8Gz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-170" y="833"/>
+            <point key="canvasLocation" x="-740" y="505"/>
         </scene>
         <!--Input-->
         <scene sceneID="9Je-cN-2ty">
@@ -244,7 +335,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lq5-Wh-lxJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="29.600000000000001" y="-630.13493253373315"/>
+            <point key="canvasLocation" x="30" y="-714"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="qdP-P5-ZVh">
@@ -307,7 +398,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IcY-gp-BBF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1209.5999999999999" y="-1003.8980509745128"/>
+            <point key="canvasLocation" x="-1796" y="-1003"/>
         </scene>
     </scenes>
     <resources>
@@ -316,6 +407,6 @@
         <image name="JojoLogo" width="726" height="409"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0oL-Bj-aT8"/>
+        <segue reference="yoO-KU-lD7"/>
     </inferredMetricsTieBreakers>
 </document>
