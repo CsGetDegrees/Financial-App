@@ -19,6 +19,7 @@ class FirstViewController: UIViewController{
     @IBAction func AddText(_ sender: AnyObject) {
         if(InputTextField.text != ""){
         list.append(InputTextField.text!)
+            introduction.append("Nope")
             InputTextField.text = ""
         }
     }

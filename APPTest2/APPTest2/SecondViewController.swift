@@ -21,16 +21,28 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
   
     @IBOutlet weak var myTableView: UITableView!
     
+    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return(list.count)
     }
     
     public   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-        let cell = UITableViewCell()
-        cell.textLabel?.text = list[indexPath.row]
-        cell.backgroundColor=UIColor.blue
-        cell.textLabel?.textColor = UIColor.red
+        let cell = self.myTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)as!CustomCell
+        
+        //cell.textLabel?.text = list[indexPath.row]
+        cell.time.text = list[indexPath.row]
+        cell.name.text = introduction[indexPath.row]
+        
+        cell.time.textColor = UIColor.white
+        cell.name.textColor = UIColor.yellow
+        
+        if(indexPath.row)%2 != 0{
+        cell.backgroundColor=UIColor.darkGray
+        }else{
+        cell.backgroundColor=UIColor.black
+        }
+      
         return(cell)
     }
     
