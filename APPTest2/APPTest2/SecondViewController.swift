@@ -13,9 +13,9 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
     
 
     var list:[String] = []
-
     var dateInput:[Date] = []
-    
+    var typeOfCell:[Int] = []
+    var switcher: Int = 2
     var myIndex = 0
     
     @IBOutlet weak var myTableView: UITableView!
@@ -24,9 +24,23 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
     
     @IBAction func SwitchList(_ sender: UISegmentedControl) {
      let a = sender.selectedSegmentIndex
-        print(a)
+        print("switch \(a)")
+     switcher = a
+        myTableView.beginUpdates()
+        myTableView.endUpdates()
         
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var height:CGFloat = CGFloat()
         
+        if( typeOfCell[indexPath.row] == switcher){
+            height = 0
+        }else{
+        height = 70
+        }
+        return height
+      
     }
     
     //Refresh Local storage List
@@ -35,11 +49,16 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
       
         UserDefaults.standard.set(list,forKey: "plus")
     }
-   //Refresh Local storage Time
+   
+    //Refresh Local storage Time
     public func refreshDate(){
-        _ = UserDefaults.standard.object(forKey: "time")
         
+        _ = UserDefaults.standard.object(forKey: "time")
         UserDefaults.standard.set(dateInput,forKey: "time")
+        
+        _ = UserDefaults.standard.object(forKey: "incomeOrExpense")
+       UserDefaults.standard.set(typeOfCell,forKey: "incomeOrExpense")
+        
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,14 +81,16 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
         dateFormat.dateStyle = .short
         dateFormat.timeStyle = .short
      // let stringTime = " \(dateFormat.string(from: dateInput[indexPath.row]))"
-       print (dateInput)
-        if let temperDate = dateInput[indexPath.row] as Date?   {
+       //print (dateInput)
+        if (dateInput[indexPath.row] as Date?) != nil   {
         
        cell.name.text = dateFormat.string(from: dateInput[indexPath.row])
         }else{
             cell.name.text = list[indexPath.row]
 
         }
+        
+        cell.IncomeOrExpense.text = String(typeOfCell[indexPath.row])
         //Cell color control
         cell.time.textColor = UIColor.white
         cell.name.textColor = UIColor.yellow
@@ -87,6 +108,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
         if editingStyle == editingStyle{
          list.remove(at: indexPath.row)
           dateInput.remove(at: indexPath.row)
+            typeOfCell.remove(at: indexPath.row)
             refreshList()
             refreshDate()
             myTableView.reloadData()
@@ -102,11 +124,14 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
         
         let dateObject = UserDefaults.standard.object(forKey: "time")
         dateInput = dateObject as! [Date]
-        print(2)
         print(dateObject ?? 0)
         
+        let IncomeOrExpense = UserDefaults.standard.object(forKey: "incomeOrExpense")
+        typeOfCell = IncomeOrExpense as! [Int]
+        print(IncomeOrExpense ?? 0)
+
         myTableView.reloadData()
-        
+        SegmentSwitch.reloadInputViews()
       
         
         

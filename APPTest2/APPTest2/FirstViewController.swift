@@ -19,30 +19,25 @@ class FirstViewController: UIViewController{
    
     let datePicker = UIDatePicker()
     
-    public func getstuff(){
-        let plusObject = UserDefaults.standard.object(forKey: "time")
-       // var plus:[String]
-        print(plusObject ?? 0)
 
-       
-    }
+    
     
     @IBAction func jump(_ sender: Any) {
          performSegue(withIdentifier: "segue1", sender: self)
     }
     
-    //
-    public func addstuff(a:String){
-        let timeObject = UserDefaults.standard.object(forKey: "time")
-        var Time:[String]
-        
-        if let tempTime = timeObject as? [String]{
-            Time = tempTime
-            Time.append(a)
-            // plus = list
-        }
-        UserDefaults.standard.set(time,forKey: "time")
-    }
+//    //
+//    public func addstuff(a:String){
+//        let timeObject = UserDefaults.standard.object(forKey: "time")
+//        var Time:[String]
+//        
+//        if let tempTime = timeObject as? [String]{
+//            Time = tempTime
+//            Time.append(a)
+//            // plus = list
+//        }
+//        UserDefaults.standard.set(time,forKey: "time")
+//    }
 
     
     
@@ -105,6 +100,18 @@ class FirstViewController: UIViewController{
     
     @IBAction func AddText(_ sender: AnyObject) {
         if(InputTextField.text != ""){
+            print("Print 0")
+            let IncomeOrExpense = UserDefaults.standard.object(forKey: "incomeOrExpense")
+            var expense:[Int]
+            if let tempExpense = IncomeOrExpense as? [Int]{
+                expense = tempExpense
+                expense.append(0)
+                
+            }else{
+                expense = [0]
+            }
+            UserDefaults.standard.set(expense,forKey: "incomeOrExpense")
+            
             
             let plusObject = UserDefaults.standard.object(forKey: "plus")
             var plus:[String]
@@ -137,6 +144,51 @@ class FirstViewController: UIViewController{
         }
     }
     
+    @IBAction func IncomeSave(_ sender: Any) {
+        if(InputTextField.text != ""){
+           print(1111)
+            let IncomeOrExpense = UserDefaults.standard.object(forKey: "incomeOrExpense")
+            var income:[Int]
+            if let tempIncome = IncomeOrExpense as? [Int]{
+                income = tempIncome
+                income.append(1)
+                
+            }else{
+                income = [1]
+            }
+            UserDefaults.standard.set(income,forKey: "incomeOrExpense")
+            
+            
+            let plusObject = UserDefaults.standard.object(forKey: "plus")
+            var plus:[String]
+            if let tempPlus = plusObject as? [String]{
+                plus = tempPlus
+                plus.append(InputTextField.text!)
+                
+            }else{
+                plus = [InputTextField.text!]
+            }
+            UserDefaults.standard.set(plus,forKey: "plus")
+            
+            //Save Date To Local Storage
+            let timeObject = UserDefaults.standard.object(forKey: "time")
+            var Time:[Date]
+            
+            if let tempTime = timeObject as? [Date]{
+                Time = tempTime
+                Time.append(datePicker.date)
+                // plus = list
+            }else{
+                print("\(datePicker.date)")
+                Time = [datePicker.date]
+            }
+            UserDefaults.standard.set(Time,forKey: "time")
+            
+            // introduction.append("Nope")
+            InputTextField.text = ""
+            
+        }
+    }
 
     
 

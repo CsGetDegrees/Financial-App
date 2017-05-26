@@ -108,10 +108,18 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELe-2p-gHY">
+                                                    <rect key="frame" x="306" y="20" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.14482034393669907" green="1" blue="0.77885765046937117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.6173956673651313" green="1" blue="0.70334676890089265" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
+                                            <outlet property="IncomeOrExpense" destination="ELe-2p-gHY" id="aqG-U2-yyO"/>
                                             <outlet property="name" destination="pzR-BP-ySp" id="IFd-qP-Tg6"/>
                                             <outlet property="time" destination="Q3M-Ql-LeO" id="q5e-OO-mCQ"/>
                                         </connections>
@@ -155,49 +163,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U2n-yN-Pl3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1680.8" y="-482.60869565217394"/>
-        </scene>
-        <!--Time Picker-->
-        <scene sceneID="4VY-OF-oxs">
-            <objects>
-                <viewController id="ked-5k-fBd" customClass="TimePicker" customModule="APPTest2" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="l8B-07-C5K"/>
-                        <viewControllerLayoutGuide type="bottom" id="hFV-Gk-bdc"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="TC1-fy-B1C">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Time you choose" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dr1-K6-6dN">
-                                <rect key="frame" x="116" y="246" width="131" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CurrentTime" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8r-J2-LAN">
-                                <rect key="frame" x="18" y="110" width="327" height="27"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="b8r-J2-LAN" firstAttribute="top" secondItem="l8B-07-C5K" secondAttribute="bottom" constant="90" id="7cq-3F-2Ug"/>
-                            <constraint firstItem="dr1-K6-6dN" firstAttribute="top" secondItem="b8r-J2-LAN" secondAttribute="bottom" constant="109" id="UWt-qV-HCd"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="b8r-J2-LAN" secondAttribute="trailing" constant="14" id="dlx-3c-xSv"/>
-                            <constraint firstItem="b8r-J2-LAN" firstAttribute="centerX" secondItem="dr1-K6-6dN" secondAttribute="centerX" id="gKm-ze-cWm"/>
-                            <constraint firstItem="b8r-J2-LAN" firstAttribute="leading" secondItem="TC1-fy-B1C" secondAttribute="leadingMargin" constant="2" id="hg8-mZ-0uQ"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="CurrentTime" destination="b8r-J2-LAN" id="KdU-78-4VT"/>
-                        <outlet property="TimePick" destination="dr1-K6-6dN" id="wvy-Jf-ftM"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cxi-XZ-cem" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2550" y="1063"/>
         </scene>
         <!--Table Cell-->
         <scene sceneID="53Z-Cg-D1y">
@@ -318,15 +283,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j6P-Kg-mkw">
-                                <rect key="frame" x="141" y="267" width="93" height="55"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Add"/>
-                                <connections>
-                                    <action selector="AddText:" destination="Yuw-uI-V5T" eventType="touchUpInside" id="0DI-IB-FqD"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CurrentTime" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ix0-We-TUN">
                                 <rect key="frame" x="54" y="72" width="260" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -347,6 +303,24 @@
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="jump:" destination="Yuw-uI-V5T" eventType="touchUpInside" id="nUF-eM-jeE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j6P-Kg-mkw">
+                                <rect key="frame" x="47" y="328" width="93" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="AddText:" destination="Yuw-uI-V5T" eventType="touchUpInside" id="0DI-IB-FqD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LIW-gO-saM">
+                                <rect key="frame" x="234" y="328" width="93" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Income"/>
+                                <connections>
+                                    <action selector="IncomeSave:" destination="Yuw-uI-V5T" eventType="touchUpInside" id="CxH-0C-nvp"/>
                                 </connections>
                             </button>
                         </subviews>
