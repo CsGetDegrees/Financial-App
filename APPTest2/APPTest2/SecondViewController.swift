@@ -12,8 +12,8 @@ import UIKit
 class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDataSource{
     
 
-var list = ["Saber", "Archer", "Caster","Assassin","Teacher","WallBuilder"]
-var introduction = ["Artoria Pendragon", "Gilgamesh","Gilles de Rais","","","Donald J Trump"]
+    var list:[String] = []
+
     var dateInput:[Date] = []
     
     var myIndex = 0
@@ -49,17 +49,27 @@ var introduction = ["Artoria Pendragon", "Gilgamesh","Gilles de Rais","","","Don
     //Create a new Cell
     public   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
+
         let cell = self.myTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)as!CustomCell
             
         
        //cell.textLabel?.text = list[indexPath.row]
         cell.time.text = list[indexPath.row]
+        
+
         //format
         let dateFormat = DateFormatter()
         dateFormat.dateStyle = .short
         dateFormat.timeStyle = .short
-        //cell.name.text = dateFormat.string(from: dateInput[indexPath.row])
+     // let stringTime = " \(dateFormat.string(from: dateInput[indexPath.row]))"
+       print (dateInput)
+        if let temperDate = dateInput[indexPath.row] as Date?   {
+        
+       cell.name.text = dateFormat.string(from: dateInput[indexPath.row])
+        }else{
+            cell.name.text = list[indexPath.row]
+
+        }
         //Cell color control
         cell.time.textColor = UIColor.white
         cell.name.textColor = UIColor.yellow
@@ -76,7 +86,7 @@ var introduction = ["Artoria Pendragon", "Gilgamesh","Gilles de Rais","","","Don
    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == editingStyle{
          list.remove(at: indexPath.row)
-        dateInput.remove(at: indexPath.row)
+          dateInput.remove(at: indexPath.row)
             refreshList()
             refreshDate()
             myTableView.reloadData()
@@ -84,16 +94,18 @@ var introduction = ["Artoria Pendragon", "Gilgamesh","Gilles de Rais","","","Don
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        print("\(list[myIndex])")
+     
         
         let plusObject = UserDefaults.standard.object(forKey: "plus")
         list = plusObject as! [String]
+        print(plusObject ?? 0)
+        
         let dateObject = UserDefaults.standard.object(forKey: "time")
         dateInput = dateObject as! [Date]
-        print(plusObject ?? 0)
+        print(2)
         print(dateObject ?? 0)
+        
         myTableView.reloadData()
-        print("\(list[myIndex])")
         
       
         

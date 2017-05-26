@@ -49,7 +49,7 @@ class FirstViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(TimePicker.UpdateTime), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(FirstViewController.UpdateTime), userInfo: nil, repeats: true)
         // UpdateTime()
         createTimePicker()
     }

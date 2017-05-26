@@ -10,7 +10,6 @@
 		BB5D72081EB5D1BE00F33CC1 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5D72071EB5D1BE00F33CC1 /* CustomCell.swift */; };
 		BB66FD181EAEE80A00711B0E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66FD171EAEE80A00711B0E /* FirstViewController.swift */; };
 		BB66FD1A1EAEE82400711B0E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66FD191EAEE82400711B0E /* SecondViewController.swift */; };
-		BBA8561E1EB44E4C002B951D /* TimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA8561D1EB44E4C002B951D /* TimePicker.swift */; };
 		BBAAC75F1EAB14670090B40C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAAC75E1EAB14670090B40C /* AppDelegate.swift */; };
 		BBAAC7611EAB14670090B40C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAAC7601EAB14670090B40C /* ViewController.swift */; };
 		BBAAC7641EAB14670090B40C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBAAC7621EAB14670090B40C /* Main.storyboard */; };
@@ -24,7 +23,6 @@
 		BB5D72071EB5D1BE00F33CC1 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		BB66FD171EAEE80A00711B0E /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		BB66FD191EAEE82400711B0E /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
-		BBA8561D1EB44E4C002B951D /* TimePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePicker.swift; sourceTree = "<group>"; };
 		BBAAC75B1EAB14670090B40C /* APPTest2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APPTest2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBAAC75E1EAB14670090B40C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBAAC7601EAB14670090B40C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,7 +72,6 @@
 				BB66FD191EAEE82400711B0E /* SecondViewController.swift */,
 				BB5D72071EB5D1BE00F33CC1 /* CustomCell.swift */,
 				BBF1709A1EB02ACB00D67418 /* TableCell.swift */,
-				BBA8561D1EB44E4C002B951D /* TimePicker.swift */,
 				BBAAC7621EAB14670090B40C /* Main.storyboard */,
 				BBAAC7651EAB14670090B40C /* Assets.xcassets */,
 				BBAAC7671EAB14670090B40C /* LaunchScreen.storyboard */,
@@ -159,7 +156,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBA8561E1EB44E4C002B951D /* TimePicker.swift in Sources */,
 				BB66FD1A1EAEE82400711B0E /* SecondViewController.swift in Sources */,
 				BB66FD181EAEE80A00711B0E /* FirstViewController.swift in Sources */,
 				BBAAC7611EAB14670090B40C /* ViewController.swift in Sources */,
