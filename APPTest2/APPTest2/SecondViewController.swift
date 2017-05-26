@@ -21,7 +21,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
     @IBOutlet weak var myTableView: UITableView!
    @IBOutlet weak var SegmentSwitch: UISegmentedControl!
     
-    
+    //Switch the tableView in Expense, Income and Total
     @IBAction func SwitchList(_ sender: UISegmentedControl) {
      let a = sender.selectedSegmentIndex
         print("switch \(a)")
@@ -31,6 +31,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
         
     }
     
+    //Make Some Table Cell invisible
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height:CGFloat = CGFloat()
         
@@ -43,16 +44,16 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
       
     }
     
-    //Refresh Local storage List
-    public func refreshList(){
-        _ = UserDefaults.standard.object(forKey: "plus")
-      
-        UserDefaults.standard.set(list,forKey: "plus")
-    }
+ 
+
    
-    //Refresh Local storage Time
+    //Refresh Local storage
     public func refreshDate(){
         
+        _ = UserDefaults.standard.object(forKey: "plus")
+        
+        UserDefaults.standard.set(list,forKey: "plus")
+
         _ = UserDefaults.standard.object(forKey: "time")
         UserDefaults.standard.set(dateInput,forKey: "time")
         
@@ -91,15 +92,22 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
         }
         
         cell.IncomeOrExpense.text = String(typeOfCell[indexPath.row])
+        
+        
+        if (cell.IncomeOrExpense.text == "0") {
+            cell.IncomeOrExpense.textColor = UIColor.red
+            let swiftColor = UIColor(red: 10, green: 0, blue: 0, alpha: 0.4)
+            cell.backgroundColor=swiftColor
+        }else{
+        cell.IncomeOrExpense.textColor = UIColor.green
+            let swiftColor = UIColor(red: 0, green: 1.0, blue: 0, alpha: 0.3)
+            cell.backgroundColor=swiftColor
+        }
         //Cell color control
         cell.time.textColor = UIColor.white
         cell.name.textColor = UIColor.yellow
         
-        if(indexPath.row)%2 != 0{
-        cell.backgroundColor=UIColor.darkGray
-        }else{
-        cell.backgroundColor=UIColor.black
-        }
+
       
         return(cell)
     }
@@ -109,7 +117,6 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
          list.remove(at: indexPath.row)
           dateInput.remove(at: indexPath.row)
             typeOfCell.remove(at: indexPath.row)
-            refreshList()
             refreshDate()
             myTableView.reloadData()
         }
