@@ -11,8 +11,8 @@ import UIKit
 class ViewController: UIViewController {
 
 
-    @IBOutlet weak var RandomNum: UITextField!
-    @IBOutlet weak var RandomNum1: UILabel!
+   @IBOutlet weak var RandomNum: UITextField!
+   @IBOutlet weak var RandomNum1: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

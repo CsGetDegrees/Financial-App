@@ -15,14 +15,12 @@ class TableCell: UIViewController{
     @IBOutlet weak var ImageView: UIImageView!
     @IBOutlet weak var Information: UITextField!
     
-    @IBAction func back(_ sender: Any) {
-          performSegue(withIdentifier: "back", sender: self)
-    }
+   
     override func viewDidLoad() {
     super.viewDidLoad()
-        TitleLabel.text = list[myIndex]
-        Information.text = introduction[myIndex]
-        ImageView.image = UIImage(named: list[myIndex] + ".jpg")
+       // TitleLabel.text = list[myIndex]
+      //  Information.text = introduction[myIndex]
+       // ImageView.image = UIImage(named: list[myIndex] + ".jpg")
     }
     
     override func didReceiveMemoryWarning() {

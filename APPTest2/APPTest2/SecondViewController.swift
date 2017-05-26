@@ -8,32 +8,59 @@
 
 
 import UIKit
-/* Name of list cell*/
-var list = ["Saber", "Archer", "Caster","Assassin","Teacher","WallBuilder"]
-
-/* The detail of list cell*/
-var introduction = ["Artoria Pendragon", "Gilgamesh","Gilles de Rais","","","Donald J Trump"]
-
-var myIndex = 0
 
 class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDataSource{
     
-  
-    @IBOutlet weak var myTableView: UITableView!
+
+var list = ["Saber", "Archer", "Caster","Assassin","Teacher","WallBuilder"]
+var introduction = ["Artoria Pendragon", "Gilgamesh","Gilles de Rais","","","Donald J Trump"]
+    var dateInput:[Date] = []
     
+    var myIndex = 0
+    
+    @IBOutlet weak var myTableView: UITableView!
+   @IBOutlet weak var SegmentSwitch: UISegmentedControl!
+    
+    
+    @IBAction func SwitchList(_ sender: UISegmentedControl) {
+     let a = sender.selectedSegmentIndex
+        print(a)
+        
+        
+    }
+    
+    //Refresh Local storage List
+    public func refreshList(){
+        _ = UserDefaults.standard.object(forKey: "plus")
+      
+        UserDefaults.standard.set(list,forKey: "plus")
+    }
+   //Refresh Local storage Time
+    public func refreshDate(){
+        _ = UserDefaults.standard.object(forKey: "time")
+        
+        UserDefaults.standard.set(dateInput,forKey: "time")
+    }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return(list.count)
     }
     
+    //Create a new Cell
     public   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    print("hshshs")
+        
+        
         let cell = self.myTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)as!CustomCell
+            
         
-     //  cell.textLabel?.text = list[indexPath.row]
+       //cell.textLabel?.text = list[indexPath.row]
         cell.time.text = list[indexPath.row]
-        cell.name.text = introduction[indexPath.row]
-        
+        //format
+        let dateFormat = DateFormatter()
+        dateFormat.dateStyle = .short
+        dateFormat.timeStyle = .short
+        //cell.name.text = dateFormat.string(from: dateInput[indexPath.row])
+        //Cell color control
         cell.time.textColor = UIColor.white
         cell.name.textColor = UIColor.yellow
         
@@ -49,17 +76,32 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == editingStyle{
          list.remove(at: indexPath.row)
+        dateInput.remove(at: indexPath.row)
+            refreshList()
+            refreshDate()
             myTableView.reloadData()
         }
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        print("\(list[myIndex])")
+        
+        let plusObject = UserDefaults.standard.object(forKey: "plus")
+        list = plusObject as! [String]
+        let dateObject = UserDefaults.standard.object(forKey: "time")
+        dateInput = dateObject as! [Date]
+        print(plusObject ?? 0)
+        print(dateObject ?? 0)
         myTableView.reloadData()
         print("\(list[myIndex])")
         
+      
         
-    }    
- func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        
+    }
+    
+ //Connect to CustomCell
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         myIndex = indexPath.row
         performSegue(withIdentifier: "segue", sender: self)
     }

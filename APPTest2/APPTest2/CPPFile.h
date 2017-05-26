@@ -12,6 +12,7 @@ extern "C"{
     
     float getGaussian();
     
+    
 #ifdef __cplusplus
 }
 #endif
