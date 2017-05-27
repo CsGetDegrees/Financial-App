@@ -117,19 +117,28 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
 
     override func viewDidAppear(_ animated: Bool) {
      
-        
+       
         let plusObject = UserDefaults.standard.object(forKey: "plus")
+         if(plusObject==nil){
+            print("reached")
+         }else{
         list = plusObject as! [String]
         print(plusObject ?? 0)
-        
+        }
         let dateObject = UserDefaults.standard.object(forKey: "time")
+        if(dateObject==nil){
+            print("reached")
+        }else{
         dateInput = dateObject as! [Date]
         print(dateObject ?? 0)
-        
+        }
         let IncomeOrExpense = UserDefaults.standard.object(forKey: "incomeOrExpense")
+        if(IncomeOrExpense==nil){
+            print("reached")
+        }else{
         typeOfCell = IncomeOrExpense as! [Int]
         print(IncomeOrExpense ?? 0)
-
+        }
         myTableView.reloadData()
         SegmentSwitch.reloadInputViews()
       
