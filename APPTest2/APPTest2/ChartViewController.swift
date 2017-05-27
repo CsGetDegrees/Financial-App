@@ -60,7 +60,7 @@ class ChartViewController:  UIViewController{
 
         colors.append(contentsOf: colorsMore)
         let lineChartDataSet = LineChartDataSet(values: dataEntries, label: "Type")
-lineChartDataSet.setColor(colors[0])
+        lineChartDataSet.setColor(colors[0])
 
 
 
@@ -74,9 +74,9 @@ lineChartDataSet.setColor(colors[0])
         lineChartView.maxHighlightDistance = 300.0;
 
         lineChartView.xAxis.enabled = false;
+        lineChartView.animate(xAxisDuration: 1.2)
 
-
-}
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,7 +96,7 @@ lineChartDataSet.setColor(colors[0])
         {
             return names[Int(value)]
         }
-
+        
         public func setValues(values: [String])
         {
             self.names = values
