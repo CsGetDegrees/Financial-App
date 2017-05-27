@@ -5,6 +5,11 @@
 //  Created by Tengzhe Li on 4/25/17.
 //  Copyright © 2017 Tengzhe Li. All rights reserved.
 //
+var list:[String] = []
+var dateInput:[Date] = []
+var typeOfCell:[Int] = []
+var switcher: Int = 2
+var myIndex = 0
 
 
 import UIKit
@@ -12,14 +17,9 @@ import UIKit
 class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDataSource{
     
 
-    var list:[String] = []
-    var dateInput:[Date] = []
-    var typeOfCell:[Int] = []
-    var switcher: Int = 2
-    var myIndex = 0
     
     @IBOutlet weak var myTableView: UITableView!
-   @IBOutlet weak var SegmentSwitch: UISegmentedControl!
+    @IBOutlet weak var SegmentSwitch: UISegmentedControl!
     
     //Switch the tableView in Expense, Income and Total
     @IBAction func SwitchList(_ sender: UISegmentedControl) {
@@ -74,7 +74,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
             
         
        //cell.textLabel?.text = list[indexPath.row]
-        cell.time.text = list[indexPath.row]
+        cell.name.text = list[indexPath.row]
         
 
         //format
@@ -85,27 +85,32 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
        //print (dateInput)
         if (dateInput[indexPath.row] as Date?) != nil   {
         
-       cell.name.text = dateFormat.string(from: dateInput[indexPath.row])
+       cell.time.text = dateFormat.string(from: dateInput[indexPath.row])
         }else{
-            cell.name.text = list[indexPath.row]
+            cell.time.text = list[indexPath.row]
 
         }
         
-        cell.IncomeOrExpense.text = String(typeOfCell[indexPath.row])
+        if typeOfCell[indexPath.row] == 0 {
+           cell.IncomeOrExpense.text = "-"
+        }else{
+        cell.IncomeOrExpense.text = "+"
+        }
+       // cell.IncomeOrExpense.text = String(typeOfCell[indexPath.row])
         
         
-        if (cell.IncomeOrExpense.text == "0") {
+        if (cell.IncomeOrExpense.text == "-") {
             cell.IncomeOrExpense.textColor = UIColor.red
-            let swiftColor = UIColor(red: 10, green: 0, blue: 0, alpha: 0.4)
-            cell.backgroundColor=swiftColor
+//            let swiftColor = UIColor(red: 10, green: 0, blue: 0, alpha: 0.4)
+//            cell.backgroundColor=swiftColor
         }else{
         cell.IncomeOrExpense.textColor = UIColor.green
-            let swiftColor = UIColor(red: 0, green: 1.0, blue: 0, alpha: 0.3)
-            cell.backgroundColor=swiftColor
+//            let swiftColor = UIColor(red: 0, green: 1.0, blue: 0, alpha: 0.3)
+//            cell.backgroundColor=swiftColor
         }
         //Cell color control
-        cell.time.textColor = UIColor.white
-        cell.name.textColor = UIColor.yellow
+        cell.time.textColor = UIColor.black
+        cell.name.textColor = UIColor.black
         
 
       
@@ -117,6 +122,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
          list.remove(at: indexPath.row)
           dateInput.remove(at: indexPath.row)
             typeOfCell.remove(at: indexPath.row)
+            
             refreshDate()
             myTableView.reloadData()
         }
@@ -124,18 +130,28 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
 
     override func viewDidAppear(_ animated: Bool) {
      
+      //Put all local storage to local variable 
         
         let plusObject = UserDefaults.standard.object(forKey: "plus")
-        list = plusObject as! [String]
-        print(plusObject ?? 0)
+        if (plusObject as? [String]) != nil{
+           list = plusObject as! [String]
+              print(plusObject ?? 0)
+            }
+      
         
         let dateObject = UserDefaults.standard.object(forKey: "time")
-        dateInput = dateObject as! [Date]
-        print(dateObject ?? 0)
+        if (dateObject as? [Date]) != nil{
+            dateInput = dateObject as! [Date]
+            print(dateObject ?? 0)
+        }
+
         
         let IncomeOrExpense = UserDefaults.standard.object(forKey: "incomeOrExpense")
-        typeOfCell = IncomeOrExpense as! [Int]
-        print(IncomeOrExpense ?? 0)
+        if (IncomeOrExpense as? [Int]) != nil{
+            typeOfCell = IncomeOrExpense as! [Int]
+            print(IncomeOrExpense ?? 0)
+        }
+
 
         myTableView.reloadData()
         SegmentSwitch.reloadInputViews()

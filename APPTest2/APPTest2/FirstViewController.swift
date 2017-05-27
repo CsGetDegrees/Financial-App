@@ -7,6 +7,7 @@
 
 
 import UIKit
+import UserNotifications
 
 class FirstViewController: UIViewController{
    
@@ -26,19 +27,6 @@ class FirstViewController: UIViewController{
          performSegue(withIdentifier: "segue1", sender: self)
     }
     
-//    //
-//    public func addstuff(a:String){
-//        let timeObject = UserDefaults.standard.object(forKey: "time")
-//        var Time:[String]
-//        
-//        if let tempTime = timeObject as? [String]{
-//            Time = tempTime
-//            Time.append(a)
-//            // plus = list
-//        }
-//        UserDefaults.standard.set(time,forKey: "time")
-//    }
-
     
     
     override func viewDidLoad() {
@@ -96,6 +84,25 @@ class FirstViewController: UIViewController{
         
         
     }
+   
+    func notificatonSender(UniqueID:String){
+        let content = UNMutableNotificationContent()
+        content.title = "title"
+        content.subtitle = "Subtitle"
+        content.body = "Body"
+        //content.badge = 1
+        
+        let currentDate = Date()
+        let interval = (datePicker.date).timeIntervalSince(currentDate)
+        print(interval)
+        if(interval > 30){
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
+            
+        let request = UNNotificationRequest(identifier: UniqueID, content: content, trigger:trigger)
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        }
+    }
 
     
     @IBAction func AddText(_ sender: AnyObject) {
@@ -137,7 +144,7 @@ class FirstViewController: UIViewController{
                 Time = [datePicker.date]
             }
             UserDefaults.standard.set(Time,forKey: "time")
-     
+          notificatonSender(UniqueID: InputTextField.text!)
            // introduction.append("Nope")
             InputTextField.text = ""
            
@@ -183,12 +190,30 @@ class FirstViewController: UIViewController{
                 Time = [datePicker.date]
             }
             UserDefaults.standard.set(Time,forKey: "time")
+//            
+//            if {
+//                
+//            }else{
+//            
+//            }
+//            let UUIDObject = UserDefaults.standard.object(forKey: "UniqueID")
+//            var UUID:[String]
+//            if let tempUUID = UUIDObject as? [String]{
+//                UUID = tempUUID
+//                UUID.append(InputTextField.text!)
+//                
+//            }else{
+//                plus = [InputTextField.text!]
+//            }
+            UserDefaults.standard.set(plus,forKey: "plus")
             
+            notificatonSender(UniqueID: InputTextField.text!)
             // introduction.append("Nope")
             InputTextField.text = ""
             
         }
-    }
+        
+           }
 
     
 
