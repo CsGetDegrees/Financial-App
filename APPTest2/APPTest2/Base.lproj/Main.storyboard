@@ -69,7 +69,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3585" y="1063"/>
+            <point key="canvasLocation" x="-2378" y="1054"/>
         </scene>
         <!--Second View Controller-->
         <scene sceneID="qic-KF-oGm">
@@ -323,24 +323,6 @@
                                     <action selector="jump:" destination="Yuw-uI-V5T" eventType="touchUpInside" id="nUF-eM-jeE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h69-sp-8sq">
-                                <rect key="frame" x="257" y="539" width="70" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Calculator"/>
-                                <connections>
-                                    <action selector="jump:" destination="Yuw-uI-V5T" eventType="touchUpInside" id="O3H-nw-VsG"/>
-                                    <segue destination="Sie-r3-57V" kind="push" id="ne2-GJ-QjH"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0SG-qJ-3gw">
-                                <rect key="frame" x="266" y="576" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Charts"/>
-                                <connections>
-                                    <action selector="jump:" destination="Yuw-uI-V5T" eventType="touchUpInside" id="76q-xE-uaT"/>
-                                    <segue destination="hno-In-Lb8" kind="push" id="G0S-YO-Qoj"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -373,6 +355,15 @@
                     <view key="view" contentMode="scaleToFill" id="IOZ-rW-uu6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Goals" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIZ-5i-f4C">
+                                <rect key="frame" x="57" y="28" width="260" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Goals/Charts" id="BgA-QO-2Ma"/>
@@ -381,7 +372,7 @@
             </objects>
             <point key="canvasLocation" x="-1682" y="300"/>
         </scene>
-        <!--Calculator-->
+        <!--Charts-->
         <scene sceneID="bPc-oS-dhQ">
             <objects>
                 <viewController id="5z6-l3-J5g" sceneMemberID="viewController">
@@ -392,9 +383,18 @@
                     <view key="view" contentMode="scaleToFill" id="dD2-tb-0kN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Charts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNk-Kh-UPT">
+                                <rect key="frame" x="57" y="28" width="260" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Calculator" id="37D-aS-fI8"/>
+                    <tabBarItem key="tabBarItem" title="Charts" id="37D-aS-fI8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKj-wi-NE5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -443,7 +443,7 @@
         <scene sceneID="ojl-Z2-xWk">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Azx-eh-TTF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Accounts" image="Image" selectedImage="Icon-App-40x40" id="X4N-BG-Rng"/>
+                    <tabBarItem key="tabBarItem" title="Accounts" image="Icon-App-20x20" selectedImage="Icon-App-20x20" id="X4N-BG-Rng"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ihs-Gy-mnC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -477,65 +477,8 @@
             </objects>
             <point key="canvasLocation" x="888.79999999999995" y="-507.79610194902551"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="hOO-gf-2cd">
-            <objects>
-                <viewController id="hno-In-Lb8" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ys8-Us-HE1"/>
-                        <viewControllerLayoutGuide type="bottom" id="F74-dh-A5P"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Xpa-LB-MMw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Charts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ya0-5a-2OP">
-                                <rect key="frame" x="68" y="98" width="260" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Nhq-09-vzK"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="s6p-lL-k0T" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="889" y="300"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Cia-Pz-LwB">
-            <objects>
-                <viewController id="Sie-r3-57V" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="I2R-JO-iBp"/>
-                        <viewControllerLayoutGuide type="bottom" id="tMV-Wy-wes"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="SQD-Jn-J38">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Calculator" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlk-a7-Mhz">
-                                <rect key="frame" x="68" y="98" width="260" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Fgj-pE-ipu"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jo5-K3-lGF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1681" y="300"/>
-        </scene>
     </scenes>
     <resources>
-        <image name="Icon-App-40x40" width="40" height="40"/>
-        <image name="Image" width="20" height="20"/>
+        <image name="Icon-App-20x20" width="20" height="20"/>
     </resources>
 </document>
