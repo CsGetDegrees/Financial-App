@@ -493,11 +493,11 @@
             </objects>
             <point key="canvasLocation" x="-578" y="-507"/>
         </scene>
-        <!--Goals/Charts-->
+        <!--Goals-->
         <scene sceneID="tLx-o0-yfu">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LeS-oz-vlz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Goals/Charts" image="Icon-App-20x20" selectedImage="Icon-App-20x20" id="oVx-l4-iTO"/>
+                    <tabBarItem key="tabBarItem" title="Goals" image="Icon-App-20x20" selectedImage="Icon-App-20x20" id="oVx-l4-iTO"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wd1-fT-efF">
