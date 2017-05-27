@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		06EEFDA11ED927F700B0D1D2 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06EEFD9E1ED927E300B0D1D2 /* Charts.framework */; };
 		06EEFDA21ED927F700B0D1D2 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06EEFD9E1ED927E300B0D1D2 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		06EEFE211ED9B23B00B0D1D2 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EEFE201ED9B23B00B0D1D2 /* ChartViewController.swift */; };
 		BB5D72081EB5D1BE00F33CC1 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5D72071EB5D1BE00F33CC1 /* CustomCell.swift */; };
 		BB66FD181EAEE80A00711B0E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66FD171EAEE80A00711B0E /* FirstViewController.swift */; };
 		BB66FD1A1EAEE82400711B0E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66FD191EAEE82400711B0E /* SecondViewController.swift */; };
@@ -61,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		06EEFD981ED927E200B0D1D2 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = APPTest2/Charts.xcodeproj; sourceTree = "<group>"; };
+		06EEFE201ED9B23B00B0D1D2 /* ChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		BB5D72071EB5D1BE00F33CC1 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		BB66FD171EAEE80A00711B0E /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		BB66FD191EAEE82400711B0E /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				BBAAC7601EAB14670090B40C /* ViewController.swift */,
 				BB66FD171EAEE80A00711B0E /* FirstViewController.swift */,
 				BB66FD191EAEE82400711B0E /* SecondViewController.swift */,
+				06EEFE201ED9B23B00B0D1D2 /* ChartViewController.swift */,
 				BB5D72071EB5D1BE00F33CC1 /* CustomCell.swift */,
 				BBF1709A1EB02ACB00D67418 /* TableCell.swift */,
 				BBAAC7621EAB14670090B40C /* Main.storyboard */,
@@ -238,6 +241,7 @@
 				BBAAC7611EAB14670090B40C /* ViewController.swift in Sources */,
 				BB5D72081EB5D1BE00F33CC1 /* CustomCell.swift in Sources */,
 				BBF1709B1EB02ACB00D67418 /* TableCell.swift in Sources */,
+				06EEFE211ED9B23B00B0D1D2 /* ChartViewController.swift in Sources */,
 				BBAAC7741EAB18D00090B40C /* CPPFile.cpp in Sources */,
 				BBAAC75F1EAB14670090B40C /* AppDelegate.swift in Sources */,
 			);
