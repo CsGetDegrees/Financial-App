@@ -190,22 +190,30 @@ class FirstViewController: UIViewController{
                 Time = [datePicker.date]
             }
             UserDefaults.standard.set(Time,forKey: "time")
-//            
-//            if {
-//                
-//            }else{
-//            
-//            }
-//            let UUIDObject = UserDefaults.standard.object(forKey: "UniqueID")
-//            var UUID:[String]
-//            if let tempUUID = UUIDObject as? [String]{
-//                UUID = tempUUID
-//                UUID.append(InputTextField.text!)
-//                
-//            }else{
-//                plus = [InputTextField.text!]
-//            }
-            UserDefaults.standard.set(plus,forKey: "plus")
+            
+            //The UniqueID for Notification
+            let currentDate = Date()
+           let TempID = NSUUID().uuidString
+            var UniqueID:String;
+            if currentDate < (datePicker.date){
+                 UniqueID = TempID
+                print("UniqueID\(UniqueID)")
+            }else{
+                 UniqueID = "0"
+            }
+            
+            let UUIDObject = UserDefaults.standard.object(forKey: "UniqueID")
+            var UUID:[String]
+            if let tempUUID = UUIDObject as? [String]{
+                UUID = tempUUID
+                UUID.append(UniqueID)
+                print("UniqueID\(UniqueID)")
+            }else{
+                UUID = [UniqueID]
+                print("UniqueID\(UniqueID)")
+            }
+            print("UniqueID\(UniqueID)")
+            UserDefaults.standard.set(UUID,forKey: "UniqueID")
             
             notificatonSender(UniqueID: InputTextField.text!)
             // introduction.append("Nope")

@@ -122,7 +122,8 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
          list.remove(at: indexPath.row)
           dateInput.remove(at: indexPath.row)
             typeOfCell.remove(at: indexPath.row)
-            
+            //Delete the notification
+            //.......
             refreshDate()
             myTableView.reloadData()
         }
