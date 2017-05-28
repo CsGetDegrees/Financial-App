@@ -32,8 +32,6 @@ class FirstViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(FirstViewController.UpdateTime), userInfo: nil, repeats: true)
-        // UpdateTime()
         createTimePicker()
     }
     
@@ -46,10 +44,6 @@ class FirstViewController: UIViewController{
         super.didReceiveMemoryWarning()
     }
     
-    
-    func UpdateTime(){
-        CurrentTime.text = DateFormatter.localizedString(from: NSDate() as Date , dateStyle: DateFormatter.Style.none, timeStyle: DateFormatter.Style.full)
-    }
     
     func createTimePicker(){
         //format for picker
