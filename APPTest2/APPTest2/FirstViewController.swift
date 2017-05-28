@@ -32,7 +32,10 @@ class FirstViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
        
+    
+        // UpdateTime()
         createTimePicker()
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,6 +46,7 @@ class FirstViewController: UIViewController{
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     
     
     func createTimePicker(){
@@ -59,7 +63,7 @@ class FirstViewController: UIViewController{
         toolbar.setItems([doneButton], animated: false)
         
         TimePick.inputAccessoryView = toolbar
-
+        
         // assigning time pick to text field
         TimePick.inputView = datePicker
         
@@ -86,30 +90,31 @@ class FirstViewController: UIViewController{
         content.body = "Body"
         //content.badge = 1
         
-        let currentDate = Date()
-        let interval = (datePicker.date).timeIntervalSince(currentDate)
-        print(interval)
-        if(interval > 30){
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
-            
+//        let currentDate = Date()
+//        let interval = (datePicker.date).timeIntervalSince(currentDate)
+        
+        //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
+        let calander = Calendar(identifier: .gregorian)
+        let triggerDate = calander.dateComponents([.year,.month,.day,.hour,.minute], from: datePicker.date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching:triggerDate, repeats: false)
         let request = UNNotificationRequest(identifier: UniqueID, content: content, trigger:trigger)
         
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-        }
+        
     }
 
     
     @IBAction func AddText(_ sender: AnyObject) {
         if(InputTextField.text != ""){
-            print("Print 0")
+            print("Print 111111")
             let IncomeOrExpense = UserDefaults.standard.object(forKey: "incomeOrExpense")
             var expense:[Int]
             if let tempExpense = IncomeOrExpense as? [Int]{
                 expense = tempExpense
-                expense.append(0)
+                expense.append(1)
                 
             }else{
-                expense = [0]
+                expense = [1]
             }
             UserDefaults.standard.set(expense,forKey: "incomeOrExpense")
             
@@ -138,7 +143,32 @@ class FirstViewController: UIViewController{
                 Time = [datePicker.date]
             }
             UserDefaults.standard.set(Time,forKey: "time")
-          notificatonSender(UniqueID: InputTextField.text!)
+            
+            //The UniqueID for Notification
+            let currentDate = Date()
+            let TempID = NSUUID().uuidString
+            var UniqueID:String;
+            if currentDate < (datePicker.date){
+                UniqueID = TempID
+                print("UniqueID\(UniqueID)")
+            }else{
+                UniqueID = "0"
+            }
+            
+            let UUIDObject = UserDefaults.standard.object(forKey: "UniqueID")
+            var UUID:[String]
+            if let tempUUID = UUIDObject as? [String]{
+                UUID = tempUUID
+                UUID.append(UniqueID)
+                print("UniqueID\(UniqueID)")
+            }else{
+                UUID = [UniqueID]
+                print("UniqueID\(UniqueID)")
+            }
+            print("UniqueID\(UniqueID)")
+            UserDefaults.standard.set(UUID,forKey: "UniqueID")
+            
+            notificatonSender(UniqueID: UniqueID)
            // introduction.append("Nope")
             InputTextField.text = ""
            
@@ -147,15 +177,15 @@ class FirstViewController: UIViewController{
     
     @IBAction func IncomeSave(_ sender: Any) {
         if(InputTextField.text != ""){
-           print(1111)
+           print(2222)
             let IncomeOrExpense = UserDefaults.standard.object(forKey: "incomeOrExpense")
             var income:[Int]
             if let tempIncome = IncomeOrExpense as? [Int]{
                 income = tempIncome
-                income.append(1)
+                income.append(2)
                 
             }else{
-                income = [1]
+                income = [2]
             }
             UserDefaults.standard.set(income,forKey: "incomeOrExpense")
             
@@ -209,7 +239,7 @@ class FirstViewController: UIViewController{
             print("UniqueID\(UniqueID)")
             UserDefaults.standard.set(UUID,forKey: "UniqueID")
             
-            notificatonSender(UniqueID: InputTextField.text!)
+            notificatonSender(UniqueID: UniqueID)
             // introduction.append("Nope")
             InputTextField.text = ""
             

@@ -6,11 +6,14 @@
 //  Copyright © 2017 Tengzhe Li. All rights reserved.
 //
 var list:[String] = []
+var notificationID:[String] = []
 var dateInput:[Date] = []
 var typeOfCell:[Int] = []
-var switcher: Int = 2
+
+var switcher: Int = 0
 var myIndex = 0
 
+import UserNotifications
 
 import UIKit
 
@@ -60,6 +63,9 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
         _ = UserDefaults.standard.object(forKey: "incomeOrExpense")
        UserDefaults.standard.set(typeOfCell,forKey: "incomeOrExpense")
         
+         _ = UserDefaults.standard.object(forKey: "UniqueID")
+         UserDefaults.standard.set(notificationID,forKey: "UniqueID")
+        
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,7 +74,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
     
     //Create a new Cell
     public   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+       
 
         let cell = self.myTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)as!CustomCell
             
@@ -91,9 +97,9 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
 
         }
         
-        if typeOfCell[indexPath.row] == 0 {
+        if typeOfCell[indexPath.row] == 1 {
            cell.IncomeOrExpense.text = "-"
-        }else{
+        }else {
         cell.IncomeOrExpense.text = "+"
         }
        // cell.IncomeOrExpense.text = String(typeOfCell[indexPath.row])
@@ -123,7 +129,10 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
           dateInput.remove(at: indexPath.row)
             typeOfCell.remove(at: indexPath.row)
             //Delete the notification
-            //.......
+            let center = UNUserNotificationCenter.current()
+            center.removePendingNotificationRequests(withIdentifiers: [notificationID[indexPath.row]])
+            print("removed uuid: \(notificationID[indexPath.row])")
+            notificationID.remove(at: indexPath.row)
             refreshDate()
             myTableView.reloadData()
         }
@@ -152,7 +161,12 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
             typeOfCell = IncomeOrExpense as! [Int]
             print(IncomeOrExpense ?? 0)
         }
-
+     
+        let UUIDObject = UserDefaults.standard.object(forKey: "UniqueID")
+        if (UUIDObject as? [String]) != nil{
+            notificationID = UUIDObject as! [String]
+            print(UUIDObject ?? 0)
+        }
 
         myTableView.reloadData()
         SegmentSwitch.reloadInputViews()
