@@ -158,22 +158,17 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Nxs-FV-6KO">
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="HmR-y9-sev">
-                            <rect key="frame" x="10" y="7" width="315" height="30"/>
+                            <rect key="frame" x="30" y="7" width="315" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
-                                <segment title="First"/>
-                                <segment title="Second"/>
+                                <segment title="Income"/>
+                                <segment title="Expenses"/>
                                 <segment title="Total"/>
                             </segments>
                             <connections>
                                 <action selector="SwitchList:" destination="XmV-lm-w8u" eventType="valueChanged" id="dYj-iA-kWP"/>
                             </connections>
                         </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" title="+" id="oDl-6d-znj">
-                            <connections>
-                                <segue destination="WmB-ls-gwJ" kind="show" id="0xc-Nc-Gbn"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -292,7 +287,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XEl-X0-hn1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2062" y="-2199"/>
+            <point key="canvasLocation" x="2913" y="-1480"/>
         </scene>
         <!--Accounts-->
         <scene sceneID="9Je-cN-2ty">
@@ -352,14 +347,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Lq-Jc-7LH">
-                                <rect key="frame" x="164" y="343" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="jump:" destination="Yuw-uI-V5T" eventType="touchUpInside" id="nUF-eM-jeE"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -381,7 +368,6 @@
                         <outlet property="CurrentTime" destination="ix0-We-TUN" id="zTl-xu-Ig0"/>
                         <outlet property="InputTextField" destination="ErC-ZU-79j" id="Ur9-hN-TKx"/>
                         <outlet property="TimePick" destination="FsO-EE-lxe" id="0dr-c2-5cE"/>
-                        <segue destination="BMV-Jo-KV9" kind="push" identifier="segue1" id="A2X-Oh-M04"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lq5-Wh-lxJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -411,21 +397,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Goals" image="Icon-Goals-20x20" selectedImage="GoalsIcon" id="Hdm-sR-HgH"/>
-                    <navigationItem key="navigationItem" id="gpD-wX-yHz">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="d9e-NG-JEQ">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5P2-P5-fGZ">
-                                <rect key="frame" x="329" y="7" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="+"/>
-                                <connections>
-                                    <action selector="jump:" destination="Yuw-uI-V5T" eventType="touchUpInside" id="VPX-FC-Q6c"/>
-                                </connections>
-                            </button>
-                            <connections>
-                                <segue destination="hja-83-xa7" kind="show" id="8kY-hG-KF3"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="gpD-wX-yHz"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Evy-L4-zCb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -459,25 +431,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKj-wi-NE5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="807" y="947"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="3Eq-uh-P99">
-            <objects>
-                <viewController id="BMV-Jo-KV9" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="nE9-Ad-lo1"/>
-                        <viewControllerLayoutGuide type="bottom" id="5dt-R2-D0L"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="KG4-eG-BD5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="sog-YV-VKG"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bg4-om-vaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2062" y="-1468"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="qdP-P5-ZVh">
@@ -648,106 +601,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qqN-eB-01t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="806" y="-2189"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="aBZ-h2-TTP">
-            <objects>
-                <viewController id="WmB-ls-gwJ" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="yDv-vd-JQ9"/>
-                        <viewControllerLayoutGuide type="bottom" id="XE7-bI-P7E"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="fOp-BL-Aoi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add an Income/Expense" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcX-d2-cEf">
-                                <rect key="frame" x="57" y="72" width="260" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQb-LZ-2mq">
-                                <rect key="frame" x="12" y="134" width="351" height="89"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="3. To add a goal, press the + button on the goals tab.">
-                                        <attributes>
-                                            <font key="NSFont" size="17" name=".AppleSystemUIFont"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fbl-LW-DTT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2914" y="-701"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="OeN-ge-SDO">
-            <objects>
-                <viewController id="hja-83-xa7" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="6dL-at-ULx"/>
-                        <viewControllerLayoutGuide type="bottom" id="YzA-rs-UyQ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="the-tD-qxw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a Goal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMv-R6-ih8">
-                                <rect key="frame" x="57" y="72" width="260" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1rb-mC-Y5G">
-                                <rect key="frame" x="12" y="134" width="351" height="89"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="3. To add a goal, press the + button on the goals tab.">
-                                        <attributes>
-                                            <font key="NSFont" size="17" name=".AppleSystemUIFont"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ohh-oG-GTL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2014" y="190"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="COP-Lc-RFX">
-            <objects>
-                <viewController id="YH4-cG-EhT" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Cp6-b7-KYa"/>
-                        <viewControllerLayoutGuide type="bottom" id="AD5-Xk-jwy"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="JMc-TH-QkV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="1Jk-6P-7mI"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wiu-Cn-IpE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2062" y="-1468"/>
+            <point key="canvasLocation" x="3719" y="-1480"/>
         </scene>
     </scenes>
     <resources>
