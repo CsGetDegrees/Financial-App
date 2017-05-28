@@ -410,7 +410,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Goals" image="Icon-Goals-20x20" selectedImage="Icon-Goals-20x20" id="Hdm-sR-HgH"/>
+                    <tabBarItem key="tabBarItem" title="Goals" image="Icon-Goals-20x20" selectedImage="GoalsIcon" id="Hdm-sR-HgH"/>
                     <navigationItem key="navigationItem" id="gpD-wX-yHz">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="d9e-NG-JEQ">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5P2-P5-fGZ">
@@ -453,7 +453,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Charts" image="Icon-Charts-20x20" selectedImage="Icon-Charts-20x20" id="DiR-0k-Yru"/>
+                    <tabBarItem key="tabBarItem" title="Charts" image="ChartsIcon" selectedImage="ChartsIcon" id="DiR-0k-Yru"/>
                     <navigationItem key="navigationItem" id="5vR-NK-rKg"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKj-wi-NE5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -503,7 +503,7 @@
         <scene sceneID="ojl-Z2-xWk">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Azx-eh-TTF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Accounts" image="Icon-App-40x40@1x" selectedImage="Icon-App-40x40@1x" id="X4N-BG-Rng"/>
+                    <tabBarItem key="tabBarItem" title="Accounts" image="account" selectedImage="account" id="X4N-BG-Rng"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ihs-Gy-mnC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -522,7 +522,7 @@
         <scene sceneID="w5O-o6-WOR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wv4-wF-fcL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Transactions" image="Icon-Transactions-20x20" selectedImage="Icon-Transactions-20x20" id="rwr-JB-So2"/>
+                    <tabBarItem key="tabBarItem" title="Transactions" image="coins" selectedImage="coins" id="rwr-JB-So2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pdy-5D-F0R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -541,7 +541,7 @@
         <scene sceneID="asQ-yN-Ip9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Bpg-KI-hJD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Charts" image="Icon-Charts-20x20" selectedImage="Icon-Charts-20x20" id="D8D-oS-78x"/>
+                    <tabBarItem key="tabBarItem" title="Charts" image="chart" selectedImage="chart" id="D8D-oS-78x"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3M6-6w-HM5">
@@ -561,7 +561,7 @@
         <scene sceneID="zOX-6b-iXm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pww-j5-OQr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Goals" image="Icon-Goals-20x20" selectedImage="Icon-Goals-20x20" id="Ugl-06-cOi"/>
+                    <tabBarItem key="tabBarItem" title="Goals" image="goal" selectedImage="goal" id="Ugl-06-cOi"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xXg-XW-sxd">
@@ -733,7 +733,6 @@
         <!--View Controller-->
         <scene sceneID="COP-Lc-RFX">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wiu-Cn-IpE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="YH4-cG-EhT" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Cp6-b7-KYa"/>
@@ -746,14 +745,18 @@
                     </view>
                     <navigationItem key="navigationItem" id="1Jk-6P-7mI"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wiu-Cn-IpE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2062" y="-1468"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Icon-App-40x40@1x" width="40" height="40"/>
-        <image name="Icon-Charts-20x20" width="20" height="20"/>
+        <image name="ChartsIcon" width="40" height="40"/>
+        <image name="GoalsIcon" width="40" height="40"/>
         <image name="Icon-Goals-20x20" width="20" height="20"/>
-        <image name="Icon-Transactions-20x20" width="20" height="20"/>
+        <image name="account" width="29" height="29"/>
+        <image name="chart" width="29" height="29"/>
+        <image name="coins" width="29" height="29"/>
+        <image name="goal" width="29" height="29"/>
     </resources>
 </document>
