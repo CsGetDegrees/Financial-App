@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UITableViewDelegate{
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let tintColor = UIColor(red: 252/255, green: 72/255,blue: 49/255,alpha:1)
+        let tintColor = UIColor(red: 25/255, green: 75/255,blue: 120/255,alpha:1)
         window?.tintColor = tintColor
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound], completionHandler: {didAllow,error in})
         

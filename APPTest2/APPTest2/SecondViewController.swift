@@ -128,6 +128,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
          list.remove(at: indexPath.row)
           dateInput.remove(at: indexPath.row)
             typeOfCell.remove(at: indexPath.row)
+            
             //Delete the notification
             let center = UNUserNotificationCenter.current()
             center.removePendingNotificationRequests(withIdentifiers: [notificationID[indexPath.row]])
