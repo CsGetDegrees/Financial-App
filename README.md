@@ -2,7 +2,7 @@
 Jate, Huiyu, Michael, Nick
 
 ----------------------------------------------------DESCRIPTION-----------------------------------------------
-Budgetable is a budgeting app that is designed to be used daily by anyone with an iPhone. The application allows users to track their current and previous expenditure in relation to the budget they set themselves. Users will be able to use this comparison to see where they are overspending if applicable and improve their spending habits.
+Budgetable is a budgeting app that is designed to be used daily by anyone with an iPhone. The application allows users to track their current and previous expenditure in relation to the budget they set themselves. Users will be able to use this comparison to see where they are overspending if applicable and improve their spending habits. The app will provide charts, goals, income, expenses and notifications
 
 
 
