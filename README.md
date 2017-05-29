@@ -33,11 +33,12 @@ To download the project from the github repository:
 
 12. To the right of the Play Button at the to of the screen, should show the app logo (a blue background with a white b), with the name "Budgetable". If this does not show, click on the "Charts" icon and switch to "Budgetable". 
 
-13. From there you can choose which device to simulate the app on. Iphone 6s/7/7plus works best for simulating the app on. (if you are having a problem with the simulator size, navigate to window>scale to change the simulation size)
+13. From there you can choose which device to simulate the app on. Iphone 6s/7/7plus works best for simulating the app on. (if you are having a problem with the simulator size, navigate to window>scale to change the simulation size)**
 
 14. Click the Run icon to run the app.
 
 Now you are done! 
 The app is currently a working version of the software, but there is much more to add.
+Click the "?" On the top left of the main page, to view help on how to use the app.
 
 **If the build has any errors, try changing the type of phone you are simulating on. We believe this is a problem with the Xcode simulator. 
