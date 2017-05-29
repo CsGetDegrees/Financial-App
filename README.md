@@ -18,9 +18,9 @@ To download the project from the github repository:
 
 5. click "Checkout an existing project", at the bottom of the start page.
 
-6. Paste the copies URL into the ""enter a repository location" field.
+6. Paste the copied URL into the ""enter a repository location" field.
 
-7. Select the master branch.
+7. Click next and select the master branch.
 
 8. Save the file somewhere on your computer by clicking "Download". (somewhere that is easy to navigate to)
 
