@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		06EEFDA11ED927F700B0D1D2 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06EEFD9E1ED927E300B0D1D2 /* Charts.framework */; };
-		06EEFDA21ED927F700B0D1D2 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06EEFD9E1ED927E300B0D1D2 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		06EEFE211ED9B23B00B0D1D2 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EEFE201ED9B23B00B0D1D2 /* ChartViewController.swift */; };
+		242264F61EDBCCA4003B4858 /* DailyTransaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 242264F21EDBCCA4003B4858 /* DailyTransaction.cpp */; };
+		242264FD1EDBCE79003B4858 /* SavingGoal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 242264FC1EDBCE79003B4858 /* SavingGoal.cpp */; };
+		24C89CA31EDA9C47005119AC /* Calculation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24C89C9B1EDA9C47005119AC /* Calculation.cpp */; };
+		24C89CA41EDA9C47005119AC /* TestCases.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24C89C9C1EDA9C47005119AC /* TestCases.cpp */; };
+		24C89CA51EDA9C47005119AC /* Transaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24C89C9D1EDA9C47005119AC /* Transaction.cpp */; };
+		24C89CAF1EDA9CF9005119AC /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24C89CAC1EDA9CE7005119AC /* Charts.framework */; };
+		24C89CB01EDA9CF9005119AC /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24C89CAC1EDA9CE7005119AC /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		24C89CB51EDA9DD5005119AC /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C89CB41EDA9DD5005119AC /* ChartView.swift */; };
 		BB5D72081EB5D1BE00F33CC1 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5D72071EB5D1BE00F33CC1 /* CustomCell.swift */; };
 		BB66FD181EAEE80A00711B0E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66FD171EAEE80A00711B0E /* FirstViewController.swift */; };
 		BB66FD1A1EAEE82400711B0E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66FD191EAEE82400711B0E /* SecondViewController.swift */; };
@@ -23,23 +28,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		06EEFD9D1ED927E300B0D1D2 /* PBXContainerItemProxy */ = {
+		24C89CAB1EDA9CE7005119AC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 06EEFD981ED927E200B0D1D2 /* Charts.xcodeproj */;
+			containerPortal = 24C89CA61EDA9CE6005119AC /* Charts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 06165F241D8110E600722320;
 			remoteInfo = Charts;
 		};
-		06EEFD9F1ED927E300B0D1D2 /* PBXContainerItemProxy */ = {
+		24C89CAD1EDA9CE7005119AC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 06EEFD981ED927E200B0D1D2 /* Charts.xcodeproj */;
+			containerPortal = 24C89CA61EDA9CE6005119AC /* Charts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 06165F2E1D8110E600722320;
 			remoteInfo = ChartsTests;
 		};
-		06EEFDA31ED927F700B0D1D2 /* PBXContainerItemProxy */ = {
+		24C89CB11EDA9CF9005119AC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 06EEFD981ED927E200B0D1D2 /* Charts.xcodeproj */;
+			containerPortal = 24C89CA61EDA9CE6005119AC /* Charts.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 06165F231D8110E600722320;
 			remoteInfo = Charts;
@@ -47,13 +52,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		06EEFD871ED9253F00B0D1D2 /* Embed Frameworks */ = {
+		24C89CB31EDA9CF9005119AC /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				06EEFDA21ED927F700B0D1D2 /* Charts.framework in Embed Frameworks */,
+				24C89CB01EDA9CF9005119AC /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -61,8 +66,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		06EEFD981ED927E200B0D1D2 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = APPTest2/Charts.xcodeproj; sourceTree = "<group>"; };
-		06EEFE201ED9B23B00B0D1D2 /* ChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		242264F21EDBCCA4003B4858 /* DailyTransaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DailyTransaction.cpp; sourceTree = "<group>"; };
+		242264F41EDBCCA4003B4858 /* DailyTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyTransaction.h; sourceTree = "<group>"; };
+		242264F51EDBCCA4003B4858 /* SavingGoal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavingGoal.h; sourceTree = "<group>"; };
+		242264FC1EDBCE79003B4858 /* SavingGoal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SavingGoal.cpp; sourceTree = "<group>"; };
+		248EACAA1EDBDC2F0045A436 /* APPTest2-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APPTest2-Bridging-Header.h"; sourceTree = "<group>"; };
+		248EACAB1EDBDC450045A436 /* Budgetable-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Budgetable-Bridging-Header.h"; sourceTree = "<group>"; };
+		24C89C9B1EDA9C47005119AC /* Calculation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Calculation.cpp; sourceTree = "<group>"; };
+		24C89C9C1EDA9C47005119AC /* TestCases.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestCases.cpp; sourceTree = "<group>"; };
+		24C89C9D1EDA9C47005119AC /* Transaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transaction.cpp; sourceTree = "<group>"; };
+		24C89C9F1EDA9C47005119AC /* Calculation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculation.h; sourceTree = "<group>"; };
+		24C89CA01EDA9C47005119AC /* TestCases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCases.h; sourceTree = "<group>"; };
+		24C89CA11EDA9C47005119AC /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
+		24C89CA61EDA9CE6005119AC /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = APPTest2/Charts.xcodeproj; sourceTree = "<group>"; };
+		24C89CB41EDA9DD5005119AC /* ChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		BB5D72071EB5D1BE00F33CC1 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		BB66FD171EAEE80A00711B0E /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		BB66FD191EAEE82400711B0E /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -73,7 +90,6 @@
 		BBAAC7651EAB14670090B40C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BBAAC7681EAB14670090B40C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BBAAC76A1EAB14670090B40C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BBAAC7701EAB18D00090B40C /* APPTest2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "APPTest2-Bridging-Header.h"; sourceTree = "<group>"; };
 		BBAAC7711EAB18D00090B40C /* CPPFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPPFile.cpp; sourceTree = "<group>"; };
 		BBAAC7721EAB18D00090B40C /* CPPFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPFile.h; sourceTree = "<group>"; };
 		BBF1709A1EB02ACB00D67418 /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
@@ -84,18 +100,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06EEFDA11ED927F700B0D1D2 /* Charts.framework in Frameworks */,
+				24C89CAF1EDA9CF9005119AC /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		06EEFD991ED927E200B0D1D2 /* Products */ = {
+		24C89CA71EDA9CE6005119AC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				06EEFD9E1ED927E300B0D1D2 /* Charts.framework */,
-				06EEFDA01ED927E300B0D1D2 /* ChartsTests.xctest */,
+				24C89CAC1EDA9CE7005119AC /* Charts.framework */,
+				24C89CAE1EDA9CE7005119AC /* ChartsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,7 +119,7 @@
 		BBAAC7521EAB14670090B40C = {
 			isa = PBXGroup;
 			children = (
-				06EEFD981ED927E200B0D1D2 /* Charts.xcodeproj */,
+				24C89CA61EDA9CE6005119AC /* Charts.xcodeproj */,
 				BBAAC75D1EAB14670090B40C /* APPTest2 */,
 				BBAAC75C1EAB14670090B40C /* Products */,
 			);
@@ -120,20 +136,31 @@
 		BBAAC75D1EAB14670090B40C /* APPTest2 */ = {
 			isa = PBXGroup;
 			children = (
+				248EACAB1EDBDC450045A436 /* Budgetable-Bridging-Header.h */,
+				248EACAA1EDBDC2F0045A436 /* APPTest2-Bridging-Header.h */,
+				242264FC1EDBCE79003B4858 /* SavingGoal.cpp */,
+				242264F21EDBCCA4003B4858 /* DailyTransaction.cpp */,
+				242264F41EDBCCA4003B4858 /* DailyTransaction.h */,
+				242264F51EDBCCA4003B4858 /* SavingGoal.h */,
 				BBAAC75E1EAB14670090B40C /* AppDelegate.swift */,
 				BBAAC7601EAB14670090B40C /* ViewController.swift */,
 				BB66FD171EAEE80A00711B0E /* FirstViewController.swift */,
 				BB66FD191EAEE82400711B0E /* SecondViewController.swift */,
-				06EEFE201ED9B23B00B0D1D2 /* ChartViewController.swift */,
 				BB5D72071EB5D1BE00F33CC1 /* CustomCell.swift */,
 				BBF1709A1EB02ACB00D67418 /* TableCell.swift */,
+				24C89CB41EDA9DD5005119AC /* ChartView.swift */,
 				BBAAC7621EAB14670090B40C /* Main.storyboard */,
+				24C89C9F1EDA9C47005119AC /* Calculation.h */,
+				24C89CA01EDA9C47005119AC /* TestCases.h */,
+				24C89CA11EDA9C47005119AC /* Transaction.h */,
+				24C89C9B1EDA9C47005119AC /* Calculation.cpp */,
+				24C89C9C1EDA9C47005119AC /* TestCases.cpp */,
+				24C89C9D1EDA9C47005119AC /* Transaction.cpp */,
 				BBAAC7651EAB14670090B40C /* Assets.xcassets */,
 				BBAAC7671EAB14670090B40C /* LaunchScreen.storyboard */,
 				BBAAC76A1EAB14670090B40C /* Info.plist */,
 				BBAAC7711EAB18D00090B40C /* CPPFile.cpp */,
 				BBAAC7721EAB18D00090B40C /* CPPFile.h */,
-				BBAAC7701EAB18D00090B40C /* APPTest2-Bridging-Header.h */,
 			);
 			path = APPTest2;
 			sourceTree = "<group>";
@@ -141,21 +168,21 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BBAAC75A1EAB14670090B40C /* teste */ = {
+		BBAAC75A1EAB14670090B40C /* Budgetable */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BBAAC76D1EAB14670090B40C /* Build configuration list for PBXNativeTarget "teste" */;
+			buildConfigurationList = BBAAC76D1EAB14670090B40C /* Build configuration list for PBXNativeTarget "Budgetable" */;
 			buildPhases = (
 				BBAAC7571EAB14670090B40C /* Sources */,
 				BBAAC7581EAB14670090B40C /* Frameworks */,
 				BBAAC7591EAB14670090B40C /* Resources */,
-				06EEFD871ED9253F00B0D1D2 /* Embed Frameworks */,
+				24C89CB31EDA9CF9005119AC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				06EEFDA41ED927F700B0D1D2 /* PBXTargetDependency */,
+				24C89CB21EDA9CF9005119AC /* PBXTargetDependency */,
 			);
-			name = teste;
+			name = Budgetable;
 			productName = APPTest2;
 			productReference = BBAAC75B1EAB14670090B40C /* Budgetable.app */;
 			productType = "com.apple.product-type.application";
@@ -190,30 +217,30 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 06EEFD991ED927E200B0D1D2 /* Products */;
-					ProjectRef = 06EEFD981ED927E200B0D1D2 /* Charts.xcodeproj */;
+					ProductGroup = 24C89CA71EDA9CE6005119AC /* Products */;
+					ProjectRef = 24C89CA61EDA9CE6005119AC /* Charts.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				BBAAC75A1EAB14670090B40C /* teste */,
+				BBAAC75A1EAB14670090B40C /* Budgetable */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		06EEFD9E1ED927E300B0D1D2 /* Charts.framework */ = {
+		24C89CAC1EDA9CE7005119AC /* Charts.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Charts.framework;
-			remoteRef = 06EEFD9D1ED927E300B0D1D2 /* PBXContainerItemProxy */;
+			remoteRef = 24C89CAB1EDA9CE7005119AC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		06EEFDA01ED927E300B0D1D2 /* ChartsTests.xctest */ = {
+		24C89CAE1EDA9CE7005119AC /* ChartsTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ChartsTests.xctest;
-			remoteRef = 06EEFD9F1ED927E300B0D1D2 /* PBXContainerItemProxy */;
+			remoteRef = 24C89CAD1EDA9CE7005119AC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -239,21 +266,26 @@
 				BB66FD1A1EAEE82400711B0E /* SecondViewController.swift in Sources */,
 				BB66FD181EAEE80A00711B0E /* FirstViewController.swift in Sources */,
 				BBAAC7611EAB14670090B40C /* ViewController.swift in Sources */,
+				242264FD1EDBCE79003B4858 /* SavingGoal.cpp in Sources */,
+				24C89CA41EDA9C47005119AC /* TestCases.cpp in Sources */,
 				BB5D72081EB5D1BE00F33CC1 /* CustomCell.swift in Sources */,
 				BBF1709B1EB02ACB00D67418 /* TableCell.swift in Sources */,
-				06EEFE211ED9B23B00B0D1D2 /* ChartViewController.swift in Sources */,
 				BBAAC7741EAB18D00090B40C /* CPPFile.cpp in Sources */,
+				242264F61EDBCCA4003B4858 /* DailyTransaction.cpp in Sources */,
+				24C89CA31EDA9C47005119AC /* Calculation.cpp in Sources */,
 				BBAAC75F1EAB14670090B40C /* AppDelegate.swift in Sources */,
+				24C89CA51EDA9C47005119AC /* Transaction.cpp in Sources */,
+				24C89CB51EDA9DD5005119AC /* ChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		06EEFDA41ED927F700B0D1D2 /* PBXTargetDependency */ = {
+		24C89CB21EDA9CF9005119AC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Charts;
-			targetProxy = 06EEFDA31ED927F700B0D1D2 /* PBXContainerItemProxy */;
+			targetProxy = 24C89CB11EDA9CF9005119AC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -379,7 +411,7 @@
 				INFOPLIST_FILE = APPTest2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Jateli.APPTest2;
-				PRODUCT_NAME = Budgetable;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "APPTest2/APPTest2-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -395,7 +427,7 @@
 				INFOPLIST_FILE = APPTest2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Jateli.APPTest2;
-				PRODUCT_NAME = Budgetable;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "APPTest2/APPTest2-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -413,7 +445,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BBAAC76D1EAB14670090B40C /* Build configuration list for PBXNativeTarget "teste" */ = {
+		BBAAC76D1EAB14670090B40C /* Build configuration list for PBXNativeTarget "Budgetable" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BBAAC76E1EAB14670090B40C /* Debug */,

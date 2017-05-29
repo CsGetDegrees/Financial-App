@@ -11,9 +11,11 @@ extern "C"{
 #endif
 
     double getPrice(void);
-    const char *getType(void);
-    const char *getDate(void);
-    const void Transaction(double price,char *type,char *date);
+    int getType(void);
+    int getYear(void);
+    int getMonth(void);
+    int getDay(void);
+    const void Transaction(double price,int type,int date);
 
 
 

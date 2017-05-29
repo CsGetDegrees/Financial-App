@@ -9,6 +9,7 @@
 #include "Transaction.h"
 using namespace std;
 
+// some enmus types needed to be added here
 class Transaction {
 private:
     double price;
