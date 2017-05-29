@@ -25,6 +25,11 @@ class FirstViewController: UIViewController{
     
     let datePicker = UIDatePicker()
     
+    @IBOutlet weak var addExpense: UIButton!
+    @IBOutlet weak var addIncome: UIButton!
+    
+    
+    
     
     @IBOutlet weak var typeOpen: UIButton!
     
@@ -104,7 +109,8 @@ class FirstViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        addExpense.layer.cornerRadius = 6
+        addIncome.layer.cornerRadius = 6
         
         // UpdateTime()
         createTimePicker()
