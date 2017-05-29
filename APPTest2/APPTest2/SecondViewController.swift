@@ -9,6 +9,10 @@ var list:[String] = []
 var notificationID:[String] = []
 var dateInput:[Date] = []
 var typeOfCell:[Int] = []
+var amountOfCell:[Double] = []
+var typeOfAmount:[Int] = []
+var Description:[String] = []
+
 
 var switcher: Int = 0
 var myIndex = 0
@@ -128,7 +132,6 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
          list.remove(at: indexPath.row)
           dateInput.remove(at: indexPath.row)
             typeOfCell.remove(at: indexPath.row)
-            
             //Delete the notification
             let center = UNUserNotificationCenter.current()
             center.removePendingNotificationRequests(withIdentifiers: [notificationID[indexPath.row]])
@@ -169,6 +172,17 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
             print(UUIDObject ?? 0)
         }
 
+        let descriptionObject = UserDefaults.standard.object(forKey: "Description")
+        if (descriptionObject as? [String]) != nil{
+            Description = descriptionObject as! [String]
+            print(descriptionObject ?? 0)
+        }
+        
+        let amountObject = UserDefaults.standard.object(forKey: "Amount")
+        if (amountObject as? [Double]) != nil{
+            amountOfCell = IncomeOrExpense as! [Double]
+            print(amountObject ?? 0)
+        }
         myTableView.reloadData()
         SegmentSwitch.reloadInputViews()
       

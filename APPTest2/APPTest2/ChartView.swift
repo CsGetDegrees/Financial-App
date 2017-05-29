@@ -98,11 +98,11 @@ class ChartView:  UIViewController{
         super.viewDidLoad()
         //////test mock data
         months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
-        let moneySpent = [40.0, 18.0, 33.0, 30.0, 80.0, 16.0]
+        let moneySpent = [4.0, 18.0, 33.0, 30.0, 120.0, 16.0]
         /////////
-        let type = ["Food", "Power", "Internet", "Textbooks", "Pc Parts", "Beer",]
-        setPieChart(dataPoints: type , values: moneySpent)
-        setLineChart(dataPoints: type, values: moneySpent)
+        let date = ["Food", "Power", "Internet", "Textbooks", "Pc Parts", "Beer",]
+        setPieChart(dataPoints: date , values: moneySpent)
+        setLineChart(dataPoints: date, values: moneySpent)
         pieChartView.notifyDataSetChanged() // to display the labels
     }
     

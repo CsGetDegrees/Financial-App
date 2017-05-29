@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		06EEFE3C1EDBC80500B0D1D2 /* DailyTransaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 06EEFE3B1EDBC80500B0D1D2 /* DailyTransaction.cpp */; };
-		06EEFE401EDBC96800B0D1D2 /* SavingGoal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 06EEFE3F1EDBC96800B0D1D2 /* SavingGoal.cpp */; };
+		242264F61EDBCCA4003B4858 /* DailyTransaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 242264F21EDBCCA4003B4858 /* DailyTransaction.cpp */; };
+		242264FD1EDBCE79003B4858 /* SavingGoal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 242264FC1EDBCE79003B4858 /* SavingGoal.cpp */; };
 		24C89CA31EDA9C47005119AC /* Calculation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24C89C9B1EDA9C47005119AC /* Calculation.cpp */; };
 		24C89CA41EDA9C47005119AC /* TestCases.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24C89C9C1EDA9C47005119AC /* TestCases.cpp */; };
 		24C89CA51EDA9C47005119AC /* Transaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24C89C9D1EDA9C47005119AC /* Transaction.cpp */; };
@@ -66,10 +66,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		06EEFE3B1EDBC80500B0D1D2 /* DailyTransaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DailyTransaction.cpp; sourceTree = "<group>"; };
-		06EEFE3E1EDBC8D400B0D1D2 /* DailyTransaction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DailyTransaction.h; sourceTree = "<group>"; };
-		06EEFE3F1EDBC96800B0D1D2 /* SavingGoal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SavingGoal.cpp; sourceTree = "<group>"; };
-		06EEFE411EDBCABE00B0D1D2 /* SavingGoal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SavingGoal.h; sourceTree = "<group>"; };
+		242264F21EDBCCA4003B4858 /* DailyTransaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DailyTransaction.cpp; sourceTree = "<group>"; };
+		242264F41EDBCCA4003B4858 /* DailyTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyTransaction.h; sourceTree = "<group>"; };
+		242264F51EDBCCA4003B4858 /* SavingGoal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavingGoal.h; sourceTree = "<group>"; };
+		242264FC1EDBCE79003B4858 /* SavingGoal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SavingGoal.cpp; sourceTree = "<group>"; };
 		24C89C9B1EDA9C47005119AC /* Calculation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Calculation.cpp; sourceTree = "<group>"; };
 		24C89C9C1EDA9C47005119AC /* TestCases.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestCases.cpp; sourceTree = "<group>"; };
 		24C89C9D1EDA9C47005119AC /* Transaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transaction.cpp; sourceTree = "<group>"; };
@@ -136,18 +136,10 @@
 		BBAAC75D1EAB14670090B40C /* APPTest2 */ = {
 			isa = PBXGroup;
 			children = (
-				24C89CB61EDA9ED1005119AC /* APPTest2-Bridging-Header.h */,
-				24C89C9B1EDA9C47005119AC /* Calculation.cpp */,
-				06EEFE3F1EDBC96800B0D1D2 /* SavingGoal.cpp */,
-				06EEFE411EDBCABE00B0D1D2 /* SavingGoal.h */,
-				24C89C9C1EDA9C47005119AC /* TestCases.cpp */,
-				24C89C9D1EDA9C47005119AC /* Transaction.cpp */,
-				06EEFE3B1EDBC80500B0D1D2 /* DailyTransaction.cpp */,
-				06EEFE3E1EDBC8D400B0D1D2 /* DailyTransaction.h */,
-				24C89C9E1EDA9C47005119AC /* Budgetable-Bridging-Header.h */,
-				24C89C9F1EDA9C47005119AC /* Calculation.h */,
-				24C89CA01EDA9C47005119AC /* TestCases.h */,
-				24C89CA11EDA9C47005119AC /* Transaction.h */,
+				242264FC1EDBCE79003B4858 /* SavingGoal.cpp */,
+				242264F21EDBCCA4003B4858 /* DailyTransaction.cpp */,
+				242264F41EDBCCA4003B4858 /* DailyTransaction.h */,
+				242264F51EDBCCA4003B4858 /* SavingGoal.h */,
 				BBAAC75E1EAB14670090B40C /* AppDelegate.swift */,
 				BBAAC7601EAB14670090B40C /* ViewController.swift */,
 				BB66FD171EAEE80A00711B0E /* FirstViewController.swift */,
@@ -155,6 +147,14 @@
 				BB5D72071EB5D1BE00F33CC1 /* CustomCell.swift */,
 				BBF1709A1EB02ACB00D67418 /* TableCell.swift */,
 				BBAAC7621EAB14670090B40C /* Main.storyboard */,
+				24C89C9F1EDA9C47005119AC /* Calculation.h */,
+				24C89CA01EDA9C47005119AC /* TestCases.h */,
+				24C89CA11EDA9C47005119AC /* Transaction.h */,
+				24C89CB61EDA9ED1005119AC /* APPTest2-Bridging-Header.h */,
+				24C89C9B1EDA9C47005119AC /* Calculation.cpp */,
+				24C89C9C1EDA9C47005119AC /* TestCases.cpp */,
+				24C89C9D1EDA9C47005119AC /* Transaction.cpp */,
+				24C89C9E1EDA9C47005119AC /* Budgetable-Bridging-Header.h */,
 				BBAAC7651EAB14670090B40C /* Assets.xcassets */,
 				BBAAC7671EAB14670090B40C /* LaunchScreen.storyboard */,
 				BBAAC76A1EAB14670090B40C /* Info.plist */,
@@ -266,15 +266,15 @@
 				BB66FD1A1EAEE82400711B0E /* SecondViewController.swift in Sources */,
 				BB66FD181EAEE80A00711B0E /* FirstViewController.swift in Sources */,
 				BBAAC7611EAB14670090B40C /* ViewController.swift in Sources */,
-				06EEFE401EDBC96800B0D1D2 /* SavingGoal.cpp in Sources */,
+				242264FD1EDBCE79003B4858 /* SavingGoal.cpp in Sources */,
 				24C89CA41EDA9C47005119AC /* TestCases.cpp in Sources */,
 				BB5D72081EB5D1BE00F33CC1 /* CustomCell.swift in Sources */,
 				BBF1709B1EB02ACB00D67418 /* TableCell.swift in Sources */,
 				BBAAC7741EAB18D00090B40C /* CPPFile.cpp in Sources */,
+				242264F61EDBCCA4003B4858 /* DailyTransaction.cpp in Sources */,
 				24C89CA31EDA9C47005119AC /* Calculation.cpp in Sources */,
 				BBAAC75F1EAB14670090B40C /* AppDelegate.swift in Sources */,
 				24C89CA51EDA9C47005119AC /* Transaction.cpp in Sources */,
-				06EEFE3C1EDBC80500B0D1D2 /* DailyTransaction.cpp in Sources */,
 				24C89CB51EDA9DD5005119AC /* ChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

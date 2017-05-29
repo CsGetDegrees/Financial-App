@@ -17,12 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UITableViewDelegate{
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let tintColor = UIColor(red: 25/255, green: 75/255,blue: 120/255,alpha:1)
+        // UINavigationBar.appearance().clipsToBounds = true
+        let tintColor = UIColor(red: 106/255, green: 175/255,blue: 250/255,alpha:1)
         window?.tintColor = tintColor
+        UITabBar.appearance().tintColor = tintColor
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound], completionHandler: {didAllow,error in})
         
-               return true
+        return true
     }
+
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
