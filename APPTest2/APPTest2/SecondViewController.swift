@@ -13,6 +13,7 @@ var amountOfCell:[Double] = []
 var typeOfAmount:[Int] = []
 var Description:[String] = []
 
+var MoneySpent:[Double] = [0,0,0,0,0,0,0,0,0]
 
 var switcher: Int = 0
 var myIndex = 0
@@ -70,6 +71,15 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
          _ = UserDefaults.standard.object(forKey: "UniqueID")
          UserDefaults.standard.set(notificationID,forKey: "UniqueID")
         
+     _ = UserDefaults.standard.object(forKey: "Description")
+        UserDefaults.standard.set(Description,forKey: "Description")
+ 
+        _ = UserDefaults.standard.object(forKey: "Amount")
+        UserDefaults.standard.set(amountOfCell,forKey: "Amount")
+        
+        _ = UserDefaults.standard.object(forKey: "TypeOfAmount")
+          UserDefaults.standard.set(typeOfAmount,forKey: "TypeOfAmount")
+
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,7 +96,12 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
        //cell.textLabel?.text = list[indexPath.row]
         cell.name.text = list[indexPath.row]
         
-
+        //Description
+        cell.Description.text = Description[indexPath.row]
+        
+        //Amount
+             cell.Amount.text = String(amountOfCell[indexPath.row])
+       print( String(amountOfCell[indexPath.row]))
         //format
         let dateFormat = DateFormatter()
         dateFormat.dateStyle = .short
@@ -111,12 +126,9 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
         
         if (cell.IncomeOrExpense.text == "-") {
             cell.IncomeOrExpense.textColor = UIColor.red
-//            let swiftColor = UIColor(red: 10, green: 0, blue: 0, alpha: 0.4)
-//            cell.backgroundColor=swiftColor
+
         }else{
         cell.IncomeOrExpense.textColor = UIColor.green
-//            let swiftColor = UIColor(red: 0, green: 1.0, blue: 0, alpha: 0.3)
-//            cell.backgroundColor=swiftColor
         }
         //Cell color control
         cell.time.textColor = UIColor.black
@@ -132,16 +144,76 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
          list.remove(at: indexPath.row)
           dateInput.remove(at: indexPath.row)
             typeOfCell.remove(at: indexPath.row)
+            amountOfCell.remove(at: indexPath.row)
+            Description.remove(at: indexPath.row)
+            typeOfAmount.remove(at: indexPath.row)
             //Delete the notification
             let center = UNUserNotificationCenter.current()
             center.removePendingNotificationRequests(withIdentifiers: [notificationID[indexPath.row]])
             print("removed uuid: \(notificationID[indexPath.row])")
             notificationID.remove(at: indexPath.row)
             refreshDate()
+            MoneySpent = [0,0,0,0,0,0,0,0,0]
+            moneySpent()
             myTableView.reloadData()
         }
     }
 
+    func moneySpent(){
+        for (index, _) in typeOfAmount.enumerated() {
+            if typeOfAmount[index] == 0 {
+                 MoneySpent[0] +=  amountOfCell[index]
+            }
+         }
+        for (index, _) in typeOfAmount.enumerated() {
+            if typeOfAmount[index] == 1 {
+                MoneySpent[1] +=  amountOfCell[index]
+            }
+        }
+        
+        for (index, _) in typeOfAmount.enumerated() {
+            if typeOfAmount[index] == 2 {
+                MoneySpent[2] +=  amountOfCell[index]
+            }
+        }
+        for (index, _) in typeOfAmount.enumerated() {
+            if typeOfAmount[index] == 3 {
+                MoneySpent[3] +=  amountOfCell[index]
+            }
+        }
+        
+        for (index, _) in typeOfAmount.enumerated() {
+            if typeOfAmount[index] == 4 {
+                MoneySpent[4] +=  amountOfCell[index]
+            }
+        }
+        for (index, _) in typeOfAmount.enumerated() {
+            if typeOfAmount[index] == 5 {
+                MoneySpent[5] +=  amountOfCell[index]
+            }
+        }
+        for (index, _) in typeOfAmount.enumerated() {
+            if typeOfAmount[index] == 6 {
+                MoneySpent[6] +=  amountOfCell[index]
+            }
+        }
+        for (index, _) in typeOfAmount.enumerated() {
+            if typeOfAmount[index] == 7 {
+                MoneySpent[7] +=  amountOfCell[index]
+            }
+        }
+        for (index, _) in typeOfAmount.enumerated() {
+            if typeOfAmount[index] == 8 {
+                MoneySpent[8] +=  amountOfCell[index]
+            }
+        }
+
+        
+        
+        
+         print(MoneySpent)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
      
       //Put all local storage to local variable 
@@ -180,15 +252,27 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
         
         let amountObject = UserDefaults.standard.object(forKey: "Amount")
         if (amountObject as? [Double]) != nil{
-            amountOfCell = IncomeOrExpense as! [Double]
+            amountOfCell = amountObject as! [Double]
             print(amountObject ?? 0)
         }
+        
+        let typeObject = UserDefaults.standard.object(forKey: "TypeOfAmount")
+        
+        if (typeObject as? [Int]) != nil{
+            typeOfAmount = typeObject as! [Int]
+            print(typeOfAmount )
+        }
+
+
+        moneySpent()
         myTableView.reloadData()
         SegmentSwitch.reloadInputViews()
       
         
         
     }
+    
+    
     
  //Connect to CustomCell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){

@@ -45,6 +45,13 @@ class FirstViewController: UIViewController{
     @IBOutlet weak var type7: UIButton!
     @IBOutlet weak var type8: UIButton!
     
+    @IBOutlet weak var IncomeButtom: UIButton!
+    
+    @IBOutlet weak var ExpenseButtom: UIButton!
+    
+    
+    
+    
     var trueOrFalse = false
     
     func hiddenButton () {
@@ -60,6 +67,46 @@ class FirstViewController: UIViewController{
         
         
     }
+ 
+    @IBAction func DoubleCheck(_ sender: Any) {
+        let check = Double(amountInput.text!)
+        
+        if(check != nil){
+            print("good")
+            IncomeButtom.isUserInteractionEnabled = true
+            ExpenseButtom.isUserInteractionEnabled = true
+            
+        }else{
+            
+            IncomeButtom.isUserInteractionEnabled = false
+            ExpenseButtom.isUserInteractionEnabled = false
+            print("bad")
+            
+        }
+
+    }
+    
+//    @IBAction func Checkcheck(_ sender: Any) {
+//        
+//        let check = Double(amountInput.text!)
+//        
+//        print("hahah")
+//        
+//        if(check != nil){
+//            print("good")
+//            IncomeButtom.isUserInteractionEnabled = true
+//            ExpenseButtom.isUserInteractionEnabled = true
+//            
+//        }else{
+//            
+//            IncomeButtom.isUserInteractionEnabled = false
+//            ExpenseButtom.isUserInteractionEnabled = false
+//            print("bad")
+//            
+//        }
+//
+//    }
+    
     
     @IBAction func styleList(_ sender: Any) {
         if trueOrFalse {
@@ -283,14 +330,25 @@ class FirstViewController: UIViewController{
             UserDefaults.standard.set(Time,forKey: "time")
             
             //check Double
-            if let check = Double(amountInput.text!){
-                print("good")
-                saveAmount()
+            saveAmount()
+            
+            //Add Type of Amount
+            let typeObject = UserDefaults.standard.object(forKey: "TypeOfAmount")
+            var AmountType:[Int]
+            
+            if let tempType = typeObject as? [Int]{
+               AmountType = tempType
+                AmountType.append(typeSelect)
+    
             }else{
-                amountInput.text = "This is not a number!"
-                print("bad")
+                
+                AmountType = [typeSelect]
             }
-            saveNotificationID()
+            UserDefaults.standard.set(AmountType,forKey: "TypeOfAmount")
+
+            
+            
+            savedescription()
             saveNotificationID()
             // introduction.append("Nope")
             InputTextField.text = ""
@@ -339,15 +397,23 @@ class FirstViewController: UIViewController{
             UserDefaults.standard.set(Time,forKey: "time")
             
             //check Double
-            if let check = Double(amountInput.text!){
-                print("good")
-                saveAmount()
-            }else{
-                amountInput.text = "This is not a number!"
-                print("bad")
-                return
-            }
+           
+ saveAmount()
             
+            //Add Type of Amount
+            let typeObject = UserDefaults.standard.object(forKey: "TypeOfAmount")
+            var AmountType:[Int]
+            
+            if let tempType = typeObject as? [Int]{
+                AmountType = tempType
+                AmountType.append(Int(typeSelect))
+                
+            }else{
+                
+                AmountType = [Int(typeSelect)]
+            }
+            UserDefaults.standard.set(AmountType,forKey: "TypeOfAmount")
+
             savedescription()
             //The UniqueID for Notification
             saveNotificationID()
