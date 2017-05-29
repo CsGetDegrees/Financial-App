@@ -39,3 +39,5 @@ To download the project from the github repository:
 
 Now you are done! 
 The app is currently a working version of the software, but there is much more to add.
+
+**If the build has any errors, try changing the type of phone you are simulating on. We believe this is a problem with the Xcode simulator. 
