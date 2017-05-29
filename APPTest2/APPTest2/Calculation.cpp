@@ -31,3 +31,10 @@ double average(double a[]){
     }
     return sum/(sizeof(a)/sizeof(a[0]));
 }
+double total(double a[]){
+    double sum=0;
+    for(int i=0;i<sizeof(a)/sizeof(a[0]) ;++i){
+        sum+=a[i];
+    }
+    return sum;
+}

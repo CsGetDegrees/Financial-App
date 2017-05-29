@@ -10,10 +10,11 @@
 extern "C"{
 #endif
     double add(double a, double b);
-    minu(double a, double b);
-    mult(double a, double b);
-    divi(double a, double b);
-     average(double a[])
+    double minu(double a, double b);
+    double mult(double a, double b);
+    double divi(double a, double b);
+    double average(double a[]);
+    double total(double a[a]);
 #ifdef __cplusplus
 }
 #endif
