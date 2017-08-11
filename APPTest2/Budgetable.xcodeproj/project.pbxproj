@@ -138,8 +138,6 @@
 			children = (
 				248EACAB1EDBDC450045A436 /* Budgetable-Bridging-Header.h */,
 				248EACAA1EDBDC2F0045A436 /* APPTest2-Bridging-Header.h */,
-				242264FC1EDBCE79003B4858 /* SavingGoal.cpp */,
-				242264F21EDBCCA4003B4858 /* DailyTransaction.cpp */,
 				242264F41EDBCCA4003B4858 /* DailyTransaction.h */,
 				242264F51EDBCCA4003B4858 /* SavingGoal.h */,
 				BBAAC75E1EAB14670090B40C /* AppDelegate.swift */,
@@ -156,6 +154,8 @@
 				24C89C9B1EDA9C47005119AC /* Calculation.cpp */,
 				24C89C9C1EDA9C47005119AC /* TestCases.cpp */,
 				24C89C9D1EDA9C47005119AC /* Transaction.cpp */,
+				242264FC1EDBCE79003B4858 /* SavingGoal.cpp */,
+				242264F21EDBCCA4003B4858 /* DailyTransaction.cpp */,
 				BBAAC7651EAB14670090B40C /* Assets.xcassets */,
 				BBAAC7671EAB14670090B40C /* LaunchScreen.storyboard */,
 				BBAAC76A1EAB14670090B40C /* Info.plist */,
