@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import UserNotifications
 
-class Caculator:  UIViewController{
+class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
     
     @IBOutlet weak var IncomeExpense: UISegmentedControl!
     @IBOutlet weak var CountShow: UIButton!
@@ -33,7 +33,39 @@ class Caculator:  UIViewController{
     var firstNum: Double = 0.0
     var secondNum: Double = 0.0
     
+   
+    @IBOutlet weak var TypeTable: UITableView!
+    let list: [String]! = ["a","b","b","c"]
+    let listEx:[String]! = ["1","2","2"]
     
+    var styleSwitch: Bool = false;
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return list.count;
+    }
+    
+   
+    
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+         var height:CGFloat = CGFloat()
+        if (styleSwitch){
+            height = 44
+        }else{
+            height = 0
+        }
+        return height
+    }
+    
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let  cell = self.TypeTable.dequeueReusableCell(withIdentifier: "cellHeader", for: indexPath)as! HeaderViewCell
+        cell.transform = CGAffineTransform(scaleX: 1, y: -1);
+        // cell.Name.text = listIncome[indexPath.row]
+        cell.Name.text = list[indexPath.row]
+        return(cell)
+    }
+
     
     //Still Need to Add Decimal ponint and Delete Function
     @IBAction func Number(_ sender: Any) {
@@ -144,7 +176,8 @@ class Caculator:  UIViewController{
         super.viewDidLoad()
         // UpdateTime()
         createTimePicker()
-        
+        self.TypeTable.transform = CGAffineTransform(scaleX: 1, y: -1);
+
         
     }
     
@@ -190,7 +223,15 @@ class Caculator:  UIViewController{
     
     
     @IBAction func AddType(_ sender: Any) {
-        performSegue(withIdentifier: "segue1", sender: self)
+//        performSegue(withIdentifier: "segue1", sender: self)
+        if(styleSwitch){
+            styleSwitch = false;
+        }else{
+            styleSwitch = true;
+        }
+        //self.TypeTable.reloadData()
+        TypeTable.beginUpdates()
+        TypeTable.endUpdates()
     }
     
     
