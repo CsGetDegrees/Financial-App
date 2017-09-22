@@ -8,7 +8,7 @@
 
 import UIKit
 import UserNotifications
-
+//Useless Class
 class TableCell: UIViewController{
 
     @IBOutlet weak var TitleLabel: UILabel!

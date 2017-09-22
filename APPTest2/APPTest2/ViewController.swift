@@ -46,7 +46,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func saveGoal(_ sender: Any) {
-        
+        //Key and persistent data
         _ = UserDefaults.standard.object(forKey: "Goal")
         var goal:Double
         goal = Double(BudgetGoal.text!)!

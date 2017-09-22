@@ -15,6 +15,11 @@
 		24C89CAF1EDA9CF9005119AC /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24C89CAC1EDA9CE7005119AC /* Charts.framework */; };
 		24C89CB01EDA9CF9005119AC /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24C89CAC1EDA9CE7005119AC /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		24C89CB51EDA9DD5005119AC /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C89CB41EDA9DD5005119AC /* ChartView.swift */; };
+		6A46108F1F73A68C00C7C224 /* ExpandableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A46108D1F73A68C00C7C224 /* ExpandableHeaderView.swift */; };
+		6A4610901F73A68C00C7C224 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A46108E1F73A68C00C7C224 /* Section.swift */; };
+		6A4610921F73A6C100C7C224 /* TotalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4610911F73A6C100C7C224 /* TotalView.swift */; };
+		6A4610941F73A94B00C7C224 /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4610931F73A94B00C7C224 /* HeaderViewCell.swift */; };
+		6A4610971F74AFFA00C7C224 /* Caculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4610961F74AFFA00C7C224 /* Caculator.swift */; };
 		BB5D72081EB5D1BE00F33CC1 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5D72071EB5D1BE00F33CC1 /* CustomCell.swift */; };
 		BB66FD181EAEE80A00711B0E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66FD171EAEE80A00711B0E /* FirstViewController.swift */; };
 		BB66FD1A1EAEE82400711B0E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66FD191EAEE82400711B0E /* SecondViewController.swift */; };
@@ -80,6 +85,11 @@
 		24C89CA11EDA9C47005119AC /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
 		24C89CA61EDA9CE6005119AC /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = APPTest2/Charts.xcodeproj; sourceTree = "<group>"; };
 		24C89CB41EDA9DD5005119AC /* ChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		6A46108D1F73A68C00C7C224 /* ExpandableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderView.swift; sourceTree = "<group>"; };
+		6A46108E1F73A68C00C7C224 /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		6A4610911F73A6C100C7C224 /* TotalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TotalView.swift; sourceTree = "<group>"; };
+		6A4610931F73A94B00C7C224 /* HeaderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
+		6A4610961F74AFFA00C7C224 /* Caculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Caculator.swift; sourceTree = "<group>"; };
 		BB5D72071EB5D1BE00F33CC1 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		BB66FD171EAEE80A00711B0E /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		BB66FD191EAEE82400711B0E /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +126,34 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		6A46108B1F73A5F200C7C224 /* ExpandableHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				6A46108D1F73A68C00C7C224 /* ExpandableHeaderView.swift */,
+				6A46108E1F73A68C00C7C224 /* Section.swift */,
+			);
+			name = ExpandableHeaderView;
+			sourceTree = "<group>";
+		};
+		6A4610951F73AB0000C7C224 /* Cpp */ = {
+			isa = PBXGroup;
+			children = (
+				24C89C9F1EDA9C47005119AC /* Calculation.h */,
+				24C89CA01EDA9C47005119AC /* TestCases.h */,
+				24C89CA11EDA9C47005119AC /* Transaction.h */,
+				24C89C9B1EDA9C47005119AC /* Calculation.cpp */,
+				24C89C9C1EDA9C47005119AC /* TestCases.cpp */,
+				24C89C9D1EDA9C47005119AC /* Transaction.cpp */,
+				248EACAB1EDBDC450045A436 /* Budgetable-Bridging-Header.h */,
+				248EACAA1EDBDC2F0045A436 /* APPTest2-Bridging-Header.h */,
+				242264F21EDBCCA4003B4858 /* DailyTransaction.cpp */,
+				242264F41EDBCCA4003B4858 /* DailyTransaction.h */,
+				242264F51EDBCCA4003B4858 /* SavingGoal.h */,
+				242264FC1EDBCE79003B4858 /* SavingGoal.cpp */,
+			);
+			name = Cpp;
+			sourceTree = "<group>";
+		};
 		BBAAC7521EAB14670090B40C = {
 			isa = PBXGroup;
 			children = (
@@ -136,26 +174,19 @@
 		BBAAC75D1EAB14670090B40C /* APPTest2 */ = {
 			isa = PBXGroup;
 			children = (
-				248EACAB1EDBDC450045A436 /* Budgetable-Bridging-Header.h */,
-				248EACAA1EDBDC2F0045A436 /* APPTest2-Bridging-Header.h */,
-				242264FC1EDBCE79003B4858 /* SavingGoal.cpp */,
-				242264F21EDBCCA4003B4858 /* DailyTransaction.cpp */,
-				242264F41EDBCCA4003B4858 /* DailyTransaction.h */,
-				242264F51EDBCCA4003B4858 /* SavingGoal.h */,
+				6A4610951F73AB0000C7C224 /* Cpp */,
+				6A46108B1F73A5F200C7C224 /* ExpandableHeaderView */,
+				6A4610911F73A6C100C7C224 /* TotalView.swift */,
+				6A4610961F74AFFA00C7C224 /* Caculator.swift */,
+				6A4610931F73A94B00C7C224 /* HeaderViewCell.swift */,
+				BB66FD191EAEE82400711B0E /* SecondViewController.swift */,
 				BBAAC75E1EAB14670090B40C /* AppDelegate.swift */,
 				BBAAC7601EAB14670090B40C /* ViewController.swift */,
 				BB66FD171EAEE80A00711B0E /* FirstViewController.swift */,
-				BB66FD191EAEE82400711B0E /* SecondViewController.swift */,
 				BB5D72071EB5D1BE00F33CC1 /* CustomCell.swift */,
 				BBF1709A1EB02ACB00D67418 /* TableCell.swift */,
 				24C89CB41EDA9DD5005119AC /* ChartView.swift */,
 				BBAAC7621EAB14670090B40C /* Main.storyboard */,
-				24C89C9F1EDA9C47005119AC /* Calculation.h */,
-				24C89CA01EDA9C47005119AC /* TestCases.h */,
-				24C89CA11EDA9C47005119AC /* Transaction.h */,
-				24C89C9B1EDA9C47005119AC /* Calculation.cpp */,
-				24C89C9C1EDA9C47005119AC /* TestCases.cpp */,
-				24C89C9D1EDA9C47005119AC /* Transaction.cpp */,
 				BBAAC7651EAB14670090B40C /* Assets.xcassets */,
 				BBAAC7671EAB14670090B40C /* LaunchScreen.storyboard */,
 				BBAAC76A1EAB14670090B40C /* Info.plist */,
@@ -263,14 +294,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A4610901F73A68C00C7C224 /* Section.swift in Sources */,
 				BB66FD1A1EAEE82400711B0E /* SecondViewController.swift in Sources */,
+				6A46108F1F73A68C00C7C224 /* ExpandableHeaderView.swift in Sources */,
 				BB66FD181EAEE80A00711B0E /* FirstViewController.swift in Sources */,
 				BBAAC7611EAB14670090B40C /* ViewController.swift in Sources */,
 				242264FD1EDBCE79003B4858 /* SavingGoal.cpp in Sources */,
 				24C89CA41EDA9C47005119AC /* TestCases.cpp in Sources */,
+				6A4610941F73A94B00C7C224 /* HeaderViewCell.swift in Sources */,
 				BB5D72081EB5D1BE00F33CC1 /* CustomCell.swift in Sources */,
 				BBF1709B1EB02ACB00D67418 /* TableCell.swift in Sources */,
+				6A4610921F73A6C100C7C224 /* TotalView.swift in Sources */,
 				BBAAC7741EAB18D00090B40C /* CPPFile.cpp in Sources */,
+				6A4610971F74AFFA00C7C224 /* Caculator.swift in Sources */,
 				242264F61EDBCCA4003B4858 /* DailyTransaction.cpp in Sources */,
 				24C89CA31EDA9C47005119AC /* Calculation.cpp in Sources */,
 				BBAAC75F1EAB14670090B40C /* AppDelegate.swift in Sources */,

@@ -107,6 +107,9 @@ class ChartView:  UIViewController{
         pieChartView.notifyDataSetChanged() // to display the labels
     }
     
+/**
+ *Get Type Value from persistent data
+ */
     override func viewDidAppear(_ animated: Bool) {
         let type = ["Food", "Family", "Gas&Fuel", "CashFlow", "Pc", "Beer","6","7","else"]
         setPieChart(dataPoints: type , values: MoneySpent)
