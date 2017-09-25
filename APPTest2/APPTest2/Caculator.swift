@@ -17,6 +17,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
     
     @IBOutlet weak var TimePick: UITextField!
     
+    @IBOutlet weak var Description: UITextField!
     
     
     let datePicker = UIDatePicker()
@@ -33,21 +34,40 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
     var firstNum: Double = 0.0
     var secondNum: Double = 0.0
     
-   
-    @IBOutlet weak var TypeTable: UITableView!
-    let list: [String]! = ["a","b","b","c"]
-    let listEx:[String]! = ["1","2","2"]
     
-    var styleSwitch: Bool = false;
+    @IBOutlet weak var TypeTable: UITableView!
+    var list: [String]! = [""]
+    var listEx: [String]! = ["Bills","Transport","Clothes","EatingOut","Entertainment","Health","Food","Pet","House","Else"]
+    var listIn: [String]! = ["Deposits","Salary","Saving"]
+    
+    var styleSwitch: Bool = false
+    var TypeSwitch: Int = 0
+    var listCount: Int = 0
+    
+    @IBAction func TypeSwitch(_ sender: UISegmentedControl) {
+        TypeSwitch =  sender.selectedSegmentIndex
+        print(TypeSwitch)
+        if(TypeSwitch == 1){
+            list = listEx
+            self.TypeTable.reloadData()
+        }else{
+            list = listIn
+            self.TypeTable.reloadData()
+        }
+        
+    }
+    
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        
         return list.count;
     }
     
-   
+    
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-         var height:CGFloat = CGFloat()
+        var height:CGFloat = CGFloat()
         if (styleSwitch){
             height = 44
         }else{
@@ -58,15 +78,145 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
     
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let  cell = self.TypeTable.dequeueReusableCell(withIdentifier: "cellHeader", for: indexPath)as! HeaderViewCell
         cell.transform = CGAffineTransform(scaleX: 1, y: -1);
-        // cell.Name.text = listIncome[indexPath.row]
+        
+        
         cell.Name.text = list[indexPath.row]
         return(cell)
+        
+        
     }
 
+    //Connect to CustomCell
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        
+        print(indexPath[1])
+        
+        if(Description.text != ""){
+            print(2222)
+            
+            
+            let IncomeOrExpense = UserDefaults.standard.object(forKey: "IncomeOrExpense")
+            var InOrEx:[Int]
+            if let tempInOrEx = IncomeOrExpense as? [Int]{
+                InOrEx = tempInOrEx
+                InOrEx.append(TypeSwitch)
+                
+            }else{
+                InOrEx = [TypeSwitch]
+            }
+            UserDefaults.standard.set(InOrEx,forKey: "IncomeOrExpense")
+            
+            let InputType = UserDefaults.standard.object(forKey: "InputType")
+            var InType:[Int]
+            if let tempInType = InputType as? [Int]{
+                InType = tempInType
+                InType.append(indexPath[1])
+                
+            }else{
+                InType = [indexPath[1]]
+            }
+            UserDefaults.standard.set(InType,forKey: "InputType")
+            
+            saveAmount()
+            saveDate()
+            saveNotificationID()
+            
+            let AddObject = UserDefaults.standard.object(forKey: "Add")
+            var add:[String]
+            if let tempAdd = AddObject as? [String]{
+                add = tempAdd
+                add.append(Description.text!)
+                
+            }else{
+                add = [Description.text!]
+            }
+            UserDefaults.standard.set(add,forKey: "Add")
+            
+            
+            
+        }
+       //  performSegue(withIdentifier: "segue2", sender: self)
+      self.dismiss(animated: true, completion: nil)
+    }
     
+    func saveDate(){
+        //Save Date To Local Storage
+        let timeObject = UserDefaults.standard.object(forKey: "time")
+        var Time:[Date]
+        
+        if let tempTime = timeObject as? [Date]{
+            Time = tempTime
+            Time.append(datePicker.date)
+            // plus = list
+        }else{
+            print("\(datePicker.date)")
+            Time = [datePicker.date]
+        }
+        UserDefaults.standard.set(Time,forKey: "time")
+    }
+    
+    func notificatonSender(UniqueID:String){
+        let content = UNMutableNotificationContent()
+        content.title = "title"
+        content.subtitle = "Subtitle"
+        content.body = "Body"
+  
+        let calander = Calendar(identifier: .gregorian)
+        let triggerDate = calander.dateComponents([.year,.month,.day,.hour,.minute], from: datePicker.date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching:triggerDate, repeats: false)
+        let request = UNNotificationRequest(identifier: UniqueID, content: content, trigger:trigger)
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        
+    }
+    
+    //Save & Make a Notification
+    func saveNotificationID(){
+        let currentDate = Date()
+        let TempID = NSUUID().uuidString
+        var UniqueID:String;
+        if currentDate < (datePicker.date){
+            UniqueID = TempID
+            print("UniqueID\(UniqueID)")
+        }else{
+            UniqueID = "0"
+        }
+        
+        let UUIDObject = UserDefaults.standard.object(forKey: "UniqueID")
+        var UUID:[String]
+        if let tempUUID = UUIDObject as? [String]{
+            UUID = tempUUID
+            UUID.append(UniqueID)
+            
+        }else{
+            UUID = [UniqueID]
+            
+        }
+        print("UniqueID\(UniqueID)")
+        UserDefaults.standard.set(UUID,forKey: "UniqueID")
+        
+        
+        notificatonSender(UniqueID: UniqueID)
+        
+    }
+    
+    func saveAmount(){
+
+        let amountObject = UserDefaults.standard.object(forKey: "Amount")
+        var amount:[Double]
+        if let tempAmount = amountObject as? [Double]{
+            amount = tempAmount
+            amount.append(Double(numShowOnScreen))
+            
+        }else{
+            amount = [Double(numShowOnScreen)]
+        }
+        print(amount)
+        UserDefaults.standard.set(amount,forKey: "Amount")
+    }
+
     //Still Need to Add Decimal ponint and Delete Function
     @IBAction func Number(_ sender: Any) {
         if performingMath == true {
@@ -176,7 +326,9 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
         super.viewDidLoad()
         // UpdateTime()
         createTimePicker()
+        list = listIn
         self.TypeTable.transform = CGAffineTransform(scaleX: 1, y: -1);
+         TypeTable.isHidden = true;
 
         
     }
@@ -202,6 +354,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
     func createTimePicker(){
         //format for picker
         datePicker.datePickerMode = .dateAndTime
+        
         // TimePick.text = ""
         //toolbar
         let toolbar = UIToolbar()
@@ -210,7 +363,6 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
         
         //bar button item
         let doneButton = UIBarButtonItem(barButtonSystemItem:.done, target: nil, action: #selector(donePressed))
-        
         
         toolbar.setItems([doneButton], animated: false)
         
@@ -226,17 +378,30 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
 //        performSegue(withIdentifier: "segue1", sender: self)
         if(styleSwitch){
             styleSwitch = false;
+            self.perform(#selector(HideType), with: nil, afterDelay: 0.3)
+            
         }else{
             styleSwitch = true;
+           
+            TypeTable.isHidden = false;
         }
         //self.TypeTable.reloadData()
         TypeTable.beginUpdates()
         TypeTable.endUpdates()
+            }
+    
+    
+    func HideType() {
+        TypeTable.isHidden = true;
     }
     
-    
-    
-    
+
+    @IBAction func CancelAdd(_ sender: Any) {
+        //performSegue(withIdentifier: "segue2", sender: self)
+        self.dismiss(animated: true, completion: nil)
+    }
+   
+   
     
     
     

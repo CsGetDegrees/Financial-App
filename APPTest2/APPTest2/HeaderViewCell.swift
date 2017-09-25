@@ -13,6 +13,12 @@ class HeaderViewCell: UITableViewCell {
     
     @IBOutlet weak var Name: UILabel!
     
+    @IBOutlet weak var CellType: UILabel!
+    
+    @IBOutlet weak var Time: UILabel!
+    
+    @IBOutlet weak var Amount: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

@@ -11,7 +11,7 @@ var dateInput:[Date] = []
 var typeOfCell:[Int] = []
 var amountOfCell:[Double] = []
 var typeOfAmount:[Int] = []
-var Description:[String] = []
+//var Description:[String] = []
 
 var MoneySpent:[Double] = [0,0,0,0,0,0,0,0,0]
 
@@ -71,8 +71,8 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
          _ = UserDefaults.standard.object(forKey: "UniqueID")
          UserDefaults.standard.set(notificationID,forKey: "UniqueID")
         
-     _ = UserDefaults.standard.object(forKey: "Description")
-        UserDefaults.standard.set(Description,forKey: "Description")
+//     _ = UserDefaults.standard.object(forKey: "Description")
+//        UserDefaults.standard.set(Description,forKey: "Description")
  
         _ = UserDefaults.standard.object(forKey: "Amount")
         UserDefaults.standard.set(amountOfCell,forKey: "Amount")
@@ -97,7 +97,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
         cell.name.text = list[indexPath.row]
         
         //Description
-        cell.Description.text = Description[indexPath.row]
+       // cell.Description.text = Description[indexPath.row]
         
         //Amount
              cell.Amount.text = String(amountOfCell[indexPath.row])
@@ -145,7 +145,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
           dateInput.remove(at: indexPath.row)
             typeOfCell.remove(at: indexPath.row)
             amountOfCell.remove(at: indexPath.row)
-            Description.remove(at: indexPath.row)
+           // Description.remove(at: indexPath.row)
             typeOfAmount.remove(at: indexPath.row)
             //Delete the notification
             let center = UNUserNotificationCenter.current()
@@ -218,7 +218,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
      
       //Put all local storage to local variable 
         
-        let plusObject = UserDefaults.standard.object(forKey: "plus")
+        let plusObject = UserDefaults.standard.object(forKey: "Add")
         if (plusObject as? [String]) != nil{
            list = plusObject as! [String]
               print(plusObject ?? 0)
@@ -232,7 +232,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
         }
 
         
-        let IncomeOrExpense = UserDefaults.standard.object(forKey: "incomeOrExpense")
+        let IncomeOrExpense = UserDefaults.standard.object(forKey: "IncomeOrExpense")
         if (IncomeOrExpense as? [Int]) != nil{
             typeOfCell = IncomeOrExpense as! [Int]
             print(IncomeOrExpense ?? 0)
@@ -244,11 +244,11 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
             print(UUIDObject ?? 0)
         }
 
-        let descriptionObject = UserDefaults.standard.object(forKey: "Description")
-        if (descriptionObject as? [String]) != nil{
-            Description = descriptionObject as! [String]
-            print(descriptionObject ?? 0)
-        }
+//        let descriptionObject = UserDefaults.standard.object(forKey: "Description")
+//        if (descriptionObject as? [String]) != nil{
+//            Description = descriptionObject as! [String]
+//            print(descriptionObject ?? 0)
+//        }
         
         let amountObject = UserDefaults.standard.object(forKey: "Amount")
         if (amountObject as? [Double]) != nil{
@@ -256,7 +256,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
             print(amountObject ?? 0)
         }
         
-        let typeObject = UserDefaults.standard.object(forKey: "TypeOfAmount")
+        let typeObject = UserDefaults.standard.object(forKey: "InputType")
         
         if (typeObject as? [Int]) != nil{
             typeOfAmount = typeObject as! [Int]
