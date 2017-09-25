@@ -78,7 +78,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (sections[indexPath.section].expanded){
+        if sections[indexPath.section].expanded == true{
             return 48
         }else{
             return 0
