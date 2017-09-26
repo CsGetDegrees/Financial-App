@@ -34,7 +34,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     var IncomeAmount:[Double] = []
     var ExpenseAmount:[Double] = []
     
-    
+    var timeRangeSwitch: Int = 0;
     
     var sections = [Section(genre: "Income", movies: [], expanded: false, type: [], amount: [], time: []),
                     Section(genre: "Expense", movies: [], expanded: false, type: [], amount: [], time: [])]
@@ -79,11 +79,34 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if sections[indexPath.section].expanded == true{
-            return 48
+            let todayDate = Date()
+            let currentWeekday = Calendar.current.component(.weekday, from: todayDate)
+            //need -1 ?
+            print(currentWeekday)
+           
+            let calendar = NSCalendar.current
+            let FirstDayMonth = Date().startOfMonth()
+            let LastDayMonth = Date().endOfMonth()
+            let FirstDayWeek = Date().startOfWeek()
+            
+            
+            //Need add 1
+            let LastDayWeek = Date().endOfWeek()
+            let LastDayMonth2 = Date().getThisMonthEnd()
+            // Replace the hour (time) of both dates with 00:00
+            let date1 = calendar.startOfDay(for: todayDate)
+            let date2 = calendar.startOfDay(for: LastDayMonth2!)
+            
+            let components = calendar.dateComponents([.day], from: date1, to: date2)
+           print(components.day!)
+                    return 48
+  
         }else{
             return 0
         }
     }
+    
+
     
     public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 2
@@ -156,8 +179,12 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        AddButton.layer.zPosition = 101;
+        if(timeRangeSwitch == 0){
+       // AddButton.layer.zPosition = 101;
         print("11")
+        }else{
+        return
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -208,6 +235,11 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
             print(TimeList )
         }
         
+        let timeSwitch = UserDefaults.standard.object(forKey: "TimeSwitch")
+        if(timeSwitch as? Int) != nil{
+        timeRangeSwitch = timeSwitch as! Int
+            print(timeRangeSwitch)
+        }
         
         if(list.count != 0){
             for  var i in (0..<list.count).reversed() {
@@ -232,8 +264,9 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         sections[1].amount = ExpenseAmount
         sections[0].time = IncomeTime
         sections[1].time = ExpenseTime
-        
-        self.IncomeTable.reloadData()
+        if(timeRangeSwitch == 0){
+         self.IncomeTable.reloadData()
+        }
         print(listIncome)
         print(listExpense)
         print(IncomeType)
@@ -266,6 +299,55 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     @IBAction func AddNew(_ sender: Any) {
         performSegue(withIdentifier: "segue", sender: self)
         
+    }
+    @IBAction func TimeRangeSelect(_ sender: Any) {
+        timeRangeSwitch = 1
+        _ = UserDefaults.standard.object(forKey: "TimeSwitch")
+        var TSwitch:Int
+        TSwitch = timeRangeSwitch
+        UserDefaults.standard.set(TSwitch,forKey: "TimeSwitch")
+        performSegue(withIdentifier: "segue3", sender: self)
+    }
+    
+    @IBAction func Today(_ sender: Any) {
+       timeRangeSwitch = 0
+        _ = UserDefaults.standard.object(forKey: "TimeSwitch")
+        var TSwitch:Int
+        TSwitch = timeRangeSwitch
+        UserDefaults.standard.set(TSwitch,forKey: "TimeSwitch")
+        
+    self.dismiss(animated: true, completion: nil)
+        
+    }
+}
+
+extension Date {
+    func startOfMonth() -> Date {
+        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Calendar.current.startOfDay(for: self)))!
+    }
+    
+    func endOfMonth() -> Date {
+        return Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth())!
+    }
+    
+    func startOfWeek() -> Date{
+    return Calendar.current.date(from: Calendar.current.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!
+    }
+    func startOfWeek2() -> Date {
+        return Calendar.current.date(from: Calendar.current.dateComponents([.yearForWeekOfYear,.weekOfYear], from: Calendar.current.startOfDay(for: self)))!
+    }
+    
+    func endOfWeek() -> Date{
+        //return Calendar.current.date(byAdding: DateComponents(), value: <#T##Int#>, to: <#T##Date#>)
+    return Calendar.current.date(byAdding: DateComponents(weekday: -1, weekOfYear: 1), to: self.startOfWeek2())!
+    }
+    
+    func getThisMonthEnd() -> Date? {
+        let components:NSDateComponents = Calendar.current.dateComponents([.year, .month], from: self) as NSDateComponents
+        components.month += 1
+        components.day = 1
+        components.day -= 1
+        return Calendar.current.date(from: components as DateComponents)!
     }
     
 }
