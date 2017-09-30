@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Lfg-v7-Rxg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="17E-2L-06a">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -197,7 +197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U2n-yN-Pl3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="930" y="-966"/>
+            <point key="canvasLocation" x="1868" y="-966.56671664167925"/>
         </scene>
         <!--Table Cell-->
         <scene sceneID="53Z-Cg-D1y">
@@ -262,12 +262,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r9l-RQ-8Gz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1801" y="-967"/>
+            <point key="canvasLocation" x="2740" y="-967.4662668665668"/>
         </scene>
-        <!--Total View-->
+        <!--Date Trigger-->
         <scene sceneID="2b9-RJ-lXz">
             <objects>
-                <viewController id="EQt-ha-GsJ" customClass="TotalView" customModule="Budgetable" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="EQt-ha-GsJ" customClass="DateTrigger" customModule="Budgetable" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="isd-Dn-Wpc"/>
                         <viewControllerLayoutGuide type="bottom" id="AxX-Nr-xco"/>
@@ -276,7 +276,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yt8-kB-lbt">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yt8-kB-lbt">
                                 <rect key="frame" x="0.0" y="92" width="138" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -285,23 +285,32 @@
                                     <action selector="Today:" destination="EQt-ha-GsJ" eventType="touchUpInside" id="Ewe-f2-wN5"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tvf-3W-leI">
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tvf-3W-leI">
                                 <rect key="frame" x="0.0" y="130" width="138" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="This Week"/>
+                                <connections>
+                                    <action selector="Today:" destination="EQt-ha-GsJ" eventType="touchUpInside" id="mwU-uB-0hL"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bmr-zS-wmD">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bmr-zS-wmD">
                                 <rect key="frame" x="0.0" y="168" width="138" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="This Month"/>
+                                <connections>
+                                    <action selector="Today:" destination="EQt-ha-GsJ" eventType="touchUpInside" id="uZb-HA-vCI"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QCi-uK-uxg">
                                 <rect key="frame" x="0.0" y="206" width="138" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="All"/>
+                                <connections>
+                                    <action selector="Today:" destination="EQt-ha-GsJ" eventType="touchUpInside" id="lHa-Ma-6ob"/>
+                                </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tud-Ho-B15">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -319,12 +328,16 @@
                         </subviews>
                         <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="0.60431338028169013" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <connections>
+                        <segue destination="OOR-bJ-SE1" kind="presentation" identifier="segue4" id="O6w-9w-w5h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1tJ-Y7-ATN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-199" y="-1242"/>
+            <point key="canvasLocation" x="804" y="-1211"/>
         </scene>
-        <!--Item-->
+        <!--hahahaha-->
         <scene sceneID="Kme-aA-pLa">
             <objects>
                 <viewController id="OOR-bJ-SE1" customClass="TotalView" customModule="Budgetable" customModuleProvider="target" sceneMemberID="viewController">
@@ -491,7 +504,7 @@
                             <constraint firstItem="9XK-JP-FaN" firstAttribute="leading" secondItem="Sld-Eu-UT2" secondAttribute="leading" constant="292" id="udo-9R-Xtl"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="T1b-2x-LE2"/>
+                    <tabBarItem key="tabBarItem" title="hahahaha" id="oBW-Nx-0W4" userLabel="ha"/>
                     <connections>
                         <outlet property="AddButton" destination="9XK-JP-FaN" id="Ygg-gA-b9X"/>
                         <outlet property="IncomeTable" destination="DNb-r2-Ptw" id="uZR-DW-9cf"/>
@@ -501,7 +514,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yMz-Pu-jej" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-199" y="-1989"/>
+            <point key="canvasLocation" x="804" y="-1989"/>
         </scene>
         <!--Caculator-->
         <scene sceneID="b0D-v0-KM2">
@@ -782,7 +795,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ei-fY-IHG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="780" y="-1989"/>
+            <point key="canvasLocation" x="1719.2" y="-1989.3553223388308"/>
         </scene>
         <!--Input Type-->
         <scene sceneID="Jab-1q-1aZ">
@@ -846,7 +859,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y91-OB-t47" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2510" y="-2389"/>
+            <point key="canvasLocation" x="3448.8000000000002" y="-2389.6551724137935"/>
         </scene>
         <!--Total-->
         <scene sceneID="9Je-cN-2ty">
@@ -1032,7 +1045,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lq5-Wh-lxJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1801" y="-2388"/>
+            <point key="canvasLocation" x="2740" y="-2388.7556221889058"/>
         </scene>
         <!--Goals-->
         <scene sceneID="Gsc-BX-qhW">
@@ -1103,13 +1116,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Goals" image="goal" selectedImage="goal" id="Hdm-sR-HgH"/>
-                    <toolbarItems>
-                        <barButtonItem title="Resit" id="tZf-49-22Q">
-                            <connections>
-                                <action selector="resitGoal:" destination="TeP-M7-J7p" id="Oqv-SD-Ble"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="gpD-wX-yHz">
                         <nil key="title"/>
                     </navigationItem>
@@ -1122,7 +1129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Evy-L4-zCb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="929" y="-309"/>
+            <point key="canvasLocation" x="886" y="-173"/>
         </scene>
         <!--Item-->
         <scene sceneID="bPc-oS-dhQ">
@@ -1158,27 +1165,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKj-wi-NE5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52" y="-310"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="qdP-P5-ZVh">
-            <objects>
-                <tabBarController id="Lfg-v7-Rxg" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="AIF-qa-7U8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="OOR-bJ-SE1" kind="relationship" relationship="viewControllers" id="fGf-1Z-8m8"/>
-                        <segue destination="XmV-lm-w8u" kind="relationship" relationship="viewControllers" id="U9q-yS-g7Y"/>
-                        <segue destination="TeP-M7-J7p" kind="relationship" relationship="viewControllers" id="nY5-ly-dkv"/>
-                        <segue destination="5z6-l3-J5g" kind="relationship" relationship="viewControllers" id="QEh-tZ-uI3"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="S9F-fd-rW9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1836" y="-507"/>
+            <point key="canvasLocation" x="4" y="-54.422788605697157"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="6Cv-pY-EMZ">
@@ -1256,7 +1243,27 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qqN-eB-01t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2970" y="-2389"/>
+            <point key="canvasLocation" x="3908" y="-2389.6551724137935"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="cgf-S9-NeR">
+            <objects>
+                <tabBarController id="17E-2L-06a" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="KnZ-SO-ZNj">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="OOR-bJ-SE1" kind="relationship" relationship="viewControllers" id="T3h-2W-PhI"/>
+                        <segue destination="XmV-lm-w8u" kind="relationship" relationship="viewControllers" id="ugc-qq-Vk2"/>
+                        <segue destination="TeP-M7-J7p" kind="relationship" relationship="viewControllers" id="xSZ-j8-Fty"/>
+                        <segue destination="5z6-l3-J5g" kind="relationship" relationship="viewControllers" id="q7E-Dk-LKX"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pLk-ly-3kc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-935.20000000000005" y="-1022.3388305847077"/>
         </scene>
     </scenes>
     <resources>
@@ -1265,6 +1272,6 @@
         <image name="goal" width="29" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5Hp-Dg-UTM"/>
+        <segue reference="O6w-9w-w5h"/>
     </inferredMetricsTieBreakers>
 </document>

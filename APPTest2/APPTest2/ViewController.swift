@@ -59,10 +59,6 @@ class ViewController: UIViewController {
         print("Have\(hold)")
         UserDefaults.standard.set(hold,forKey: "Hold")
 
-        
-
-
-       
     }
   
     

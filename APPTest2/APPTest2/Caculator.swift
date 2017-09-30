@@ -137,7 +137,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
             
             
         }
-       //  performSegue(withIdentifier: "segue2", sender: self)
+        // performSegue(withIdentifier: "segue2", sender: self)
       self.dismiss(animated: true, completion: nil)
     }
     
@@ -257,7 +257,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
             }
         }
     }
-    
+    //Has error during double transation
     @IBAction func Count(_ sender: Any) {
         
         let numTest = Double(CountShow.currentTitle!)

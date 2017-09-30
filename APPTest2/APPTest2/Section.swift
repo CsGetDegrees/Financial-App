@@ -15,13 +15,15 @@ struct Section {
     var type:[Int]!
     var amount:[Double]!
     var time:[Date]
+    var display:[Int]!
     
-    init(genre: String, movies:[String], expanded: Bool, type:[Int], amount:[Double], time:[Date]) {
+    init(genre: String, movies:[String], expanded: Bool, type:[Int], amount:[Double], time:[Date], display:[Int]) {
         self.genre = genre
         self.movies = movies
         self.expanded = expanded
         self.type = type
         self.amount = amount
         self.time = time
+        self.display = display
     }
 }
