@@ -44,7 +44,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     var IncomeShow: [Int] = []
     var ExpenseShow: [Int] = []
     
-
+    
     @IBOutlet weak var IncomeTable: UITableView!
     
     var listCount: Int = 0
@@ -58,14 +58,9 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      //  print(".")
+        //  print(".")
         //Need to be fit
-        if tableView.tag == 0{
-            // return(list.count)
-            print(list)
-            listCount = list.count
-            return listCount
-        }else if tableView.tag == 2 {
+        if tableView.tag == 2 {
             //Table with header
             return sections[section].movies.count
             // return(listIncome.count)
@@ -80,43 +75,43 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if sections[indexPath.section].expanded == true{
-            let todayDate = Date()
-            let selectDate = sections[indexPath.section].time[0]
-            
-            let currentWeekday = Calendar.current.component(.weekday, from: todayDate)
-            //need -1 ?
-            print(currentWeekday)
-           
-            let calendar = NSCalendar.current
-            let FirstDayMonth = Date().startOfMonth()
-            let LastDayMonth = Date().endOfMonth()
-            let FirstDayWeek = Date().startOfWeek()
-            
-            
-            //Need add 1
-            let LastDayWeek = Date().endOfWeek()
-            let LastDayMonth2 = Date().getThisMonthEnd()
-            
-            
-            // Replace the hour (time) of both dates with 00:00
-            let date1 = calendar.startOfDay(for: todayDate)
-            let date2 = calendar.startOfDay(for: selectDate)
-            
-            let components = calendar.dateComponents([.day], from: date1, to: FirstDayWeek)
-           print(components.day!)
+//            let todayDate = Date()
+//            let selectDate = sections[indexPath.section].time[0]
+//            
+//            let currentWeekday = Calendar.current.component(.weekday, from: todayDate)
+//            //need -1 ?
+//          //  print(currentWeekday)
+//            
+//            let calendar = NSCalendar.current
+//            let FirstDayMonth = Date().startOfMonth()
+//            let LastDayMonth = Date().endOfMonth()
+//            let FirstDayWeek = Date().startOfWeek()
+//            
+//            
+//            //Need add 1
+//            let LastDayWeek = Date().endOfWeek()
+//            let LastDayMonth2 = Date().getThisMonthEnd()
+//            
+//            
+//            // Replace the hour (time) of both dates with 00:00
+//            let date1 = calendar.startOfDay(for: todayDate)
+//            let date2 = calendar.startOfDay(for: selectDate)
+//            
+//            let components = calendar.dateComponents([.day], from: date1, to: FirstDayWeek)
+//       //     print(components.day!)
             
             if(sections[indexPath.section].display[indexPath.row] == 0){
-                    return 48
+                return 48
             }else{
-            return 0
+                return 0
             }
-  
+            
         }else{
             return 0
         }
     }
     
-
+    
     
     public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 2
@@ -131,7 +126,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // print("FK!!!!")
+
         
         if tableView.tag == 2{
             
@@ -143,17 +138,17 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
             cell.Amount.text = String(sections[indexPath.section].amount[indexPath.row])
             //format
             let dateFormat = DateFormatter()
-             dateFormat.locale = Locale(identifier: "en_GB")
-           dateFormat.setLocalizedDateFormatFromTemplate("MMMd")
+            dateFormat.locale = Locale(identifier: "en_GB")
+            dateFormat.setLocalizedDateFormatFromTemplate("MMMd")
             //dateFormat.dateStyle = .short
             //dateFormat.timeStyle = .short
-
+            
             if (sections[indexPath.section].time[indexPath.row] as Date?) != nil   {
                 
                 cell.Time.text = dateFormat.string(from: sections[indexPath.section].time[indexPath.row])
             }
             
-            print(sections[0].type)
+            //print(sections[0].type)
             //  cell.CellType.text = sections[indexPath.section].type[indexPath.row]
             // var a = sections[indexPath.section].type[indexPath.row]
             //print(a)
@@ -176,14 +171,15 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
             IncomeTable.reloadRows(at: [IndexPath(row: i, section:section)], with: .automatic)
         }
         IncomeTable.endUpdates()
-     //  self.viewDidAppear(true)
+        self.perform(#selector(updateTable), with: nil, afterDelay: 0.3)
+        //  self.viewDidAppear(true)
     }
     
     @IBAction func changeMovies(_ sender: Any) {
-      //  sections[0].movies = list
-      //  self.IncomeTable.reloadData()
+        //  sections[0].movies = list
+        //  self.IncomeTable.reloadData()
         //self.viewWillAppear(true)
-       // self.viewDidLoad()
+        // self.viewDidLoad()
         self.viewDidAppear(true)
         
         // sections[1].expanded = false
@@ -191,12 +187,12 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         print("ViewDidLoad")
-        if(timeRangeSwitch == 0){
-        //AddButton.layer.zPosition = 101;
         print("ViewDidLoad")
+        if(timeRangeSwitch == 0){
+            //AddButton.layer.zPosition = 101;
+            print("ViewDidLoad")
         }else{
-        return
+            return
         }
     }
     
@@ -217,21 +213,57 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
             let CurrentToEnd = calendar.dateComponents([.day], from: date1, to: LastDayWeek)
             let start: Int = CurrentToStart.day!
             let end: Int = (CurrentToEnd.day!)+1
-            print(start)
-            print(end)
-            
+
+            //Comparing Date List element with current Date
             for  t in TimeList{
-                      let ToStart = calendar.dateComponents([.day], from: FirstDayWeek, to: t)
+                let ToStart = calendar.dateComponents([.day], from: FirstDayWeek, to: t)
                 print(ToStart.day!)
-                if(ToStart.day! <= 7){
-                print("hahha")
+                if(ToStart.day! <= 7 && ToStart.day! >= 0){
                     tableShow.append(0)
                 }else{
-                print("NO")
+                    tableShow.append(1)
+                }
+            }
+        }else if(timeTag == 1){
+            let Today = Date()
+            let CurrentToStart = calendar.dateComponents([.day], from: Today, to:date1)
+            let start: Int = CurrentToStart.day!
+    
+            
+            for  t in TimeList{
+                let ToStart = calendar.dateComponents([.day], from: Today, to: t)
+                print(ToStart.day!)
+                if(ToStart.day! == 0){
+                    tableShow.append(0)
+                }else{
+                    tableShow.append(1)
+                }
+            }
+        }else if(timeTag == 3){
+            let FirstDayMonth = Date().startOfMonth()
+            //Need add 1
+            let LastDayMonth = Date().endOfMonth()
+            
+            let CurrentToStart = calendar.dateComponents([.day], from: FirstDayMonth, to:date1)
+            let CurrentToEnd = calendar.dateComponents([.day], from: date1, to: LastDayMonth)
+            let start: Int = CurrentToStart.day!
+            let end: Int = (CurrentToEnd.day!)+1
+
+            //Geting How many days in this Month
+            let MonthDay = calendar.dateComponents([.day], from: FirstDayMonth, to: LastDayMonth)
+     print("There are\(MonthDay.day!) in this Month!")
+            //Comparing Date List element with current Date
+            for  t in TimeList{
+                let ToStart = calendar.dateComponents([.day], from: FirstDayMonth, to: t)
+                print(ToStart.day!)
+                if(ToStart.day! <= MonthDay.day! && ToStart.day! >= 0){
+                    tableShow.append(0)
+                }else{
                     tableShow.append(1)
                 }
             }
         }
+        
         print(tableShow)
     }
     
@@ -243,7 +275,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         AmountList = []
         TimeList = []
         listIncome  = []
-         tableShow = []
+        tableShow = []
         
         IncomeType = []
         IncomeAmount = []
@@ -252,7 +284,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         ExpenseType = []
         ExpenseAmount = []
         ExpenseTime = []
-       
+        
         IncomeShow = []
         ExpenseShow = []
         
@@ -260,19 +292,19 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         let AddObject = UserDefaults.standard.object(forKey: "Add")
         if (AddObject as? [String]) != nil{
             list = AddObject as! [String]
-           // print(AddObject ?? 0)
+            // print(AddObject ?? 0)
         }
         
         let IncomeOrExpense = UserDefaults.standard.object(forKey: "IncomeOrExpense")
         if (IncomeOrExpense as? [Int]) != nil{
             InOrExList = IncomeOrExpense as! [Int]
-           // print(IncomeOrExpense ?? 0)
+            // print(IncomeOrExpense ?? 0)
         }
         
         let InputType = UserDefaults.standard.object(forKey: "InputType")
         if (InputType as? [Int]) != nil{
             TypeList = InputType as! [Int]
-           // print(InputType ?? 0)
+            // print(InputType ?? 0)
         }
         
         let amountObject = UserDefaults.standard.object(forKey: "Amount")
@@ -286,19 +318,20 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
             TimeList = dateObject as! [Date]
             //print(TimeList )
         }
-        
+       
+        //do we need this?
         let timeSwitch = UserDefaults.standard.object(forKey: "TimeSwitch")
         if(timeSwitch as? Int) != nil{
-        timeRangeSwitch = timeSwitch as! Int
-            print(timeRangeSwitch)
+            timeRangeSwitch = timeSwitch as! Int
+            //print(timeRangeSwitch)
         }
         
         let Tag = UserDefaults.standard.object(forKey: "TimeRangeTag")
         if(Tag as? Int) != nil{
             timeTag = Tag as! Int
         }
-
-         TimeRange()
+        
+        TimeRange()
         
         //Assign value to Income and Expense Section
         if(list.count != 0){
@@ -309,9 +342,9 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
                     IncomeAmount.append(AmountList[i])
                     IncomeTime.append(TimeList[i])
                     if(tableShow.count != 0){
-                    IncomeShow.append(tableShow[i])
+                        IncomeShow.append(tableShow[i])
                     }else{
-                    IncomeShow.append(0)
+                        IncomeShow.append(0)
                     }
                 }else{
                     listExpense.append(list[i])
@@ -319,10 +352,10 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
                     ExpenseAmount.append(AmountList[i])
                     ExpenseTime.append(TimeList[i])
                     if (tableShow.count != 0) {
-                     
-                    ExpenseShow.append(tableShow[i])
+                        
+                        ExpenseShow.append(tableShow[i])
                     }else{
-                    ExpenseShow.append(0)
+                        ExpenseShow.append(0)
                     }
                 }
             }
@@ -337,7 +370,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         sections[1].time = ExpenseTime
         sections[0].display = IncomeShow
         sections[1].display = ExpenseShow
-
+        
         
         //Do not load table when open time select view
         if(timeRangeSwitch == 0){
@@ -383,32 +416,32 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         performSegue(withIdentifier: "segue3", sender: self)
     }
     
-//    @IBAction func Today(_ sender: Any) {
-//        let tag: Int = (sender as AnyObject).tag
-//
-//        timeRangeSwitch = 0
-//        _ = UserDefaults.standard.object(forKey: "TimeSwitch")
-//        var TSwitch:Int
-//        TSwitch = timeRangeSwitch
-//        UserDefaults.standard.set(TSwitch,forKey: "TimeSwitch")
-//    
-//        //Saveing Time tag to local storage for switching time range for table view
-//        _ = UserDefaults.standard.object(forKey: "TimeRangeTag")
-//        var TTag:Int
-//        TTag = tag
-//        UserDefaults.standard.set(TTag,forKey: "TimeRangeTag")
-//         print(TTag)
-//    self.dismiss(animated: true, completion: nil)
-//        
-//        
-//    }
+    //    @IBAction func Today(_ sender: Any) {
+    //        let tag: Int = (sender as AnyObject).tag
+    //
+    //        timeRangeSwitch = 0
+    //        _ = UserDefaults.standard.object(forKey: "TimeSwitch")
+    //        var TSwitch:Int
+    //        TSwitch = timeRangeSwitch
+    //        UserDefaults.standard.set(TSwitch,forKey: "TimeSwitch")
+    //
+    //        //Saveing Time tag to local storage for switching time range for table view
+    //        _ = UserDefaults.standard.object(forKey: "TimeRangeTag")
+    //        var TTag:Int
+    //        TTag = tag
+    //        UserDefaults.standard.set(TTag,forKey: "TimeRangeTag")
+    //         print(TTag)
+    //    self.dismiss(animated: true, completion: nil)
+    //
+    //
+    //    }
     
-    //how to update Table after segue 
+    //how to update Table after segue
     func updateTable(){
         print("Update Table")
-    // self.IncomeTable.reloadData()
-          //self.viewDidAppear(true)
-       // TimeRange()
+        // self.IncomeTable.reloadData()
+        self.viewDidAppear(true)
+        // TimeRange()
     }
 }
 

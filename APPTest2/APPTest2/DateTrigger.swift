@@ -29,10 +29,8 @@ class DateTrigger: UIViewController{
         UserDefaults.standard.set(TTag,forKey: "TimeRangeTag")
         print(TTag)
        // TotalView().viewDidAppear(true)
-  //self.performSegue(withIdentifier: "segue4", sender: self)
+    //self.performSegue(withIdentifier: "segue4", sender: self)
         //self.navigationController?.popViewController(animated: true)
-       // self.dismiss(animated: true, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
-        
        self.dismiss(animated: true, completion: nil)
         //TotalView().viewDidAppear(true)
     }
