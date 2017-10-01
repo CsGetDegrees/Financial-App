@@ -11,12 +11,17 @@ var dateInput:[Date] = []
 var typeOfCell:[Int] = []
 var amountOfCell:[Double] = []
 var typeOfAmount:[Int] = []
-//var Description:[String] = []
+
+
 
 var MoneySpent:[Double] = [0,0,0,0,0,0,0,0,0]
 
 var switcher: Int = 0
 var myIndex = 0
+
+var timeTag: Int = 0
+var tableShow: [Int] = []
+
 
 import UserNotifications
 
@@ -24,62 +29,78 @@ import UIKit
 
 class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDataSource{
     
-
+    
     
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var SegmentSwitch: UISegmentedControl!
     
     //Switch the tableView in Expense, Income and Total
     @IBAction func SwitchList(_ sender: UISegmentedControl) {
-     let a = sender.selectedSegmentIndex
+        let a = sender.selectedSegmentIndex
         print("switch \(a)")
-     switcher = a
-        myTableView.beginUpdates()
-        myTableView.endUpdates()
-        
+        switcher = a
+       myTableView.beginUpdates()
+       myTableView.endUpdates()
+        self.perform(#selector(updateTable), with: nil, afterDelay: 0.8)
     }
+    
+    //update Table
+    func updateTable(){
+        print("Update Table")
+        self.viewDidAppear(true)
+    }
+
     
     //Make Some Table Cell invisible
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height:CGFloat = CGFloat()
+       // var height:CGFloat = CGFloat()
         
         if( typeOfCell[indexPath.row] == switcher){
-            height = 0
+           // height = 0
+            return 0
         }else{
-        height = 70
+            
+            if( tableShow[indexPath.row] == 0){
+                return 70
+            }else{
+                return 0
+            }
+            
+           // return 70
+            //height = 70
         }
-        return height
-      
+       // return height
+        
     }
     
- 
-
-   
+    
+    
+    
     //Refresh Local storage
     public func refreshDate(){
         
-        _ = UserDefaults.standard.object(forKey: "plus")
+        _ = UserDefaults.standard.object(forKey: "Add")
         
-        UserDefaults.standard.set(list,forKey: "plus")
-
+        UserDefaults.standard.set(list,forKey: "Add")
+        
         _ = UserDefaults.standard.object(forKey: "time")
         UserDefaults.standard.set(dateInput,forKey: "time")
         
-        _ = UserDefaults.standard.object(forKey: "incomeOrExpense")
-       UserDefaults.standard.set(typeOfCell,forKey: "incomeOrExpense")
+        _ = UserDefaults.standard.object(forKey: "IncomeOrExpense")
+        UserDefaults.standard.set(typeOfCell,forKey: "IncomeOrExpense")
         
-         _ = UserDefaults.standard.object(forKey: "UniqueID")
-         UserDefaults.standard.set(notificationID,forKey: "UniqueID")
+        _ = UserDefaults.standard.object(forKey: "UniqueID")
+        UserDefaults.standard.set(notificationID,forKey: "UniqueID")
         
-//     _ = UserDefaults.standard.object(forKey: "Description")
-//        UserDefaults.standard.set(Description,forKey: "Description")
- 
+        //     _ = UserDefaults.standard.object(forKey: "Description")
+        //        UserDefaults.standard.set(Description,forKey: "Description")
+        
         _ = UserDefaults.standard.object(forKey: "Amount")
         UserDefaults.standard.set(amountOfCell,forKey: "Amount")
         
-        _ = UserDefaults.standard.object(forKey: "TypeOfAmount")
-          UserDefaults.standard.set(typeOfAmount,forKey: "TypeOfAmount")
-
+        _ = UserDefaults.standard.object(forKey: "InputType")
+        UserDefaults.standard.set(typeOfAmount,forKey: "InputType")
+        
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,64 +109,64 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
     
     //Create a new Cell
     public   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
-
-        let cell = self.myTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)as!CustomCell
-            
         
-       //cell.textLabel?.text = list[indexPath.row]
+        
+        let cell = self.myTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)as!CustomCell
+        
+        
+        //cell.textLabel?.text = list[indexPath.row]
         cell.name.text = list[indexPath.row]
         
         //Description
-       // cell.Description.text = Description[indexPath.row]
+        // cell.Description.text = Description[indexPath.row]
         
         //Amount
-             cell.Amount.text = String(amountOfCell[indexPath.row])
-       print( String(amountOfCell[indexPath.row]))
+        cell.Amount.text = String(amountOfCell[indexPath.row])
+        print( String(amountOfCell[indexPath.row]))
         //format
         let dateFormat = DateFormatter()
         dateFormat.dateStyle = .short
         dateFormat.timeStyle = .short
-     // let stringTime = " \(dateFormat.string(from: dateInput[indexPath.row]))"
-       //print (dateInput)
+        // let stringTime = " \(dateFormat.string(from: dateInput[indexPath.row]))"
+        //print (dateInput)
         if (dateInput[indexPath.row] as Date?) != nil   {
-        
-       cell.time.text = dateFormat.string(from: dateInput[indexPath.row])
+            
+            cell.time.text = dateFormat.string(from: dateInput[indexPath.row])
         }else{
             cell.time.text = list[indexPath.row]
-
+            
         }
         
         if typeOfCell[indexPath.row] == 1 {
-           cell.IncomeOrExpense.text = "-"
+            cell.IncomeOrExpense.text = "-"
         }else {
-        cell.IncomeOrExpense.text = "+"
+            cell.IncomeOrExpense.text = "+"
         }
-       // cell.IncomeOrExpense.text = String(typeOfCell[indexPath.row])
+        // cell.IncomeOrExpense.text = String(typeOfCell[indexPath.row])
         
         
         if (cell.IncomeOrExpense.text == "-") {
             cell.IncomeOrExpense.textColor = UIColor.red
-
+            
         }else{
-        cell.IncomeOrExpense.textColor = UIColor.green
+            cell.IncomeOrExpense.textColor = UIColor.green
         }
         //Cell color control
         cell.time.textColor = UIColor.black
         cell.name.textColor = UIColor.black
         
-
-      
+        
+        
         return(cell)
     }
     
-   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == editingStyle{
-         list.remove(at: indexPath.row)
-          dateInput.remove(at: indexPath.row)
+            list.remove(at: indexPath.row)
+            dateInput.remove(at: indexPath.row)
             typeOfCell.remove(at: indexPath.row)
             amountOfCell.remove(at: indexPath.row)
-           // Description.remove(at: indexPath.row)
+            // Description.remove(at: indexPath.row)
             typeOfAmount.remove(at: indexPath.row)
             //Delete the notification
             let center = UNUserNotificationCenter.current()
@@ -158,13 +179,13 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
             myTableView.reloadData()
         }
     }
-
+    
     func moneySpent(){
         for (index, _) in typeOfAmount.enumerated() {
             if typeOfAmount[index] == 0 {
-                 MoneySpent[0] +=  amountOfCell[index]
+                MoneySpent[0] +=  amountOfCell[index]
             }
-         }
+        }
         for (index, _) in typeOfAmount.enumerated() {
             if typeOfAmount[index] == 1 {
                 MoneySpent[1] +=  amountOfCell[index]
@@ -207,48 +228,105 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
                 MoneySpent[8] +=  amountOfCell[index]
             }
         }
-
         
         
         
-         print(MoneySpent)
+        
+        print(MoneySpent)
     }
     
+    
+    func TimeRange(){
+        print("Second View Time range")
+     //   let todayDate = Date()
+        let calendar = NSCalendar.current
+      //  let date1 = calendar.startOfDay(for: todayDate)
+        
+        
+        if(timeTag == 2){
+            let FirstDayWeek = Date().startOfWeek()
+            
+            //Comparing Date List element with current Date
+            for  t in dateInput{
+                let ToStart = calendar.dateComponents([.day], from: FirstDayWeek, to: t)
+                
+                if(ToStart.day! <= 7 && ToStart.day! >= 0){
+                    tableShow.append(0)
+                }else{
+                    tableShow.append(1)
+                }
+            }
+        }else if(timeTag == 1){
+            let Today = Date()
+            for  t in dateInput{
+                let ToStart = calendar.dateComponents([.day], from: Today, to: t)
+                print(ToStart.day!)
+                if(ToStart.day! == 0){
+                    tableShow.append(0)
+                }else{
+                    tableShow.append(1)
+                }
+            }
+        }else if(timeTag == 3){
+            let FirstDayMonth = Date().startOfMonth()
+            let LastDayMonth = Date().endOfMonth()
+            
+            //Geting How many days in this Month
+            let MonthDay = calendar.dateComponents([.day], from: FirstDayMonth, to: LastDayMonth)
+            print("There are\(MonthDay.day!) in this Month!")
+            
+            //Comparing Date List element with current Date
+            for  t in dateInput{
+                let ToStart = calendar.dateComponents([.day], from: FirstDayMonth, to: t)
+                print(ToStart.day!)
+                if(ToStart.day! <= MonthDay.day! && ToStart.day! >= 0){
+                    tableShow.append(0)
+                }else{
+                    tableShow.append(1)
+                }
+            }
+        }else if (timeTag == 0){
+            for  _ in dateInput{
+            tableShow.append(0)
+                
+            }
+        }
+        
+        print(tableShow)
+    }
+    
+    
     override func viewDidAppear(_ animated: Bool) {
-     
-      //Put all local storage to local variable 
+        
+        //Put all local storage to local variable
         
         let plusObject = UserDefaults.standard.object(forKey: "Add")
         if (plusObject as? [String]) != nil{
-           list = plusObject as! [String]
-              print(plusObject ?? 0)
-            }
-      
+            list = plusObject as! [String]
+            print(plusObject ?? 0)
+        }
+        
         
         let dateObject = UserDefaults.standard.object(forKey: "time")
         if (dateObject as? [Date]) != nil{
             dateInput = dateObject as! [Date]
             print(dateObject ?? 0)
         }
-
+        
         
         let IncomeOrExpense = UserDefaults.standard.object(forKey: "IncomeOrExpense")
         if (IncomeOrExpense as? [Int]) != nil{
             typeOfCell = IncomeOrExpense as! [Int]
             print(IncomeOrExpense ?? 0)
         }
-     
+        
         let UUIDObject = UserDefaults.standard.object(forKey: "UniqueID")
         if (UUIDObject as? [String]) != nil{
             notificationID = UUIDObject as! [String]
             print(UUIDObject ?? 0)
         }
-
-//        let descriptionObject = UserDefaults.standard.object(forKey: "Description")
-//        if (descriptionObject as? [String]) != nil{
-//            Description = descriptionObject as! [String]
-//            print(descriptionObject ?? 0)
-//        }
+        
+        
         
         let amountObject = UserDefaults.standard.object(forKey: "Amount")
         if (amountObject as? [Double]) != nil{
@@ -262,19 +340,32 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
             typeOfAmount = typeObject as! [Int]
             print(typeOfAmount )
         }
-
-
+        
+        let Tag = UserDefaults.standard.object(forKey: "TimeRangeTag")
+        if(Tag as? Int) != nil{
+            timeTag = Tag as! Int
+        }
+        
+        tableShow = []
+        TimeRange()
+        
+        
         moneySpent()
         myTableView.reloadData()
         SegmentSwitch.reloadInputViews()
-      
-        
         
     }
     
     
+    @IBAction func TimeSwitchTag(_ sender: Any) {
+        
+        performSegue(withIdentifier: "segue4", sender: self)
+        
+        
+        
+    }
     
- //Connect to CustomCell
+    //Connect to CustomCell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         myIndex = indexPath.row
         performSegue(withIdentifier: "segue", sender: self)

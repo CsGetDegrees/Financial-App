@@ -75,30 +75,6 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if sections[indexPath.section].expanded == true{
-//            let todayDate = Date()
-//            let selectDate = sections[indexPath.section].time[0]
-//            
-//            let currentWeekday = Calendar.current.component(.weekday, from: todayDate)
-//            //need -1 ?
-//          //  print(currentWeekday)
-//            
-//            let calendar = NSCalendar.current
-//            let FirstDayMonth = Date().startOfMonth()
-//            let LastDayMonth = Date().endOfMonth()
-//            let FirstDayWeek = Date().startOfWeek()
-//            
-//            
-//            //Need add 1
-//            let LastDayWeek = Date().endOfWeek()
-//            let LastDayMonth2 = Date().getThisMonthEnd()
-//            
-//            
-//            // Replace the hour (time) of both dates with 00:00
-//            let date1 = calendar.startOfDay(for: todayDate)
-//            let date2 = calendar.startOfDay(for: selectDate)
-//            
-//            let components = calendar.dateComponents([.day], from: date1, to: FirstDayWeek)
-//       //     print(components.day!)
             
             if(sections[indexPath.section].display[indexPath.row] == 0){
                 return 48
@@ -148,10 +124,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
                 cell.Time.text = dateFormat.string(from: sections[indexPath.section].time[indexPath.row])
             }
             
-            //print(sections[0].type)
-            //  cell.CellType.text = sections[indexPath.section].type[indexPath.row]
-            // var a = sections[indexPath.section].type[indexPath.row]
-            //print(a)
+
             return(cell)
             
             
@@ -175,14 +148,17 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         //  self.viewDidAppear(true)
     }
     
-    @IBAction func changeMovies(_ sender: Any) {
-        //  sections[0].movies = list
-        //  self.IncomeTable.reloadData()
-        //self.viewWillAppear(true)
-        // self.viewDidLoad()
+    //update Table
+    func updateTable(){
+        print("Update Table")
+        // self.IncomeTable.reloadData()
         self.viewDidAppear(true)
-        
-        // sections[1].expanded = false
+    }
+    
+    //Just Update
+    @IBAction func changeMovies(_ sender: Any) {
+        self.viewDidAppear(true)
+
     }
     
     override func viewDidLoad() {
@@ -196,6 +172,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         }
     }
     
+    //Need to be fit
     func TimeRange(){
         let todayDate = Date()
         // let selectDate = sections[indexPath.section].time[0]
@@ -319,12 +296,12 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
             //print(TimeList )
         }
        
-        //do we need this?
-        let timeSwitch = UserDefaults.standard.object(forKey: "TimeSwitch")
-        if(timeSwitch as? Int) != nil{
-            timeRangeSwitch = timeSwitch as! Int
-            //print(timeRangeSwitch)
-        }
+//        //do we need this?
+//        let timeSwitch = UserDefaults.standard.object(forKey: "TimeSwitch")
+//        if(timeSwitch as? Int) != nil{
+//            timeRangeSwitch = timeSwitch as! Int
+//            //print(timeRangeSwitch)
+//        }
         
         let Tag = UserDefaults.standard.object(forKey: "TimeRangeTag")
         if(Tag as? Int) != nil{
@@ -373,10 +350,10 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         
         
         //Do not load table when open time select view
-        if(timeRangeSwitch == 0){
-            
+//        if(timeRangeSwitch == 0){
+//        }
             self.IncomeTable.reloadData()
-        }
+        
         
         print(listIncome)
         print(listExpense)
@@ -408,41 +385,14 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         
     }
     @IBAction func TimeRangeSelect(_ sender: Any) {
-        timeRangeSwitch = 1
-        _ = UserDefaults.standard.object(forKey: "TimeSwitch")
-        var TSwitch:Int
-        TSwitch = timeRangeSwitch
-        UserDefaults.standard.set(TSwitch,forKey: "TimeSwitch")
+//        timeRangeSwitch = 1
+//        _ = UserDefaults.standard.object(forKey: "TimeSwitch")
+//        var TSwitch:Int
+//        TSwitch = timeRangeSwitch
+//        UserDefaults.standard.set(TSwitch,forKey: "TimeSwitch")
         performSegue(withIdentifier: "segue3", sender: self)
     }
     
-    //    @IBAction func Today(_ sender: Any) {
-    //        let tag: Int = (sender as AnyObject).tag
-    //
-    //        timeRangeSwitch = 0
-    //        _ = UserDefaults.standard.object(forKey: "TimeSwitch")
-    //        var TSwitch:Int
-    //        TSwitch = timeRangeSwitch
-    //        UserDefaults.standard.set(TSwitch,forKey: "TimeSwitch")
-    //
-    //        //Saveing Time tag to local storage for switching time range for table view
-    //        _ = UserDefaults.standard.object(forKey: "TimeRangeTag")
-    //        var TTag:Int
-    //        TTag = tag
-    //        UserDefaults.standard.set(TTag,forKey: "TimeRangeTag")
-    //         print(TTag)
-    //    self.dismiss(animated: true, completion: nil)
-    //
-    //
-    //    }
-    
-    //how to update Table after segue
-    func updateTable(){
-        print("Update Table")
-        // self.IncomeTable.reloadData()
-        self.viewDidAppear(true)
-        // TimeRange()
-    }
 }
 
 //extensed method for helping get dateRange

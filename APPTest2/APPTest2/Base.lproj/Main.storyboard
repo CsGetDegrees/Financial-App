@@ -158,7 +158,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Budgetable History" id="ejv-bz-qok">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" id="ovU-K8-lkw"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Item" id="ovU-K8-lkw">
+                                            <connections>
+                                                <action selector="TimeSwitchTag:" destination="lHs-gL-t2y" id="4b1-aK-17L"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -181,11 +185,12 @@
                     <connections>
                         <outlet property="SegmentSwitch" destination="HmR-y9-sev" id="nHh-YR-7kN"/>
                         <outlet property="myTableView" destination="fcT-9q-v1Z" id="KeF-ei-KHa"/>
+                        <segue destination="EQt-ha-GsJ" kind="presentation" identifier="segue4" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="4Pc-3z-SUR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fCd-77-Xkb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1896.8" y="-772.26386806596713"/>
+            <point key="canvasLocation" x="1150" y="-1022"/>
         </scene>
         <!--Table Cell-->
         <scene sceneID="53Z-Cg-D1y">
@@ -317,13 +322,10 @@
                         <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="0.60431338028169013" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
-                    <connections>
-                        <segue destination="OOR-bJ-SE1" kind="presentation" identifier="segue4" id="O6w-9w-w5h"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1tJ-Y7-ATN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="804" y="-1211"/>
+            <point key="canvasLocation" x="4" y="-1022"/>
         </scene>
         <!--hahahaha-->
         <scene sceneID="Kme-aA-pLa">
@@ -502,7 +504,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yMz-Pu-jej" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="804" y="-1989"/>
+            <point key="canvasLocation" x="4" y="-1812"/>
         </scene>
         <!--Caculator-->
         <scene sceneID="b0D-v0-KM2">
@@ -519,7 +521,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EbR-Aq-OX2">
                                 <rect key="frame" x="16" y="616" width="343" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Type"/>
+                                <state key="normal" title="Category"/>
                                 <connections>
                                     <action selector="AddType:" destination="SDx-iq-Zw0" eventType="touchUpInside" id="ZOZ-9p-Qso"/>
                                 </connections>
@@ -536,7 +538,7 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" tag="17" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rBN-vU-YaP">
-                                <rect key="frame" x="16" y="195" width="257" height="73"/>
+                                <rect key="frame" x="50" y="195" width="254" height="73"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
@@ -769,6 +771,14 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1z-O1-YLz">
+                                <rect key="frame" x="17" y="195" width="36" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -783,7 +793,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ei-fY-IHG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1719.2" y="-1989.3553223388308"/>
+            <point key="canvasLocation" x="1150" y="-1812"/>
         </scene>
         <!--Input Type-->
         <scene sceneID="Jab-1q-1aZ">
@@ -1117,7 +1127,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Evy-L4-zCb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="886" y="-173"/>
+            <point key="canvasLocation" x="-935" y="-161"/>
         </scene>
         <!--Item-->
         <scene sceneID="bPc-oS-dhQ">
@@ -1149,11 +1159,12 @@
                     <connections>
                         <outlet property="lineChartView" destination="5Zk-yb-F44" id="gr4-1v-V80"/>
                         <outlet property="pieChartView" destination="7ze-AS-uS2" id="wkF-LO-ePp"/>
+                        <segue destination="EQt-ha-GsJ" kind="presentation" id="2YK-qy-DQA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKj-wi-NE5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4" y="-54.422788605697157"/>
+            <point key="canvasLocation" x="4" y="-161"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="6Cv-pY-EMZ">
@@ -1260,6 +1271,7 @@
         <image name="goal" width="29" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="T3h-2W-PhI"/>
+        <segue reference="4Pc-3z-SUR"/>
+        <segue reference="5Hp-Dg-UTM"/>
     </inferredMetricsTieBreakers>
 </document>
