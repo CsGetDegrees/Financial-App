@@ -33,6 +33,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
     var count: Int = 0
     var firstNum: Double = 0.0
     var secondNum: Double = 0.0
+    var testNumFirst: Decimal = 0.0
     
     
     @IBOutlet weak var TypeTable: UITableView!
@@ -208,6 +209,8 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
         var amount:[Double]
         if let tempAmount = amountObject as? [Double]{
             amount = tempAmount
+            let a = Double(numShowOnScreen)
+            print("Is Double \(a)")
             amount.append(Double(numShowOnScreen))
             
         }else{
@@ -226,6 +229,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
             
             print(j)
             numShowOnScreen = Double(j)!
+            print(numShowOnScreen)
             performingMath = false
             
         }else{
@@ -235,8 +239,10 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
                 x = String((sender as AnyObject).tag)
                 
                 CountShow.setTitle(x, for: .normal)
-            }
-            else{
+                numShowOnScreen = Double(x)!
+           
+                print("jjj\(numShowOnScreen)")
+            }else{
                 //If input is "."
                 if (sender as AnyObject).tag == 10 {
                     x = CountShow.currentTitle! + "."
@@ -400,9 +406,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
         //performSegue(withIdentifier: "segue2", sender: self)
         self.dismiss(animated: true, completion: nil)
     }
-   
-   
-    
-    
     
 }
+
+

@@ -244,6 +244,10 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         print(tableShow)
     }
     
+    func CountTotal(){
+    
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         //Empty the local variable
         list = []
