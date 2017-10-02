@@ -237,7 +237,6 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
             if CountShow.currentTitle == nil {
                 
                 x = String((sender as AnyObject).tag)
-                
                 CountShow.setTitle(x, for: .normal)
                 numShowOnScreen = Double(x)!
            
@@ -251,19 +250,27 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
                     //Find last char of Screen
                     let z = x.characters.count-1
                     let y = x.index(x.startIndex, offsetBy: z)
-                    print(x[y])
-                    
-                    
+                      print(x[y])
                     
                     x =  CountShow.currentTitle! + String((sender as AnyObject).tag)
-                    CountShow.setTitle(x, for: .normal)
+                    var a = (Double(x)!).truncate(places: 0)
+                    
+                    CountShow.setTitle( String(a), for: .normal)
                 }
                 print(x)
-                numShowOnScreen = Double(x)!
+               
+                
+               // if  Int(x) != nil{
+              //  numShowOnScreen = Int(x)!
+              //  }else{
+               // round(Double(x)!)
+                numShowOnScreen = Double(x)!.truncate(places: 0)
+              //  }
             }
         }
     }
-    //Has error during double transation
+    
+ 
     @IBAction func Count(_ sender: Any) {
         
         let numTest = Double(CountShow.currentTitle!)
@@ -409,4 +416,12 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
     
 }
 
+extension Double{
+
+    func truncate(places: Int) -> Double {
+        return Double(floor(pow(10.0, Double(places)) * self)/pow(10.0, Double(places)))
+        
+    }
+    
+}
 
