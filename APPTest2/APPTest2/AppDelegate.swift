@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UITableViewDelegate{
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // UINavigationBar.appearance().clipsToBounds = true
+        //Buttom Icon Color
         let tintColor = UIColor(red: 106/255, green: 175/255,blue: 250/255,alpha:1)
         window?.tintColor = tintColor
         UITabBar.appearance().tintColor = tintColor

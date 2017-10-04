@@ -8,22 +8,47 @@
 
 import Foundation
 
+struct sectionCell {
+    var list:String
+    var dateInput:Date
+    var typeOfCell:Int
+    var amountOfCell:Double
+    var typeOfAmount: Int
+    // var tableShow: Int
+}
+
+
+
 struct Section {
-    var genre: String!
-    var movies: [String]!
-    var expanded: Bool!
-    var type:[Int]!
-    var amount:[Double]!
-    var time:[Date]
-    var display:[Int]!
     
-    init(genre: String, movies:[String], expanded: Bool, type:[Int], amount:[Double], time:[Date], display:[Int]) {
+    
+    var genre: String!
+//    var movies: [String]!
+    var expanded: Bool!
+//    var type:[Int]!
+//    var amount:[Double]!
+//    var time:[Date]
+//    var display:[Int]!
+    var cell: [sectionCell]!
+    
+    init(genre: String, expanded: Bool, cell: [sectionCell]) {
         self.genre = genre
-        self.movies = movies
         self.expanded = expanded
-        self.type = type
-        self.amount = amount
-        self.time = time
-        self.display = display
+        self.cell = cell
     }
+    
+//    init(genre: String, movies:[String], expanded: Bool, type:[Int], amount:[Double], time:[Date], display:[Int]) {
+//        self.genre = genre
+//        self.movies = movies
+//        self.expanded = expanded
+//        self.type = type
+//        self.amount = amount
+//        self.time = time
+//        self.display = display
+//     //   self.cell = cell
+//    }
+    
+    
+    
+    
 }

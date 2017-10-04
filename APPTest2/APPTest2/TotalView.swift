@@ -15,34 +15,52 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     @IBOutlet weak var AddButton: UIButton!
     
     var list: [String]! = []
-    var listIncome: [String]! = []
-    var listExpense: [String]! = []
+//    var listIncome: [String]! = []
+//    var listExpense: [String]! = []
     
     //let listEx:[String]! = ["1","2","3","4","5"]
     
     var InOrExList:[Int] = [1,2,3]
     
     var TypeList:[Int] = []
-    var IncomeType:[Int] = []
-    var ExpenseType:[Int] = []
+//    var IncomeType:[Int] = []
+//    var ExpenseType:[Int] = []
     
     var TimeList:[Date] = []
-    var IncomeTime:[Date] = []
-    var ExpenseTime:[Date] = []
+//    var IncomeTime:[Date] = []
+//    var ExpenseTime:[Date] = []
     
     var AmountList:[Double] = []
-    var IncomeAmount:[Double] = []
-    var ExpenseAmount:[Double] = []
+//    var IncomeAmount:[Double] = []
+//    var ExpenseAmount:[Double] = []
     
     var timeRangeSwitch: Int = 0
     
-    var sections = [Section(genre: "Income", movies: [], expanded: false, type: [], amount: [], time: [], display: []),
-                    Section(genre: "Expense", movies: [], expanded: false, type: [], amount: [], time: [], display: [])]
+//    struct sectionCell {
+//        var list:String
+//        var dateInput:Date
+//        var typeOfCell:Int
+//        var amountOfCell:Double
+//        var typeOfAmount: Int
+//       // var tableShow: Int
+//    }
+    
+    var ArrayCell: [sectionCell] = []
+    var IncomeCell: [sectionCell] = []
+    var ExpenseCell: [sectionCell] = []
+  
+    
+//    var sections = [Section(genre: "Income", movies: [], expanded: false, type: [], amount: [], time: [], display: []),
+//                    Section(genre: "Expense", movies: [], expanded: false, type: [], amount: [], time: [], display: [])]
+   
+    var sections = [Section(genre: "Income", expanded: false, cell:[]),
+                    Section(genre: "Expense", expanded: false, cell: [])]
     
     var timeTag: Int = 0
+    
     var tableShow: [Int] = []
-    var IncomeShow: [Int] = []
-    var ExpenseShow: [Int] = []
+//    var IncomeShow: [Int] = []
+//    var ExpenseShow: [Int] = []
     
     
     @IBOutlet weak var IncomeTable: UITableView!
@@ -50,11 +68,8 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     var listCount: Int = 0
     
     public func numberOfSections(in tableView: UITableView) -> Int {
-        if tableView.tag == 2{
             return sections.count
-        }else{
-            return 1
-        }
+       
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,7 +77,9 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         //Need to be fit
         if tableView.tag == 2 {
             //Table with header
-            return sections[section].movies.count
+            //Change ..
+            return sections[section].cell.count
+           // return sections[section].movies.count
             // return(listIncome.count)
         }else{
             return 0
@@ -70,18 +87,18 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     }
     
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return 55
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if sections[indexPath.section].expanded == true{
-            
-            if(sections[indexPath.section].display[indexPath.row] == 0){
-                return 48
-            }else{
-                return 0
-            }
-            
+            //Change ..
+//            if(sections[indexPath.section].display[indexPath.row] == 0){
+//                return 48
+//            }else{
+//                return 0
+//            }
+            return 48
         }else{
             return 0
         }
@@ -107,11 +124,16 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         if tableView.tag == 2{
             
             let  cell = self.IncomeTable.dequeueReusableCell(withIdentifier: "cellHeader", for: indexPath)as! HeaderViewCell
-            
+            //Change...
             // cell.Name.text = listIncome[indexPath.row]
-            cell.Name.text = sections[indexPath.section].movies[indexPath.row]
-            cell.CellType.text = String(sections[indexPath.section].type[indexPath.row])
-            cell.Amount.text = String(sections[indexPath.section].amount[indexPath.row])
+//            cell.Name.text = sections[indexPath.section].movies[indexPath.row]
+//            cell.CellType.text = String(sections[indexPath.section].type[indexPath.row])
+//            cell.Amount.text = String(sections[indexPath.section].amount[indexPath.row])
+            
+            cell.Name.text = sections[indexPath.section].cell[indexPath.row].list
+            cell.CellType.text = String(sections[indexPath.section].cell[indexPath.row].typeOfCell)
+            cell.Amount.text = String(sections[indexPath.section].cell[indexPath.row].typeOfAmount)
+            
             //format
             let dateFormat = DateFormatter()
             dateFormat.locale = Locale(identifier: "en_GB")
@@ -119,9 +141,9 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
             //dateFormat.dateStyle = .short
             //dateFormat.timeStyle = .short
             
-            if (sections[indexPath.section].time[indexPath.row] as Date?) != nil   {
+            if (sections[indexPath.section].cell[indexPath.row].dateInput as Date?) != nil   {
                 
-                cell.Time.text = dateFormat.string(from: sections[indexPath.section].time[indexPath.row])
+                cell.Time.text = dateFormat.string(from: sections[indexPath.section].cell[indexPath.row].dateInput)
             }
             
 
@@ -140,7 +162,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         sections[section].expanded = !sections[section].expanded
         
         IncomeTable.beginUpdates()
-        for i in 0 ..< sections[section].movies.count{
+        for i in 0 ..< sections[section].cell.count{
             IncomeTable.reloadRows(at: [IndexPath(row: i, section:section)], with: .automatic)
         }
         IncomeTable.endUpdates()
@@ -164,12 +186,9 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     override func viewDidLoad() {
         super.viewDidLoad()
         print("ViewDidLoad")
-        if(timeRangeSwitch == 0){
-            //AddButton.layer.zPosition = 101;
+            AddButton.layer.zPosition = 101;
             print("ViewDidLoad")
-        }else{
-            return
-        }
+     
     }
     
     //Need to be fit
@@ -239,6 +258,11 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
                     tableShow.append(1)
                 }
             }
+        }else if(timeTag == 0 ){
+            for  _ in TimeList{
+                tableShow.append(0)
+            }
+            
         }
         
         print(tableShow)
@@ -255,20 +279,24 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         TypeList = []
         AmountList = []
         TimeList = []
-        listIncome  = []
+       
         tableShow = []
         
-        IncomeType = []
-        IncomeAmount = []
-        IncomeTime = []
-        listExpense = []
-        ExpenseType = []
-        ExpenseAmount = []
-        ExpenseTime = []
+//        IncomeType = []
+//        IncomeAmount = []
+//        IncomeTime = []
+//        listExpense = []
+         //listIncome  = []
+//        ExpenseType = []
+//        ExpenseAmount = []
+//        ExpenseTime = []
         
-        IncomeShow = []
-        ExpenseShow = []
+//        IncomeShow = []
+//        ExpenseShow = []
         
+        ArrayCell = []
+        IncomeCell = []
+        ExpenseCell = []
         //Put all local storage to local variable
         let AddObject = UserDefaults.standard.object(forKey: "Add")
         if (AddObject as? [String]) != nil{
@@ -299,78 +327,125 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
             TimeList = dateObject as! [Date]
             //print(TimeList )
         }
-       
-//        //do we need this?
-//        let timeSwitch = UserDefaults.standard.object(forKey: "TimeSwitch")
-//        if(timeSwitch as? Int) != nil{
-//            timeRangeSwitch = timeSwitch as! Int
-//            //print(timeRangeSwitch)
-//        }
         
         let Tag = UserDefaults.standard.object(forKey: "TimeRangeTag")
         if(Tag as? Int) != nil{
             timeTag = Tag as! Int
         }
         
-        TimeRange()
+        /*1.Merge Time within Type
+         *2.Then description will not be showed in this view
+         *3.Date of element will be refresh when custom pushed
+         *at last time(Same type only has one date).
+         *4.Budget element can be deleted Anytime.
+         *5.If element is deleted, the corresponding history
+         * will be deleted as well.
+         *6.Conclusion This table can only show element with type.
+         * After click it, there will be a report showed in another view. Report can include history of this type, final update date and corresponding description. However customer can not edit it. They can only edit transation history in history table.
+         *7.Piggy bank picture with different face.
+         *8.Bar chart with different color
+         */
+        /*if same type..get the sequence of date, select last date before current as date element. Add all element' name to
+            a string element as description. Add all amount to total as
+            new amount.Nope!
+        */
+        /* only has 2 tag week and month. 2 budget saving goal for custom.Empty when the start of week and month. After week or month(only can select one).The money you save will be save in a can in setting view. Total goal can only be add weekly.*/
         
-        //Assign value to Income and Expense Section
+        
+        TimeRange()
+        //All Good
         if(list.count != 0){
             for  i in (0..<list.count).reversed() {
-                if(InOrExList[i] == 0){
-                    listIncome.append(list[i])
-                    IncomeType.append(TypeList[i])
-                    IncomeAmount.append(AmountList[i])
-                    IncomeTime.append(TimeList[i])
-                    if(tableShow.count != 0){
-                        IncomeShow.append(tableShow[i])
-                    }else{
-                        IncomeShow.append(0)
-                    }
-                }else{
-                    listExpense.append(list[i])
-                    ExpenseType.append(TypeList[i])
-                    ExpenseAmount.append(AmountList[i])
-                    ExpenseTime.append(TimeList[i])
-                    if (tableShow.count != 0) {
-                        
-                        ExpenseShow.append(tableShow[i])
-                    }else{
-                        ExpenseShow.append(0)
-                    }
-                }
+                print(tableShow)
+                if(tableShow[i] == 0){
+                let a = sectionCell(list:list[i], dateInput: TimeList[i], typeOfCell: TypeList[i], amountOfCell: AmountList[i], typeOfAmount: InOrExList[i])
+                ArrayCell.append(a)
+               }
             }
         }
-        sections[0].movies = listIncome
-        sections[1].movies = listExpense
-        sections[0].type = IncomeType
-        sections[1].type = ExpenseType
-        sections[0].amount = IncomeAmount
-        sections[1].amount = ExpenseAmount
-        sections[0].time = IncomeTime
-        sections[1].time = ExpenseTime
-        sections[0].display = IncomeShow
-        sections[1].display = ExpenseShow
+        let dateFormat = DateFormatter()
+        dateFormat.dateStyle = .short
+        dateFormat.timeStyle = .short
         
+        for i in 0..<ArrayCell.count{
+            print(dateFormat.string(from: ArrayCell[i].dateInput))
+        }
+        for i in 0..<ArrayCell.count{
+            if(ArrayCell[i].typeOfAmount == 0){
+                IncomeCell.append(ArrayCell[i])
+            }else{
+                ExpenseCell.append(ArrayCell[i])
+            }
+        }
+        for i in 0..<IncomeCell.count{
+            print("In")
+            print(dateFormat.string(from: IncomeCell[i].dateInput))
+        }
+        for i in 0..<ExpenseCell.count{
+            print("Ex")
+            print(dateFormat.string(from: ExpenseCell[i].dateInput))
+        }
         
-        //Do not load table when open time select view
-//        if(timeRangeSwitch == 0){
+        sections[0].cell = IncomeCell
+        sections[1].cell = ExpenseCell
+        //Make an Array[sectionCell] Then assign in to section
+        
+        //Assign value to Income and Expense Section
+//        if(list.count != 0){
+//            for  i in (0..<list.count).reversed() {
+//                if(InOrExList[i] == 0){
+//                    listIncome.append(list[i])
+//                    IncomeType.append(TypeList[i])
+//                    IncomeAmount.append(AmountList[i])
+//                    IncomeTime.append(TimeList[i])
+//                    if(tableShow.count != 0){
+//                        IncomeShow.append(tableShow[i])
+//                    }else{
+//                        IncomeShow.append(0)
+//                    }
+//                }else{
+//                    listExpense.append(list[i])
+//                    ExpenseType.append(TypeList[i])
+//                    ExpenseAmount.append(AmountList[i])
+//                    ExpenseTime.append(TimeList[i])
+//                    if (tableShow.count != 0) {
+//                        ExpenseShow.append(tableShow[i])
+//                    }else{
+//                        ExpenseShow.append(0)
+//                    }
+//                }
+//            }
 //        }
+        
+        
+//        sections[0].movies = listIncome
+//        sections[1].movies = listExpense
+//        sections[0].type = IncomeType
+//        sections[1].type = ExpenseType
+//        sections[0].amount = IncomeAmount
+//        sections[1].amount = ExpenseAmount
+//        sections[0].time = IncomeTime
+//        sections[1].time = ExpenseTime
+//        sections[0].display = IncomeShow
+//        sections[1].display = ExpenseShow
+        
+
             self.IncomeTable.reloadData()
         
         
-        print(listIncome)
-        print(listExpense)
-        print(IncomeType)
-        print(ExpenseType)
-        print(IncomeAmount)
-        print(ExpenseAmount)
-        print(IncomeTime)
-        print(ExpenseTime)
-        print("Time tag \(timeTag)")
-        print(IncomeShow)
-        print(ExpenseShow)
+//        print(listIncome)
+//        print(listExpense)
+//        print(IncomeType)
+//        print(ExpenseType)
+//        print(IncomeAmount)
+//        print(ExpenseAmount)
+//        print(IncomeTime)
+//        print(ExpenseTime)
+//        print("Time tag \(timeTag)")
+//        print(IncomeShow)
+//        print(ExpenseShow)
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -389,11 +464,6 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         
     }
     @IBAction func TimeRangeSelect(_ sender: Any) {
-//        timeRangeSwitch = 1
-//        _ = UserDefaults.standard.object(forKey: "TimeSwitch")
-//        var TSwitch:Int
-//        TSwitch = timeRangeSwitch
-//        UserDefaults.standard.set(TSwitch,forKey: "TimeSwitch")
         performSegue(withIdentifier: "segue3", sender: self)
     }
     
@@ -429,4 +499,19 @@ extension Date {
         return Calendar.current.date(from: components as DateComponents)!
     }
     
+}
+extension NSDate {
+    
+    func isLessThanDate(dateToCompare: NSDate) -> Bool {
+        //Declare Variables
+        var isLess = false
+        
+        //Compare Values
+        if self.compare(dateToCompare as Date) == ComparisonResult.orderedAscending {
+            isLess = true
+        }
+        
+        //Return Result
+        return isLess
+    }
 }

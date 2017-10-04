@@ -11,6 +11,11 @@ import UIKit
 import UserNotifications
 
 class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
+   
+    var SavingCell: [sectionCell] = []
+    
+
+    
     
     @IBOutlet weak var IncomeExpense: UISegmentedControl!
     @IBOutlet weak var CountShow: UIButton!
@@ -93,7 +98,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         
         print(indexPath[1])
-        
+        //same structure some information just does not showed
         if(Description.text != ""){
             print(2222)
             
@@ -107,6 +112,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
             }else{
                 InOrEx = [TypeSwitch]
             }
+            
             UserDefaults.standard.set(InOrEx,forKey: "IncomeOrExpense")
             
             let InputType = UserDefaults.standard.object(forKey: "InputType")
@@ -253,9 +259,9 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
                       print(x[y])
                     
                     x =  CountShow.currentTitle! + String((sender as AnyObject).tag)
-                    var a = (Double(x)!).truncate(places: 0)
+                    //var a = (Double(x)!).truncate(places: 0)
                     
-                    CountShow.setTitle( String(a), for: .normal)
+                    CountShow.setTitle( x, for: .normal)
                 }
                 print(x)
                
@@ -264,7 +270,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
               //  numShowOnScreen = Int(x)!
               //  }else{
                // round(Double(x)!)
-                numShowOnScreen = Double(x)!.truncate(places: 0)
+                numShowOnScreen = Double(x)!
               //  }
             }
         }

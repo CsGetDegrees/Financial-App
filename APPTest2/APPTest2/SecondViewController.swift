@@ -29,7 +29,16 @@ import UIKit
 
 class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDataSource{
     
-    
+    struct CellStructure {
+        var list:String
+        var notificationID:String
+        var dateInput:Date
+        var typeOfCell:Int
+        var amountOfCell:Double
+        var typeOfAmount:Int
+        var tableShow: Int
+    }
+    var CellArray: [CellStructure] = []
     
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var SegmentSwitch: UISegmentedControl!
@@ -162,6 +171,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == editingStyle{
+           //index will be new arrayindex
             list.remove(at: indexPath.row)
             dateInput.remove(at: indexPath.row)
             typeOfCell.remove(at: indexPath.row)
@@ -171,8 +181,10 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
             //Delete the notification
             let center = UNUserNotificationCenter.current()
             center.removePendingNotificationRequests(withIdentifiers: [notificationID[indexPath.row]])
+            //.......
             print("removed uuid: \(notificationID[indexPath.row])")
             notificationID.remove(at: indexPath.row)
+           
             refreshDate()
             MoneySpent = [0,0,0,0,0,0,0,0,0]
             moneySpent()
@@ -349,7 +361,30 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
         tableShow = []
         TimeRange()
         
+///
+        if(list.count != 0){
+            for  i in (0..<list.count).reversed() {
+     ///dont use this structure use that old one 
+                let a = CellStructure(list:list[i], notificationID: notificationID[i], dateInput: dateInput[i], typeOfCell: typeOfCell[i], amountOfCell: amountOfCell[i], typeOfAmount: typeOfAmount[i], tableShow: tableShow[i])
+                CellArray.append(a)
+            }
+        }
         
+        let dateFormat = DateFormatter()
+        dateFormat.dateStyle = .short
+        dateFormat.timeStyle = .short
+        
+        for i in 0..<CellArray.count{
+            print(dateFormat.string(from: CellArray[i].dateInput))
+            
+        }
+        CellArray = CellArray.sorted(by: {$0.dateInput<$1.dateInput})
+        // CellArray = CellArray.sorted(by: {$0.amountOfCell<$1.amountOfCell})
+        for i in 0..<CellArray.count{
+            print("Next\(dateFormat.string(from: CellArray[i].dateInput))")
+            
+        }
+    /////
         moneySpent()
         myTableView.reloadData()
         SegmentSwitch.reloadInputViews()

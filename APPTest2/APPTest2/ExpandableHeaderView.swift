@@ -36,11 +36,11 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
         self.section = section
         self.delegate = delegate
     }
-    
+    //Color of Header Table
     override func layoutSubviews() {
         super.layoutSubviews()
         self.textLabel?.textColor = UIColor.white
-        self.contentView.backgroundColor = UIColor.darkGray
+        self.contentView.backgroundColor = UIColor.lightGray
     }
     /*
     // Only override draw() if you perform custom drawing.
