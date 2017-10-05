@@ -28,6 +28,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     var TimeList:[Date] = []
     var AmountList:[Double] = []
     var timeRangeSwitch: Int = 0
+    var notificationID: [String] = []
     
     var ArrayCell: [sectionCell] = []
     var IncomeCell: [sectionCell] = []
@@ -329,6 +330,12 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
             print("sort \(sortTag)")
         }
         
+        let UUIDObject = UserDefaults.standard.object(forKey: "UniqueID")
+        if (UUIDObject as? [String]) != nil{
+            notificationID = UUIDObject as! [String]
+            print(UUIDObject ?? 0)
+        }
+        
         /*1.Merge Time within Type
          *2.Then description will not be showed in this view
          *3.Date of element will be refresh when custom pushed
@@ -354,7 +361,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
             for  i in (0..<list.count).reversed() {
                 print(tableShow)
                 if(tableShow[i] == 0){
-                    let a = sectionCell(list:list[i], dateInput: TimeList[i], typeOfCell: TypeList[i], amountOfCell: AmountList[i], typeOfAmount: InOrExList[i],tableShow: tableShow[i])
+                    let a = sectionCell(list:list[i], dateInput: TimeList[i], typeOfCell: TypeList[i], amountOfCell: AmountList[i], typeOfAmount: InOrExList[i],tableShow: tableShow[i], notificationID: notificationID[i])
                 ArrayCell.append(a)
                }
             }
@@ -366,24 +373,51 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         for i in 0..<ArrayCell.count{
             print(dateFormat.string(from: ArrayCell[i].dateInput))
         }
+        
+       
+        /////
+        if ArrayCell.count > 0{
         for i in 0..<ArrayCell.count{
+            //let j = i+1
+            for j in 0..<ArrayCell.count{
+                if ArrayCell[i].typeOfCell == ArrayCell[j].typeOfCell && ArrayCell[i].notificationID != ArrayCell[j].notificationID && ArrayCell[i].tableShow != 1 && ArrayCell[i].typeOfAmount == ArrayCell[j].typeOfAmount{
+                    //Unique ID
+                    ArrayCell[i].amountOfCell += ArrayCell[j].amountOfCell
+                    ArrayCell[i].dateInput = ArrayCell[j].dateInput
+                   // ArrayCell[i].notificationID = ArrayCell[j].notificationID
+                    ArrayCell[j].tableShow = 1
+                    ArrayCell[i].list += ArrayCell[j].list
+                    
+                }
+            }
+        }
+            
+        }
+        
+     
+        
+        for i in 0..<ArrayCell.count{
+            if ArrayCell[i].tableShow != 1{
             if(ArrayCell[i].typeOfAmount == 0){
                 IncomeCell.append(ArrayCell[i])
             }else{
                 ExpenseCell.append(ArrayCell[i])
             }
+            }
         }
         
-        if sortTag == 1{
+   
+        
+       // if sortTag == 1{
         IncomeCell = IncomeCell.sorted(by: {$0.dateInput<$1.dateInput})
         ExpenseCell = ExpenseCell.sorted(by: {$0.dateInput<$1.dateInput})
-        } else if sortTag == 2{
-            IncomeCell = IncomeCell.sorted(by: {$0.amountOfCell<$1.amountOfCell})
-            ExpenseCell = ExpenseCell.sorted(by: {$0.amountOfCell<$1.amountOfCell})
-        }else if sortTag == 3{
-            IncomeCell = IncomeCell.sorted(by: {$0.typeOfAmount < $1.typeOfAmount})
-            ExpenseCell = ExpenseCell.sorted(by: {$0.typeOfAmount<$1.typeOfAmount})
-        }
+//        } else if sortTag == 2{
+//            IncomeCell = IncomeCell.sorted(by: {$0.amountOfCell<$1.amountOfCell})
+//            ExpenseCell = ExpenseCell.sorted(by: {$0.amountOfCell<$1.amountOfCell})
+//        }else if sortTag == 3{
+//            IncomeCell = IncomeCell.sorted(by: {$0.typeOfAmount < $1.typeOfAmount})
+//            ExpenseCell = ExpenseCell.sorted(by: {$0.typeOfAmount<$1.typeOfAmount})
+//        }
         
         
         for i in 0..<IncomeCell.count{

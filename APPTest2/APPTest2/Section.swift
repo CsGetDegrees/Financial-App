@@ -15,6 +15,7 @@ struct sectionCell {
     var amountOfCell:Double
     var typeOfAmount: Int
     var tableShow: Int
+    var notificationID: String
 }
 
 

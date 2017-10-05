@@ -154,7 +154,6 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
         }else {
             cell.IncomeOrExpense.text = "+"
         }
-        // cell.IncomeOrExpense.text = String(typeOfCell[indexPath.row])
         
         
         if (cell.IncomeOrExpense.text == "-") {
@@ -257,10 +256,6 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
                 MoneySpent[8] +=  amountOfCell[index]
             }
         }
-        
-        
-        
-        
         print(MoneySpent)
     }
     
@@ -389,6 +384,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
             }
         }
         
+        if CellArray.count > 0{
         let SortingTag = UserDefaults.standard.object(forKey: "SortingTag")
         let sortTag:Int = SortingTag as! Int
         if sortTag == 1{
@@ -398,7 +394,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
         }else if sortTag == 3{
             CellArray = CellArray.sorted(by: {$0.dateInput<$1.dateInput})
         }
-        
+        }
         let dateFormat = DateFormatter()
         dateFormat.dateStyle = .short
         dateFormat.timeStyle = .short
@@ -408,13 +404,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
             
         }
      
-        //  CellArray = CellArray.sorted(by: {$0.dateInput<$1.dateInput})
-        // CellArray = CellArray.sorted(by: {$0.amountOfCell<$1.amountOfCell})
-//       for i in 0..<CellArray.count{
-//            print("Next\(dateFormat.string(from: CellArray[i].dateInput))")
-//
-//        }
-    /////
+
         moneySpent()
         myTableView.reloadData()
         SegmentSwitch.reloadInputViews()
@@ -433,10 +423,12 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
     performSegue(withIdentifier: "segue2", sender: self)
     
     }
-    
-    //Connect to CustomCell
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        myIndex = indexPath.row
-        performSegue(withIdentifier: "segue", sender: self)
-    }
 }
+    
+//    //Connect to CustomCell
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+//        myIndex = indexPath.row
+//        performSegue(withIdentifier: "segue", sender: self)
+//    }
+//}
+

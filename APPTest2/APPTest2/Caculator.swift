@@ -368,17 +368,12 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
         
         var UniqueID:String;
         
-        if currentDate < (datePicker.date){
-            
-            UniqueID = TempID
-            
-            print("UniqueID\(UniqueID)")
-            
-        }else{
-            
-            UniqueID = "0"
-            
-        }
+        
+        
+        UniqueID = TempID
+        
+        print("UniqueID\(UniqueID)")
+        
         
         
         
@@ -395,23 +390,17 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
             
             
         }else{
-            
             UUID = [UniqueID]
             
-            
-            
         }
-        
         print("UniqueID\(UniqueID)")
         
         UserDefaults.standard.set(UUID,forKey: "UniqueID")
         
-        
-        
-        
-        
-        notificatonSender(UniqueID: UniqueID)
-        
+        if currentDate < (datePicker.date){
+            notificatonSender(UniqueID: UniqueID)
+            
+        }
         
         
     }
