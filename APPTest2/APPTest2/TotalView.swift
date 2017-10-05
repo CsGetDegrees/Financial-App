@@ -14,6 +14,13 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     
     @IBOutlet weak var AddButton: UIButton!
     
+    @IBOutlet weak var TimePeriod: UILabel!
+    @IBOutlet weak var Budget: UILabel!
+   
+    @IBOutlet weak var SavingGoal: UILabel!
+    
+    
+    
     var list: [String]! = []
     
     var InOrExList:[Int] = []
