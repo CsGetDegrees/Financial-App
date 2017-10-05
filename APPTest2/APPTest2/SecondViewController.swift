@@ -106,8 +106,6 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
         _ = UserDefaults.standard.object(forKey: "UniqueID")
         UserDefaults.standard.set(notificationID,forKey: "UniqueID")
         
-        //     _ = UserDefaults.standard.object(forKey: "Description")
-        //        UserDefaults.standard.set(Description,forKey: "Description")
         
         _ = UserDefaults.standard.object(forKey: "Amount")
         UserDefaults.standard.set(amountOfCell,forKey: "Amount")

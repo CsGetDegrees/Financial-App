@@ -15,25 +15,19 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     @IBOutlet weak var AddButton: UIButton!
     
     var list: [String]! = []
-
     
-    var InOrExList:[Int] = [1,2,3]
-    
+    var InOrExList:[Int] = []
     var TypeList:[Int] = []
-
-    
     var TimeList:[Date] = []
-
     var AmountList:[Double] = []
-
-    
     var timeRangeSwitch: Int = 0
     
     var ArrayCell: [sectionCell] = []
     var IncomeCell: [sectionCell] = []
     var ExpenseCell: [sectionCell] = []
   
-    
+    var IncomeValue: Double = 0.0
+    var ExpenseValue: Double = 0.0
 
    
     var sections = [Section(genre: "Income", expanded: false, cell:[]),
@@ -62,8 +56,6 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
             //Table with header
             //Change ..
             return sections[section].cell.count
-           // return sections[section].movies.count
-            // return(listIncome.count)
         }else{
             return 0
         }
@@ -94,6 +86,18 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     }
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+       
+        
+        let InValue = "Income: $" + String(IncomeValue)
+        if sections[0].genre  != InValue{
+            sections[0].genre = InValue
+        }
+        
+        let ExValue = "Expense: $" + String(ExpenseValue)
+        if sections[1].genre != ExValue{
+            sections[1].genre = ExValue
+        }
+
         let header = ExpandableHeaderView()
         header.customInit(title: sections[section].genre, section: section, delegate: self as ExpandableHeaderViewDelegate)
         return header
@@ -107,15 +111,10 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         if tableView.tag == 2{
             
             let  cell = self.IncomeTable.dequeueReusableCell(withIdentifier: "cellHeader", for: indexPath)as! HeaderViewCell
-            //Change...
-            // cell.Name.text = listIncome[indexPath.row]
-//            cell.Name.text = sections[indexPath.section].movies[indexPath.row]
-//            cell.CellType.text = String(sections[indexPath.section].type[indexPath.row])
-//            cell.Amount.text = String(sections[indexPath.section].amount[indexPath.row])
             
             cell.Name.text = sections[indexPath.section].cell[indexPath.row].list
-            cell.CellType.text = String(sections[indexPath.section].cell[indexPath.row].typeOfCell)
-            cell.Amount.text = String(sections[indexPath.section].cell[indexPath.row].typeOfAmount)
+            cell.CellType.text = String(sections[indexPath.section].cell[indexPath.row].amountOfCell)
+            cell.Amount.text = String(sections[indexPath.section].cell[indexPath.row].typeOfCell)
             
             //format
             let dateFormat = DateFormatter()
@@ -280,6 +279,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         ArrayCell = []
         IncomeCell = []
         ExpenseCell = []
+        
         //Put all local storage to local variable
         let AddObject = UserDefaults.standard.object(forKey: "Add")
         if (AddObject as? [String]) != nil{
@@ -388,8 +388,17 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
             print(dateFormat.string(from: ExpenseCell[i].dateInput))
         }
   
+        IncomeValue = 0.0
+        ExpenseValue = 0.0
         
-        
+        for i in 0..<IncomeCell.count{
+            IncomeValue += IncomeCell[i].amountOfCell
+        }
+        for i in 0..<ExpenseCell.count{
+            ExpenseValue += ExpenseCell[i].amountOfCell
+        }
+         print(IncomeValue)
+        print(ExpenseValue)
         
         
         
@@ -436,7 +445,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
 //        sections[0].display = IncomeShow
 //        sections[1].display = ExpenseShow
         
-
+       
             self.IncomeTable.reloadData()
         
         
