@@ -46,6 +46,12 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     
     var tableShow: [Int] = []
 
+    var WeekGoal:Double = 0.0
+    var WeekBudget:Double = 0.0
+    var MonthGoal: Double = 0.0
+    var MonthBudget: Double = 0.0
+    var Goal: Double = 0.0
+
     
     
     @IBOutlet weak var IncomeTable: UITableView!
@@ -489,6 +495,31 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
        
             self.IncomeTable.reloadData()
         
+        let goalObject = UserDefaults.standard.object(forKey: "Goal")
+        if (goalObject as? Double) != nil{
+            WeekGoal = goalObject as! Double
+        }
+        
+        let holdObject = UserDefaults.standard.object(forKey: "Hold")
+        if (holdObject as? Double) != nil{
+            WeekBudget = holdObject as! Double
+        }
+        
+        let MonthGoalObject = UserDefaults.standard.object(forKey: "MonthGoal")
+        if (MonthGoalObject as? Double) != nil{
+            MonthGoal = MonthGoalObject as! Double
+        }
+        
+        let MonthBudgetObject = UserDefaults.standard.object(forKey: "MonthBudget")
+        if (MonthBudgetObject as? Double) != nil{
+            MonthBudget = MonthBudgetObject as! Double
+        }
+        
+        let FinalGoalObject = UserDefaults.standard.object(forKey: "FinalGoal")
+        if (MonthBudgetObject as? Double) != nil{
+            Goal = FinalGoalObject as! Double
+        }
+        
         
 //        print(listIncome)
 //        print(listExpense)
@@ -501,6 +532,10 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
 //        print("Time tag \(timeTag)")
 //        print(IncomeShow)
 //        print(ExpenseShow)
+    }
+    
+    func TotalGet(){
+        
     }
     
     override func didReceiveMemoryWarning() {
