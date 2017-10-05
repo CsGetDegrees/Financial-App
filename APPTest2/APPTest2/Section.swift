@@ -14,7 +14,7 @@ struct sectionCell {
     var typeOfCell:Int
     var amountOfCell:Double
     var typeOfAmount: Int
-    // var tableShow: Int
+    var tableShow: Int
 }
 
 

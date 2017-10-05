@@ -16,11 +16,11 @@ class DateTrigger: UIViewController{
     @IBAction func Today(_ sender: Any) {
         let tag: Int = (sender as AnyObject).tag
         
-       let timeRangeSwitch = 0
-        _ = UserDefaults.standard.object(forKey: "TimeSwitch")
-        var TSwitch:Int
-        TSwitch = timeRangeSwitch
-        UserDefaults.standard.set(TSwitch,forKey: "TimeSwitch")
+//       let timeRangeSwitch = 0
+//        _ = UserDefaults.standard.object(forKey: "TimeSwitch")
+//        var TSwitch:Int
+//        TSwitch = timeRangeSwitch
+//        UserDefaults.standard.set(TSwitch,forKey: "TimeSwitch")
         
         //Saveing Time tag to local storage for switching time range for table view
         _ = UserDefaults.standard.object(forKey: "TimeRangeTag")
@@ -35,7 +35,18 @@ class DateTrigger: UIViewController{
         //TotalView().viewDidAppear(true)
     }
 
-
+    @IBAction func Sorting(_ sender: Any) {
+         let tag: Int = (sender as AnyObject).tag
+        //Saveing Time tag to local storage for switching time range for table view
+        _ = UserDefaults.standard.object(forKey: "SortingTag")
+        var STag:Int
+        STag = tag
+        UserDefaults.standard.set(STag,forKey: "SortingTag")
+        print(STag)
+     
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 
 
 }

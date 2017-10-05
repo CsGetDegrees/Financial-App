@@ -29,6 +29,8 @@ import UIKit
 
 class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDataSource{
     
+    // Also need a new switch for notifacation
+    
     struct CellStructure {
         var list:String
         var notificationID:String
@@ -50,6 +52,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
         switcher = a
        myTableView.beginUpdates()
        myTableView.endUpdates()
+        //Need an anime controller 
         self.perform(#selector(updateTable), with: nil, afterDelay: 0.8)
     }
     
@@ -57,6 +60,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
     func updateTable(){
         print("Update Table")
         self.viewDidAppear(true)
+       //self.myTableView.reloadData()
     }
 
     
@@ -64,19 +68,20 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
        // var height:CGFloat = CGFloat()
         
-        if( typeOfCell[indexPath.row] == switcher){
+//        if( typeOfCell[indexPath.row] == switcher){
            // height = 0
+         if( CellArray[indexPath.row].typeOfCell == switcher){
             return 0
         }else{
             
-            if( tableShow[indexPath.row] == 0){
+            //if( tableShow[indexPath.row] == 0){
+                   if( CellArray[indexPath.row].tableShow == 0){
                 return 70
             }else{
                 return 0
             }
             
-           // return 70
-            //height = 70
+
         }
        // return height
         
@@ -113,7 +118,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return(list.count)
+        return(CellArray.count)
     }
     
     //Create a new Cell
@@ -124,29 +129,29 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
         
         
         //cell.textLabel?.text = list[indexPath.row]
-        cell.name.text = list[indexPath.row]
+        cell.name.text = CellArray[indexPath.row].list
         
         //Description
         // cell.Description.text = Description[indexPath.row]
         
         //Amount
-        cell.Amount.text = String(amountOfCell[indexPath.row])
-        print( String(amountOfCell[indexPath.row]))
+        cell.Amount.text = String(CellArray[indexPath.row].amountOfCell)
+      
         //format
         let dateFormat = DateFormatter()
         dateFormat.dateStyle = .short
         dateFormat.timeStyle = .short
         // let stringTime = " \(dateFormat.string(from: dateInput[indexPath.row]))"
         //print (dateInput)
-        if (dateInput[indexPath.row] as Date?) != nil   {
-            
-            cell.time.text = dateFormat.string(from: dateInput[indexPath.row])
-        }else{
-            cell.time.text = list[indexPath.row]
-            
-        }
+//        if (dateInput[indexPath.row] as Date?) != nil   {
         
-        if typeOfCell[indexPath.row] == 1 {
+            cell.time.text = dateFormat.string(from: CellArray[indexPath.row].dateInput)
+//        }else{
+//            cell.time.text = list[indexPath.row]
+//
+//        }
+        
+        if CellArray[indexPath.row].typeOfAmount == 1 {
             cell.IncomeOrExpense.text = "-"
         }else {
             cell.IncomeOrExpense.text = "+"
@@ -169,21 +174,20 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
         return(cell)
     }
     
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == editingStyle{
-           //index will be new arrayindex
-            list.remove(at: indexPath.row)
-            dateInput.remove(at: indexPath.row)
-            typeOfCell.remove(at: indexPath.row)
-            amountOfCell.remove(at: indexPath.row)
-            // Description.remove(at: indexPath.row)
-            typeOfAmount.remove(at: indexPath.row)
+
+            let Id = CellArray[indexPath.row].notificationID
+            
             //Delete the notification
             let center = UNUserNotificationCenter.current()
-            center.removePendingNotificationRequests(withIdentifiers: [notificationID[indexPath.row]])
+            center.removePendingNotificationRequests(withIdentifiers: [Id])
             //.......
-            print("removed uuid: \(notificationID[indexPath.row])")
-            notificationID.remove(at: indexPath.row)
+            
+          //  print("removed uuid: \(notificationID[indexPath.row])")
+            findDateNeedDelete(UniqueID: Id)
+            CellArray.remove(at: indexPath.row)
            
             refreshDate()
             MoneySpent = [0,0,0,0,0,0,0,0,0]
@@ -191,6 +195,21 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
             myTableView.reloadData()
         }
     }
+    func findDateNeedDelete(UniqueID: String){
+     for  i in (0..<notificationID.count).reversed() {
+            if UniqueID.elementsEqual(notificationID[i]){
+                list.remove(at: i)
+                dateInput.remove(at: i)
+                typeOfCell.remove(at: i)
+                amountOfCell.remove(at: i)
+                typeOfAmount.remove(at: i)
+                notificationID.remove(at: i)
+            }
+            
+            
+        }
+    }
+    
     
     func moneySpent(){
         for (index, _) in typeOfAmount.enumerated() {
@@ -358,16 +377,28 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
             timeTag = Tag as! Int
         }
         
+
+  
         tableShow = []
         TimeRange()
-        
+        CellArray = []
 ///
         if(list.count != 0){
             for  i in (0..<list.count).reversed() {
-     ///dont use this structure use that old one 
+  
                 let a = CellStructure(list:list[i], notificationID: notificationID[i], dateInput: dateInput[i], typeOfCell: typeOfCell[i], amountOfCell: amountOfCell[i], typeOfAmount: typeOfAmount[i], tableShow: tableShow[i])
                 CellArray.append(a)
             }
+        }
+        
+        let SortingTag = UserDefaults.standard.object(forKey: "SortingTag")
+        let sortTag:Int = SortingTag as! Int
+        if sortTag == 1{
+            CellArray = CellArray.sorted(by: {$0.dateInput<$1.dateInput})
+        } else if sortTag == 2{
+            CellArray = CellArray.sorted(by: {$0.dateInput<$1.dateInput})
+        }else if sortTag == 3{
+            CellArray = CellArray.sorted(by: {$0.dateInput<$1.dateInput})
         }
         
         let dateFormat = DateFormatter()
@@ -378,12 +409,13 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
             print(dateFormat.string(from: CellArray[i].dateInput))
             
         }
-        CellArray = CellArray.sorted(by: {$0.dateInput<$1.dateInput})
+     
+        //  CellArray = CellArray.sorted(by: {$0.dateInput<$1.dateInput})
         // CellArray = CellArray.sorted(by: {$0.amountOfCell<$1.amountOfCell})
-        for i in 0..<CellArray.count{
-            print("Next\(dateFormat.string(from: CellArray[i].dateInput))")
-            
-        }
+//       for i in 0..<CellArray.count{
+//            print("Next\(dateFormat.string(from: CellArray[i].dateInput))")
+//
+//        }
     /////
         moneySpent()
         myTableView.reloadData()
@@ -398,6 +430,10 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
         
         
         
+    }
+    @IBAction func SelectSort(_ sender: Any) {
+    performSegue(withIdentifier: "segue2", sender: self)
+    
     }
     
     //Connect to CustomCell

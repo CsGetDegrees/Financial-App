@@ -12,11 +12,7 @@ import UserNotifications
 
 class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
    
-    var SavingCell: [sectionCell] = []
-    
-
-    
-    
+ 
     @IBOutlet weak var IncomeExpense: UISegmentedControl!
     @IBOutlet weak var CountShow: UIButton!
     
@@ -97,6 +93,8 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
     //Connect to CustomCell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         
+       
+        
         print(indexPath[1])
         //same structure some information just does not showed
         if(Description.text != ""){
@@ -148,6 +146,25 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
       self.dismiss(animated: true, completion: nil)
     }
     
+//    func saveCell(i:Int){
+//
+//        //let a = sectionCell(list:String(Description.text!), dateInput: datePicker.date, typeOfCell: i, amountOfCell: Double(numShowOnScreen), typeOfAmount: TypeSwitch,tableShow: 0)
+//
+//        let a = sectionCell(list:"String(Description.text!)", dateInput: datePicker.date, typeOfCell: 0, amountOfCell: 0.0, typeOfAmount: 1, tableShow: 0)
+//
+//        let cell = UserDefaults.standard.object(forKey: "sectionCell")
+//        var InCell:[sectionCell] = [a]
+//        if let tempCell = cell as? [sectionCell]{
+//            InCell = tempCell
+//            InCell.append(a)
+//        }
+////        }else{
+////            InCell = [a]
+////        }
+//        UserDefaults.standard.set(InCell,forKey: "sectionCell")
+//
+//    }
+    
     func saveDate(){
         //Save Date To Local Storage
         let timeObject = UserDefaults.standard.object(forKey: "time")
@@ -179,17 +196,22 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
         
     }
     
+
+    
     //Save & Make a Notification
     func saveNotificationID(){
         let currentDate = Date()
         let TempID = NSUUID().uuidString
-        var UniqueID:String;
-        if currentDate < (datePicker.date){
-            UniqueID = TempID
-            print("UniqueID\(UniqueID)")
-        }else{
-            UniqueID = "0"
-        }
+        var UniqueID:String
+        
+        UniqueID = TempID
+        
+//        if currentDate < (datePicker.date){
+//            UniqueID = TempID
+//            print("UniqueID\(UniqueID)")
+//        }else{
+//            UniqueID = "0"
+//        }
         
         let UUIDObject = UserDefaults.standard.object(forKey: "UniqueID")
         var UUID:[String]
@@ -204,8 +226,9 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
         print("UniqueID\(UniqueID)")
         UserDefaults.standard.set(UUID,forKey: "UniqueID")
         
-        
+        if currentDate < (datePicker.date){
         notificatonSender(UniqueID: UniqueID)
+        }
         
     }
     

@@ -15,52 +15,35 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     @IBOutlet weak var AddButton: UIButton!
     
     var list: [String]! = []
-//    var listIncome: [String]! = []
-//    var listExpense: [String]! = []
-    
-    //let listEx:[String]! = ["1","2","3","4","5"]
+
     
     var InOrExList:[Int] = [1,2,3]
     
     var TypeList:[Int] = []
-//    var IncomeType:[Int] = []
-//    var ExpenseType:[Int] = []
+
     
     var TimeList:[Date] = []
-//    var IncomeTime:[Date] = []
-//    var ExpenseTime:[Date] = []
-    
+
     var AmountList:[Double] = []
-//    var IncomeAmount:[Double] = []
-//    var ExpenseAmount:[Double] = []
+
     
     var timeRangeSwitch: Int = 0
-    
-//    struct sectionCell {
-//        var list:String
-//        var dateInput:Date
-//        var typeOfCell:Int
-//        var amountOfCell:Double
-//        var typeOfAmount: Int
-//       // var tableShow: Int
-//    }
     
     var ArrayCell: [sectionCell] = []
     var IncomeCell: [sectionCell] = []
     var ExpenseCell: [sectionCell] = []
   
     
-//    var sections = [Section(genre: "Income", movies: [], expanded: false, type: [], amount: [], time: [], display: []),
-//                    Section(genre: "Expense", movies: [], expanded: false, type: [], amount: [], time: [], display: [])]
+
    
     var sections = [Section(genre: "Income", expanded: false, cell:[]),
                     Section(genre: "Expense", expanded: false, cell: [])]
     
     var timeTag: Int = 0
+    var sortTag: Int = 0
     
     var tableShow: [Int] = []
-//    var IncomeShow: [Int] = []
-//    var ExpenseShow: [Int] = []
+
     
     
     @IBOutlet weak var IncomeTable: UITableView!
@@ -333,6 +316,12 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
             timeTag = Tag as! Int
         }
         
+        let SortingTag = UserDefaults.standard.object(forKey: "SortingTag")
+        if(SortingTag as? Int) != nil{
+            sortTag = SortingTag as! Int
+            print("sort \(sortTag)")
+        }
+        
         /*1.Merge Time within Type
          *2.Then description will not be showed in this view
          *3.Date of element will be refresh when custom pushed
@@ -358,7 +347,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
             for  i in (0..<list.count).reversed() {
                 print(tableShow)
                 if(tableShow[i] == 0){
-                let a = sectionCell(list:list[i], dateInput: TimeList[i], typeOfCell: TypeList[i], amountOfCell: AmountList[i], typeOfAmount: InOrExList[i])
+                    let a = sectionCell(list:list[i], dateInput: TimeList[i], typeOfCell: TypeList[i], amountOfCell: AmountList[i], typeOfAmount: InOrExList[i],tableShow: tableShow[i])
                 ArrayCell.append(a)
                }
             }
@@ -377,6 +366,19 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
                 ExpenseCell.append(ArrayCell[i])
             }
         }
+        
+        if sortTag == 1{
+        IncomeCell = IncomeCell.sorted(by: {$0.dateInput<$1.dateInput})
+        ExpenseCell = ExpenseCell.sorted(by: {$0.dateInput<$1.dateInput})
+        } else if sortTag == 2{
+            IncomeCell = IncomeCell.sorted(by: {$0.amountOfCell<$1.amountOfCell})
+            ExpenseCell = ExpenseCell.sorted(by: {$0.amountOfCell<$1.amountOfCell})
+        }else if sortTag == 3{
+            IncomeCell = IncomeCell.sorted(by: {$0.typeOfAmount < $1.typeOfAmount})
+            ExpenseCell = ExpenseCell.sorted(by: {$0.typeOfAmount<$1.typeOfAmount})
+        }
+        
+        
         for i in 0..<IncomeCell.count{
             print("In")
             print(dateFormat.string(from: IncomeCell[i].dateInput))
@@ -385,6 +387,11 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
             print("Ex")
             print(dateFormat.string(from: ExpenseCell[i].dateInput))
         }
+  
+        
+        
+        
+        
         
         sections[0].cell = IncomeCell
         sections[1].cell = ExpenseCell
@@ -467,6 +474,9 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         performSegue(withIdentifier: "segue3", sender: self)
     }
     
+    @IBAction func SelectSort(_ sender: Any) {
+            performSegue(withIdentifier: "segue5", sender: self)
+    }
 }
 
 //extensed method for helping get dateRange
@@ -500,18 +510,5 @@ extension Date {
     }
     
 }
-extension NSDate {
-    
-    func isLessThanDate(dateToCompare: NSDate) -> Bool {
-        //Declare Variables
-        var isLess = false
-        
-        //Compare Values
-        if self.compare(dateToCompare as Date) == ComparisonResult.orderedAscending {
-            isLess = true
-        }
-        
-        //Return Result
-        return isLess
-    }
-}
+
+

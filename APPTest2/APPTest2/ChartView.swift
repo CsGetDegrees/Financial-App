@@ -242,5 +242,10 @@ class ChartView:  UIViewController{
             return numberFormatter.string(for: value)!
         }
     }
+    @IBAction func TimeRange(_ sender: Any) {
+     performSegue(withIdentifier: "segue", sender: self)
+    
+    
+    }
     
 }
