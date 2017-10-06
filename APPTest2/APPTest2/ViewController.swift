@@ -114,7 +114,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setBarChart(saved:5, range:10)
+        setBarChart(saved:10, range:10)
        let goalObject = UserDefaults.standard.object(forKey: "Goal")
         if (goalObject as? Double) != nil{
          WeekGoal = goalObject as! Double

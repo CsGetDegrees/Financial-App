@@ -43,6 +43,8 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
     }
     var CellArray: [CellStructure] = []
     
+    var sortingTag: Int = 0
+    
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var SegmentSwitch: UISegmentedControl!
     
@@ -189,8 +191,8 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
             CellArray.remove(at: indexPath.row)
            
             refreshDate()
-            MoneySpent = [0,0,0,0,0,0,0,0,0]
-            moneySpent()
+            //MoneySpent = [0,0,0,0,0,0,0,0,0]
+           // moneySpent()
             myTableView.reloadData()
         }
     }
@@ -210,56 +212,56 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
     }
     
     
-    func moneySpent(){
-        for (index, _) in typeOfAmount.enumerated() {
-            if typeOfAmount[index] == 0 {
-                MoneySpent[0] +=  amountOfCell[index]
-            }
-        }
-        for (index, _) in typeOfAmount.enumerated() {
-            if typeOfAmount[index] == 1 {
-                MoneySpent[1] +=  amountOfCell[index]
-            }
-        }
-        
-        for (index, _) in typeOfAmount.enumerated() {
-            if typeOfAmount[index] == 2 {
-                MoneySpent[2] +=  amountOfCell[index]
-            }
-        }
-        for (index, _) in typeOfAmount.enumerated() {
-            if typeOfAmount[index] == 3 {
-                MoneySpent[3] +=  amountOfCell[index]
-            }
-        }
-        
-        for (index, _) in typeOfAmount.enumerated() {
-            if typeOfAmount[index] == 4 {
-                MoneySpent[4] +=  amountOfCell[index]
-            }
-        }
-        for (index, _) in typeOfAmount.enumerated() {
-            if typeOfAmount[index] == 5 {
-                MoneySpent[5] +=  amountOfCell[index]
-            }
-        }
-        for (index, _) in typeOfAmount.enumerated() {
-            if typeOfAmount[index] == 6 {
-                MoneySpent[6] +=  amountOfCell[index]
-            }
-        }
-        for (index, _) in typeOfAmount.enumerated() {
-            if typeOfAmount[index] == 7 {
-                MoneySpent[7] +=  amountOfCell[index]
-            }
-        }
-        for (index, _) in typeOfAmount.enumerated() {
-            if typeOfAmount[index] == 8 {
-                MoneySpent[8] +=  amountOfCell[index]
-            }
-        }
-        print(MoneySpent)
-    }
+//    func moneySpent(){
+//        for (index, _) in typeOfAmount.enumerated() {
+//            if typeOfAmount[index] == 0 {
+//                MoneySpent[0] +=  amountOfCell[index]
+//            }
+//        }
+//        for (index, _) in typeOfAmount.enumerated() {
+//            if typeOfAmount[index] == 1 {
+//                MoneySpent[1] +=  amountOfCell[index]
+//            }
+//        }
+//
+//        for (index, _) in typeOfAmount.enumerated() {
+//            if typeOfAmount[index] == 2 {
+//                MoneySpent[2] +=  amountOfCell[index]
+//            }
+//        }
+//        for (index, _) in typeOfAmount.enumerated() {
+//            if typeOfAmount[index] == 3 {
+//                MoneySpent[3] +=  amountOfCell[index]
+//            }
+//        }
+//
+//        for (index, _) in typeOfAmount.enumerated() {
+//            if typeOfAmount[index] == 4 {
+//                MoneySpent[4] +=  amountOfCell[index]
+//            }
+//        }
+//        for (index, _) in typeOfAmount.enumerated() {
+//            if typeOfAmount[index] == 5 {
+//                MoneySpent[5] +=  amountOfCell[index]
+//            }
+//        }
+//        for (index, _) in typeOfAmount.enumerated() {
+//            if typeOfAmount[index] == 6 {
+//                MoneySpent[6] +=  amountOfCell[index]
+//            }
+//        }
+//        for (index, _) in typeOfAmount.enumerated() {
+//            if typeOfAmount[index] == 7 {
+//                MoneySpent[7] +=  amountOfCell[index]
+//            }
+//        }
+//        for (index, _) in typeOfAmount.enumerated() {
+//            if typeOfAmount[index] == 8 {
+//                MoneySpent[8] +=  amountOfCell[index]
+//            }
+//        }
+//        print(MoneySpent)
+//    }
     
     
     func TimeRange(){
@@ -386,14 +388,23 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
             }
         }
         
+        
+       let SortingTag = UserDefaults.standard.object(forKey: "SortingTag")
+        if(SortingTag as? Int) != nil{
+            sortingTag = SortingTag as! Int
+        }
+        
+        
+
+        
+        
         if CellArray.count > 0{
-        let SortingTag = UserDefaults.standard.object(forKey: "SortingTag")
-        let sortTag:Int = SortingTag as! Int
-        if sortTag == 1{
+
+        if sortingTag == 1{
             CellArray = CellArray.sorted(by: {$0.dateInput<$1.dateInput})
-        } else if sortTag == 2{
+        } else if sortingTag == 2{
             CellArray = CellArray.sorted(by: {$0.dateInput<$1.dateInput})
-        }else if sortTag == 3{
+        }else if sortingTag == 3{
             CellArray = CellArray.sorted(by: {$0.dateInput<$1.dateInput})
         }
         }
@@ -407,7 +418,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
         }
      
 
-        moneySpent() // calculate the money spent on each category
+        //moneySpent() // calculate the money spent on each category
         myTableView.reloadData()
         SegmentSwitch.reloadInputViews()
         

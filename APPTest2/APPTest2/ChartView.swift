@@ -16,6 +16,23 @@ class ChartView:  UIViewController{
     
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var pieChartView: PieChartView!
+    
+    var list: [String]! = []
+    
+    var InOrExList:[Int] = []
+    var TypeList:[Int] = []
+    var TimeList:[Date] = []
+    var AmountList:[Double] = []
+    var timeRangeSwitch: Int = 0
+    var notificationID: [String] = []
+    
+    var ArrayCell: [sectionCell] = []
+    var IncomeCell: [sectionCell] = []
+    var ExpenseCell: [sectionCell] = []
+    
+    var tableShow: [Int] = []
+    var timeTag: Int = 0
+    
     var months: [Date]!
     let type = ["Food", "Family", "Gas&Fuel", "CashFlow", "Pc", "Beer","6","7","else"]
     let moneySpent:[Double] = MoneySpent
@@ -148,43 +165,271 @@ class ChartView:  UIViewController{
         
     }
     
+    //Need to be fit
+    func TimeRange(){
+        print("Second View Time range")
+        //   let todayDate = Date()
+        let calendar = NSCalendar.current
+        //  let date1 = calendar.startOfDay(for: todayDate)
+        
+        
+        if(timeTag == 2){
+            let FirstDayWeek = Date().startOfWeek()
+            
+            //Comparing Date List element with current Date
+            for  t in TimeList{
+                let ToStart = calendar.dateComponents([.day], from: FirstDayWeek, to: t)
+                
+                if(ToStart.day! <= 7 && ToStart.day! >= 0){
+                    tableShow.append(0)
+                }else{
+                    tableShow.append(1)
+                }
+            }
+        }else if(timeTag == 1){
+            let Today = Date()
+            for  t in TimeList{
+                let ToStart = calendar.dateComponents([.day], from: Today, to: t)
+                print(ToStart.day!)
+                if(ToStart.day! == 0){
+                    tableShow.append(0)
+                }else{
+                    tableShow.append(1)
+                }
+            }
+        }else if(timeTag == 3){
+            let FirstDayMonth = Date().startOfMonth()
+            let LastDayMonth = Date().endOfMonth()
+            
+            //Geting How many days in this Month
+            let MonthDay = calendar.dateComponents([.day], from: FirstDayMonth, to: LastDayMonth)
+            print("There are\(MonthDay.day!) in this Month!")
+            
+            //Comparing Date List element with current Date
+            for  t in TimeList{
+                let ToStart = calendar.dateComponents([.day], from: FirstDayMonth, to: t)
+                print(ToStart.day!)
+                if(ToStart.day! <= MonthDay.day! && ToStart.day! >= 0){
+                    tableShow.append(0)
+                }else{
+                    tableShow.append(1)
+                }
+            }
+        }else if (timeTag == 0){
+            for  _ in TimeList{
+                tableShow.append(0)
+                
+            }
+        }
+        
+        print(tableShow)
+    }
+    
+    func localstorage(){
+        
+        list = []
+        InOrExList = []
+        TypeList = []
+        AmountList = []
+        TimeList = []
+        
+        tableShow = []
+        
+        ArrayCell = []
+        IncomeCell = []
+        ExpenseCell = []
+        
+        //Put all local storage to local variable
+        let AddObject = UserDefaults.standard.object(forKey: "Add")
+        if (AddObject as? [String]) != nil{
+            list = AddObject as! [String]
+            // print(AddObject ?? 0)
+        }
+        
+        let IncomeOrExpense = UserDefaults.standard.object(forKey: "IncomeOrExpense")
+        if (IncomeOrExpense as? [Int]) != nil{
+            InOrExList = IncomeOrExpense as! [Int]
+            // print(IncomeOrExpense ?? 0)
+        }
+        
+        let InputType = UserDefaults.standard.object(forKey: "InputType")
+        if (InputType as? [Int]) != nil{
+            TypeList = InputType as! [Int]
+            // print(InputType ?? 0)
+        }
+        
+        let amountObject = UserDefaults.standard.object(forKey: "Amount")
+        if (amountObject as? [Double]) != nil{
+            AmountList = amountObject as! [Double]
+            //print(amountObject ?? 0)
+        }
+        
+        let dateObject = UserDefaults.standard.object(forKey: "time")
+        if (dateObject as? [Date]) != nil{
+            TimeList = dateObject as! [Date]
+            //print(TimeList )
+        }
+        
+        let Tag = UserDefaults.standard.object(forKey: "TimeRangeTag")
+        if(Tag as? Int) != nil{
+            timeTag = Tag as! Int
+        }
+        
+        let UUIDObject = UserDefaults.standard.object(forKey: "UniqueID")
+        if (UUIDObject as? [String]) != nil{
+            notificationID = UUIDObject as! [String]
+            print(UUIDObject ?? 0)
+        }
+       
+        TimeRange()
+       
+        if(list.count != 0){
+            for  i in (0..<list.count).reversed() {
+                print(tableShow)
+                if(tableShow[i] == 0){
+                    let a = sectionCell(list:list[i], dateInput: TimeList[i], typeOfCell: TypeList[i], amountOfCell: AmountList[i], typeOfAmount: InOrExList[i],tableShow: tableShow[i], notificationID: notificationID[i])
+                    ArrayCell.append(a)
+                }
+            }
+        }
+        let dateFormat = DateFormatter()
+        dateFormat.dateStyle = .short
+        dateFormat.timeStyle = .short
+        
+        for i in 0..<ArrayCell.count{
+            print(dateFormat.string(from: ArrayCell[i].dateInput))
+        }
+        
+        
+        /////
+        if ArrayCell.count > 0{
+            for i in 0..<ArrayCell.count{
+                //let j = i+1
+                for j in 0..<ArrayCell.count{
+                    if ArrayCell[i].typeOfCell == ArrayCell[j].typeOfCell && ArrayCell[i].notificationID != ArrayCell[j].notificationID && ArrayCell[i].tableShow != 1 && ArrayCell[i].typeOfAmount == ArrayCell[j].typeOfAmount{
+                        //Unique ID
+                        ArrayCell[i].amountOfCell += ArrayCell[j].amountOfCell
+                        ArrayCell[i].dateInput = ArrayCell[j].dateInput
+                        // ArrayCell[i].notificationID = ArrayCell[j].notificationID
+                        ArrayCell[j].tableShow = 1
+                        ArrayCell[i].list += ArrayCell[j].list
+                        
+                    }
+                }
+            }
+            
+        }
+        
+        
+        
+        for i in 0..<ArrayCell.count{
+            if ArrayCell[i].tableShow != 1{
+                if(ArrayCell[i].typeOfAmount == 0){
+                    IncomeCell.append(ArrayCell[i])
+                }else{
+                    ExpenseCell.append(ArrayCell[i])
+                }
+            }
+        }
+        
+        for i in 0..<IncomeCell.count{
+            print("In")
+            print(dateFormat.string(from: IncomeCell[i].dateInput))
+        }
+        for i in 0..<ExpenseCell.count{
+            print("Ex")
+            print(dateFormat.string(from: ExpenseCell[i].dateInput))
+        }
+        
+    }
+    
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
+       
+        localstorage()
+        
+        var CatEx: [String]! = ["Bills","Transport","Clothes","EatingOut","Entertainment","Health","Food","Pet","House","Else"]
+        var CatIn: [String]! = ["Deposits","Salary","Saving"]
+      
+        var CatShow: [String]! = []
+        var AmountNum: [Double]! = []
+        
+        for i in 0..<IncomeCell.count{
+            CatShow.append(String(CatIn[IncomeCell[i].typeOfCell]))
+            AmountNum.append(IncomeCell[i].amountOfCell)
+        }
+        print(CatShow)
+        
         //////test mock data
-        months = [generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!]
-        let mock = [120.0,120.0,120.0,120.0,120.0,20.0]
-        let type = ["Food", "Family", "Gas&Fuel", "CashFlow", "Pc", "Beer","6","7","else"]
-        var moneySpent:[Double] = MoneySpent
-        var total = 0.0;
-        for i in 0..<moneySpent.count {
-            total += moneySpent[i]
-        }
-        for i in 0..<moneySpent.count {
-            moneySpent[i] = moneySpent[i]/total
-        }
-        setPieChart(dataPoints: type , values: moneySpent)
-        setLineChart(dataPoints: months, values: mock)
-        pieChartView.notifyDataSetChanged() // to display the labels
+//        months = [generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!]
+//        let mock = [120.0,120.0,120.0,120.0,120.0,20.0]
+//        let type = ["Food", "Family", "Gas&Fuel", "CashFlow", "Pc", "Beer","6","7","else"]
+       // var moneySpent:[Double] = MoneySpent
+//        var total = 0.0;
+//        for i in 0..<moneySpent.count {
+//            total += moneySpent[i]
+//        }
+//        for i in 0..<moneySpent.count {
+//            moneySpent[i] = moneySpent[i]/total
+//        }
+       setPieChart(dataPoints: CatShow , values: AmountNum)
+//        setLineChart(dataPoints: months, values: mock)
+       pieChartView.notifyDataSetChanged() // to display the labels
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let type = ["Food", "Family", "Gas&Fuel", "CashFlow", "Pc", "Beer","6","7","else"]
-        let mock = [120.0,120.0,120.0,120.0,120.0,20.0]
-        months = [generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!]
-        var moneySpent:[Double] = MoneySpent
-        print(moneySpent)
+        
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor.white
+        
+        localstorage()
+        
+        var CatEx: [String]! = ["Bills","Transport","Clothes","EatingOut","Entertainment","Health","Food","Pet","House","Else"]
+        var CatIn: [String]! = ["Deposits","Salary","Saving"]
+        
+        var CatShow: [String]! = []
+        var AmountNum: [Double]! = []
+        
+        for i in 0..<IncomeCell.count{
+            CatShow.append(String(CatIn[IncomeCell[i].typeOfCell]))
+            AmountNum.append(IncomeCell[i].amountOfCell)
+        }
+      
         var total = 0.0;
-        for i in 0..<moneySpent.count {
-            total += moneySpent[i]
+        for i in 0..<AmountNum.count {
+            total += AmountNum[i]
         }
-        for i in 0..<moneySpent.count {
-            moneySpent[i] = moneySpent[i]/total
+        for i in 0..<AmountNum.count{
+            AmountNum[i] = AmountNum[i]/total
         }
-        setPieChart(dataPoints: type , values: moneySpent)
-        setLineChart(dataPoints: months, values: mock)
+        
+          print(CatShow)
+        setPieChart(dataPoints: CatShow , values: AmountNum)
+        //        setLineChart(dataPoints: months, values: mock)
         pieChartView.notifyDataSetChanged() // to display the labels
+        
+        
+        
+        
+//        let type = ["Food", "Family", "Gas&Fuel", "CashFlow", "Pc", "Beer","6","7","else"]
+//        let mock = [120.0,120.0,120.0,120.0,120.0,20.0]
+//        months = [generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!]
+//        var moneySpent:[Double] = MoneySpent
+//        print(moneySpent)
+//        var total = 0.0;
+//        for i in 0..<moneySpent.count {
+//            total += moneySpent[i]
+//        }
+//        for i in 0..<moneySpent.count {
+//            moneySpent[i] = moneySpent[i]/total
+//        }
+//        setPieChart(dataPoints: type , values: moneySpent)
+//        setLineChart(dataPoints: months, values: mock)
+//        pieChartView.notifyDataSetChanged() // to display the labels
     }
     
     func generateRandomDate(daysBack: Int)-> Date?{

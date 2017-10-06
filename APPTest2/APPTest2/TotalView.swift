@@ -10,6 +10,7 @@
 
 import Foundation
 import UIKit
+import Charts
 
 
 class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate{
@@ -38,8 +39,10 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     
     var IncomeValue: Double = 0.0
     var ExpenseValue: Double = 0.0
+    var MoneyLeft: Double = 0.0
 
    
+    @IBOutlet weak var barChartView: BarChartView!
     var sections = [Section(genre: "Income", expanded: false, cell:[]),
                     Section(genre: "Expense", expanded: false, cell: [])]
     
@@ -155,7 +158,143 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
             return (cell)
         }
     }
+    func setBarChart(saved: Double, range: Double,  color : NSUIColor){
+        barChartView.drawBarShadowEnabled = false
+        barChartView.drawValueAboveBarEnabled = false
+        barChartView.maxVisibleCount = 100
+        
+        let xAxis  = barChartView.xAxis
+        xAxis.labelPosition = .bottom
+        xAxis.drawAxisLineEnabled = false
+        xAxis.drawGridLinesEnabled = false
+        
+        xAxis.granularity = 0.0
+        xAxis.enabled = false
+        
+        let leftAxis = barChartView.leftAxis;
+        
+        leftAxis.drawAxisLineEnabled = false;
+        
+        leftAxis.drawGridLinesEnabled = false;
+        
+        leftAxis.axisMinimum = 0.0; // this replaces startAtZero = YES
+        
+        leftAxis.enabled = false;
+        
+        let rightAxis = barChartView.rightAxis
+        
+        rightAxis.enabled = false;
+        
+        
+        
+        rightAxis.drawAxisLineEnabled = false;
+        
+        rightAxis.drawGridLinesEnabled = false;
+        
+        rightAxis.axisMinimum = 0.0; // this replaces startAtZero = YES
+        rightAxis.enabled = false;
+        
+        let l = barChartView.legend
+        l.enabled =  false
+        
+        barChartView.fitBars = true;
+        barChartView.drawValueAboveBarEnabled = false;
+        print("LLLLLLLLLLL")
+                  barChartView.animate(yAxisDuration: 1.5, easingOption: .easeInOutQuart)
+        print(saved,range)
+        setDataCount(saved: saved, range:range, color:color)
+    }
     
+    
+    // support function for the bar chart.
+    // saved : how much the user has saved.
+    // range : how much the user wants to save.
+    func setDataCount( saved: Double, range: Double, color : NSUIColor){
+        
+        print("LLLLLLIIIIIIII")
+          print(saved,range)
+        let barWidth = 9.0
+        
+        let spaceForBar =  10.0;
+        
+        var yVals = [BarChartDataEntry]()
+        
+        yVals.append(BarChartDataEntry(x: Double(0) * spaceForBar, y: saved))
+        
+        
+        
+        yVals.append(BarChartDataEntry(x: Double(1) * spaceForBar, y: range))
+        
+        
+        var set1 : BarChartDataSet!
+        
+        if let count = barChartView.data?.dataSetCount, count > 0{
+            
+            set1 = barChartView.data?.dataSets[0] as! BarChartDataSet
+            
+            set1.values = yVals
+              set1.colors=[color,NSUIColor.white]
+            
+            print("kkkoooo")
+            barChartView.chartDescription?.text = ""
+            
+            barChartView.data?.notifyDataChanged()
+            
+            barChartView.notifyDataSetChanged()
+            
+//            print("okkk")
+//            set1 = BarChartDataSet(values: yVals, label: "")
+//            // colors of bars
+//            set1.colors=[color,NSUIColor.white]
+//            var dataSets = [BarChartDataSet]()
+//            
+//            dataSets.append(set1)
+//            
+//            
+//            
+//            let data = BarChartData(dataSets: dataSets)
+//            
+//            data.setDrawValues(false)
+//            data.barWidth =  barWidth;
+//            
+//            
+//            
+//            barChartView.data = data
+//            
+//            barChartView.isUserInteractionEnabled = false;
+//            barChartView.animate(yAxisDuration: 1.5, easingOption: .easeInOutQuart)
+//            barChartView.notifyDataSetChanged()
+            
+            
+        }else{
+                print("okkk")
+            set1 = BarChartDataSet(values: yVals, label: "")
+            // colors of bars
+            set1.colors=[color,NSUIColor.white]
+            var dataSets = [BarChartDataSet]()
+            
+            dataSets.append(set1)
+            
+            
+            
+            let data = BarChartData(dataSets: dataSets)
+            
+            data.setDrawValues(false)
+            data.barWidth =  barWidth;
+            
+            
+            
+            barChartView.data = data
+            
+            barChartView.isUserInteractionEnabled = false;
+            barChartView.animate(yAxisDuration: 1.5, easingOption: .easeInOutQuart)
+              barChartView.notifyDataSetChanged()
+            
+        }
+        
+        
+    }
+
     // hide and show toggle.
     func toggleSection(header: ExpandableHeaderView, section: Int) {
         sections[section].expanded = !sections[section].expanded
@@ -184,7 +323,10 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        setBarChart(saved: 5, range: 10, color: NSUIColor.blue)
+//        barChartView.notifyDataSetChanged()
         print("ViewDidLoad")
+//        barChartView.notifyDataSetChanged()
             AddButton.layer.zPosition = 101;
             print("ViewDidLoad")
      
@@ -272,7 +414,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //Empty the local variable
+       
         list = []
         InOrExList = []
         TypeList = []
@@ -281,17 +423,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
        
         tableShow = []
         
-//        IncomeType = []
-//        IncomeAmount = []
-//        IncomeTime = []
-//        listExpense = []
-         //listIncome  = []
-//        ExpenseType = []
-//        ExpenseAmount = []
-//        ExpenseTime = []
-        
-//        IncomeShow = []
-//        ExpenseShow = []
+
         
         ArrayCell = []
         IncomeCell = []
@@ -456,7 +588,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         sections[1].cell = ExpenseCell
         //Make an Array[sectionCell] Then assign in to section
         
-        //Assign value to Income and Expense Section
+      //  Assign value to Income and Expense Section
 //        if(list.count != 0){
 //            for  i in (0..<list.count).reversed() {
 //                if(InOrExList[i] == 0){
@@ -523,8 +655,96 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
             Goal = FinalGoalObject as! Double
         }
         
+        // money holding if time tag is week or month
+        //otherwise just show default weekbudget 50% Saving and rest of money
         
-//        print(listIncome)
+        if timeTag != 1 && timeTag != 0{
+
+            if timeTag == 2{
+        WeekBudget += IncomeValue
+        MoneyLeft = WeekBudget - ExpenseValue
+                let todayDate = Date()
+                let currentWeekday = Calendar.current.component(.weekday, from: todayDate)
+                print(currentWeekday)
+
+                let calendar = NSCalendar.current
+                let date1 = calendar.startOfDay(for: todayDate)
+
+                if(timeTag == 2){
+                    let FirstDayWeek = Date().startOfWeek()
+                    let LastDayWeek = Date().endOfWeek()
+
+                    let CurrentToStart = calendar.dateComponents([.day], from: FirstDayWeek, to:date1)
+                    let CurrentToEnd = calendar.dateComponents([.day], from: date1, to: LastDayWeek)
+                    let start: Int = CurrentToStart.day!
+                    let end: Int = (CurrentToEnd.day!)+1
+                    print("Start to  current\(start)")
+                    print("Currrent to end\(end)")
+                  var expensePerDay =  ExpenseValue/Double(start)
+                  var weekExpense = expensePerDay * 7
+                   var moneyWillLeft = WeekBudget - weekExpense
+               print(expensePerDay)
+                    print(weekExpense)
+                    print(moneyWillLeft)
+
+                    if moneyWillLeft > 0.0{
+
+                    setBarChart(saved: moneyWillLeft, range: WeekGoal, color: NSUIColor.blue)
+                               print("KKKKKKKKKK")
+                         barChartView.notifyDataSetChanged()
+                    } else {
+
+                        setBarChart(saved: abs(moneyWillLeft), range: WeekGoal, color: NSUIColor.red)
+                            print("KKSASSSSS")
+                         barChartView.notifyDataSetChanged()
+                    }
+                }else if timeTag == 3{
+
+                    let FirstDayMonth = Date().startOfMonth()
+                    let LastDayMonth = Date().endOfMonth()
+
+                    let CurrentToStart = calendar.dateComponents([.day], from: FirstDayMonth, to:date1)
+                    let CurrentToEnd = calendar.dateComponents([.day], from: date1, to: LastDayMonth)
+                    let start: Int = CurrentToStart.day!
+                    let end: Int = (CurrentToEnd.day!)+1
+                    print("Start to  current\(start)")
+                    print("Currrent to end\(end)")
+
+
+                    //Geting How many days in this Month
+                    let MonthDay = calendar.dateComponents([.day], from: FirstDayMonth, to: LastDayMonth)
+                    print("There are\(MonthDay.day!) in this Month!")
+                    let monthDay: Double = Double(MonthDay.day!)
+
+                    var expensePerDay =  ExpenseValue/Double(start)
+                    var weekExpense = expensePerDay * Double(monthDay)
+                    var moneyWillLeft = WeekBudget - weekExpense
+                    print(expensePerDay)
+                    print(weekExpense)
+                    print(moneyWillLeft)
+
+                    if moneyWillLeft > 0{
+                        setBarChart(saved: moneyWillLeft, range: WeekGoal, color: NSUIColor.blue)
+                         barChartView.notifyDataSetChanged()
+                    } else{
+
+                        setBarChart(saved: abs(moneyWillLeft), range: WeekGoal, color: NSUIColor.red)
+                         barChartView.notifyDataSetChanged()
+                    }
+                    
+                    
+                }
+                  barChartView.notifyDataSetChanged()
+
+
+
+
+        }
+
+        }
+
+        
+        //        print(listIncome)
 //        print(listExpense)
 //        print(IncomeType)
 //        print(ExpenseType)

@@ -101,33 +101,18 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
         print(TypeSwitch)
         
         if(TypeSwitch == 1){
-            
             list = listEx
-            
             self.TypeTable.reloadData()
-            
         }else{
-            
             list = listIn
-            
             self.TypeTable.reloadData()
             
         }
-        
-        
-        
+
     }
-    
-    
-    
-    
-    
+ 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        
-        
-        
-        
+
         return list.count;
         
     }
@@ -141,15 +126,12 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         var height:CGFloat = CGFloat()
-        
         if (styleSwitch){
             
             height = 44
-            
         }else{
             
             height = 0
-            
         }
         
         return height
@@ -253,7 +235,9 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
             saveNotificationID()
             
             
-            
+//            if(Description.text==nil || Description.text==""){
+//                Description.text = "No Description"
+//            }
             let AddObject = UserDefaults.standard.object(forKey: "Add")
             
             var add:[String]
@@ -273,13 +257,6 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
             }
             
             UserDefaults.standard.set(add,forKey: "Add")
-            
-            
-            
-            
-            
-            
-            
         }
         
         // performSegue(withIdentifier: "segue2", sender: self)
@@ -443,14 +420,10 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
         
         if performingMath == true {
             
-            
-            
             let  j =  String((sender as AnyObject).tag)
             
             CountShow.setTitle(j, for: .normal)
-            
-            
-            
+
             print(j)
             
             numShowOnScreen = Double(j)!
@@ -458,25 +431,13 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
             print(numShowOnScreen)
             
             performingMath = false
-            
-            
-            
         }else{
-            
-            
-            
+
             if CountShow.currentTitle == nil {
-                
-                
-                
                 x = String((sender as AnyObject).tag)
                 
                 CountShow.setTitle(x, for: .normal)
-                
                 numShowOnScreen = Double(x)!
-                
-                
-                
                 print("numShowOnScreen\(numShowOnScreen)")
                 
             }else{
@@ -654,7 +615,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
                 print("+++++")
                 
                 let x =  String(previousNum + numShowOnScreen)
-                
+                 previousNum = 0 ;
                 var hasDot = false
                 
                 var cc=0
@@ -698,7 +659,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
             {
                 
                 let x =  String(previousNum - numShowOnScreen)
-                
+                 previousNum = 0 ;
                 var hasDot = false
                 
                 var cc=0
@@ -742,7 +703,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
             {
                 
                 let x =  String(previousNum * numShowOnScreen)
-                
+                 previousNum = 0 ;
                 var hasDot = false
                 
                 var cc=0
@@ -786,7 +747,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
             {
                 
                 let x =  String(previousNum / numShowOnScreen)
-                
+                previousNum = 0 ;
                 var hasDot = false
                 
                 var cc=0
