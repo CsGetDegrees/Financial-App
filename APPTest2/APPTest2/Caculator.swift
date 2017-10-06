@@ -80,7 +80,6 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
     
     // a list of expense types
     var listEx: [String]! = ["Bills","Transport","Clothes","EatingOut","Entertainment","Health","Food","Pet","House","Else"]
-    
     // imcome types array
     var listIn: [String]! = ["Deposits","Salary","Saving"]
     
@@ -153,12 +152,28 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
         
         
         cell.Name.text = list[indexPath.row]
+        var text = list[indexPath.row]
+        print(list[indexPath.row])
+        //cell.Image = imageList[indexPath.row]
+        cell.icon.addSubview(UIImageView(image: resizeImage(image: UIImage(named: text)!,newWidth: 35)))
         
         return(cell)
 
         
     }
-    
+    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
+        
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+
     
     
     //Connect to CustomCell

@@ -153,7 +153,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
 //
 //        }
         
-        if CellArray[indexPath.row].typeOfAmount == 1 {
+        if CellArray[indexPath.row].typeOfCell == 1 {
             cell.IncomeOrExpense.text = "-"
         }else {
             cell.IncomeOrExpense.text = "+"

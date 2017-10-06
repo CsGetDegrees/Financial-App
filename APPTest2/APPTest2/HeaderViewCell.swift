@@ -19,6 +19,8 @@ class HeaderViewCell: UITableViewCell {
     
     @IBOutlet weak var Amount: UILabel!
     
+    @IBOutlet weak var icon: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

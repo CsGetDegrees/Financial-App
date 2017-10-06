@@ -16,6 +16,7 @@ class ChartView:  UIViewController{
     
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var pieChartView: PieChartView!
+    @IBOutlet weak var IESwitch: UISegmentedControl!
     
     var list: [String]! = []
     
@@ -36,10 +37,27 @@ class ChartView:  UIViewController{
     
     var tableShow: [Int] = []
     var timeTag: Int = 0
+    var InOutSwitch: Int = 0
+    
     
     var months: [Date]!
     let type = ["Food", "Family", "Gas&Fuel", "CashFlow", "Pc", "Beer","6","7","else"]
     let moneySpent:[Double] = MoneySpent
+   
+    
+    
+    @IBAction func Switch(_ sender:  UISegmentedControl) {
+    
+       InOutSwitch = sender.selectedSegmentIndex
+           print(InOutSwitch)
+     
+       self.viewDidAppear(true)
+    
+    }
+    
+    
+    
+    
     /**
      *This function will generate and update the pie chart view.
      *@params dataPoints contains labels of for the data.
@@ -229,6 +247,18 @@ class ChartView:  UIViewController{
         print(tableShow)
     }
     
+    func MonthDay() -> Int {
+        let FirstDayMonth = Date().startOfMonth()
+         let LastDayMonth = Date().endOfMonth()
+          let calendar = NSCalendar.current
+        //Geting How many days in this Month
+         let MonthDay = calendar.dateComponents([.day], from: FirstDayMonth, to: LastDayMonth)
+        // print("There are\(MonthDay.day!) in this Month!")
+         let dayMonth: Int = MonthDay.day!
+         print(dayMonth)
+        return dayMonth
+    }
+    
     func transforDate(date:Date) -> Int {
        let calendar = NSCalendar.current
         if(timeTag == 2){
@@ -249,9 +279,6 @@ class ChartView:  UIViewController{
             print(dayMonth)
             return dayMonth
             
-            //Geting How many days in this Month
-           // let MonthDay = calendar.dateComponents([.day], from: FirstDayMonth, to: LastDayMonth)
-           // print("There are\(MonthDay.day!) in this Month!")
             
         }
        // return 0
@@ -438,12 +465,14 @@ class ChartView:  UIViewController{
         self.view.backgroundColor = UIColor.white
         
         localstorage()
-        
+      
         var CatEx: [String]! = ["Bills","Transport","Clothes","EatingOut","Entertainment","Health","Food","Pet","House","Else"]
         var CatIn: [String]! = ["Deposits","Salary","Saving"]
         
         var CatShow: [String]! = []
         var AmountNum: [Double]! = []
+        
+        if InOutSwitch == 0{
         
         for i in 0..<IncomeCell.count{
             CatShow.append(String(CatIn[IncomeCell[i].typeOfCell]))
@@ -457,19 +486,28 @@ class ChartView:  UIViewController{
         for i in 0..<AmountNum.count{
             AmountNum[i] = AmountNum[i]/total
         }
-        
+        }else if InOutSwitch == 1{
+            for i in 0..<ExpenseCell.count{
+                CatShow.append(String(CatEx[ExpenseCell[i].typeOfCell]))
+                AmountNum.append(ExpenseCell[i].amountOfCell)
+            }
+            
+            var total = 0.0;
+            for i in 0..<AmountNum.count {
+                total += AmountNum[i]
+            }
+            for i in 0..<AmountNum.count{
+                AmountNum[i] = AmountNum[i]/total
+            }
+            
+            
+        }
           print(CatShow)
         setPieChart(dataPoints: CatShow , values: AmountNum)
-        //        setLineChart(dataPoints: months, values: mock)
-        pieChartView.notifyDataSetChanged() // to display the labels
+        pieChartView.notifyDataSetChanged()
         
+        if timeTag == 2 {
         
-        
-        
-//        let type = ["Food", "Family", "Gas&Fuel", "CashFlow", "Pc", "Beer","6","7","else"]
-//        let mock = [120.0,120.0,120.0,120.0,120.0,20.0]
-//        months = [generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!]
-       
         var Amount: [Double] = [0.0, 0.0 , 0.0 , 0.0, 0.0, 0.0,0.0]
         let week: [Date] = [generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!]
      
@@ -477,19 +515,44 @@ class ChartView:  UIViewController{
               Amount[transforDate(date: DateIncomeCell[i].dateInput)] = DateIncomeCell[i].amountOfCell
         }
        setLineChart(dataPoints: week, values: Amount)
-        
-//        var moneySpent:[Double] = MoneySpent
-//        print(moneySpent)
-//        var total = 0.0;
-//        for i in 0..<moneySpent.count {
-//            total += moneySpent[i]
-//        }
-//        for i in 0..<moneySpent.count {
-//            moneySpent[i] = moneySpent[i]/total
-//        }
-//        setPieChart(dataPoints: type , values: moneySpent)
-       
-//        pieChartView.notifyDataSetChanged() // to display the labels
+            
+        }else if timeTag == 3{
+            
+            
+            var Amount: [Double] = []
+            var week: [Date] = []
+            var cc=0
+            var monthDay = MonthDay()
+            while( cc < monthDay){
+                week.append(self.generateRandomDate(daysBack: 7)!)
+                Amount.append(0.0)
+                cc+=1
+            }
+      
+            
+            for i in 0..<DateIncomeCell.count {
+                Amount[transforDate(date: DateIncomeCell[i].dateInput)] = DateIncomeCell[i].amountOfCell
+            }
+            setLineChart(dataPoints: week, values: Amount)
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+
+    }
+    @IBAction func jum(_ sender: Any) {
+    
+    performSegue(withIdentifier: "segueInOrEx", sender: nil)
     }
     
     func generateRandomDate(daysBack: Int)-> Date?{

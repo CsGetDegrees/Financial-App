@@ -24,7 +24,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var barChartView: BarChartView!
     
 
-   @IBOutlet weak var RandomNum1: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var RandomNum1: UILabel!
     @IBOutlet weak var saveButton: UIButton!
     
     
@@ -122,6 +123,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        
+        
          var mondaysDate: NSDate {
             let iso8601 =  NSCalendar(calendarIdentifier: NSCalendar.Identifier.ISO8601)!
             return iso8601.date(from: iso8601.components([.yearForWeekOfYear, .weekOfYear], from: NSDate() as Date))! as NSDate
@@ -186,7 +191,10 @@ class ViewController: UIViewController {
         
         xAxis.granularity = 0.0
         xAxis.enabled = false
-        
+        var text = ""
+        let percent = saved/range
+        text = "You are" + " \(1-percent)"+"% away from your goal!!! Keep up!"
+        descriptionLabel.text = text
         let leftAxis = barChartView.leftAxis;
         
         leftAxis.drawAxisLineEnabled = false;

@@ -57,7 +57,11 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     var MonthGoal: Double = 0.0
     var MonthBudget: Double = 0.0
     var Goal: Double = 0.0
-
+    
+    // a list of expense types
+    var listEx: [String]! = ["Bills","Transport","Clothes","EatingOut","Entertainment","Health","Food","Pet","House","Else"]
+    // imcome types array
+    var listIn: [String]! = ["Deposits","Salary","Saving"]
     
     
     @IBOutlet weak var IncomeTable: UITableView!
@@ -93,7 +97,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
 //            }else{
 //                return 0
 //            }
-            return 48
+            return 50
         }else{
             return 0
         }
@@ -132,9 +136,21 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
             
             let  cell = self.IncomeTable.dequeueReusableCell(withIdentifier: "cellHeader", for: indexPath)as! HeaderViewCell
             
-            cell.Name.text = sections[indexPath.section].cell[indexPath.row].list
+          //  cell.Name.text = sections[indexPath.section].cell[indexPath.row].list
             cell.CellType.text = String(sections[indexPath.section].cell[indexPath.row].amountOfCell)
-            cell.Amount.text = String(sections[indexPath.section].cell[indexPath.row].typeOfCell)
+           
+            if(sections[indexPath.section].cell[indexPath.row].typeOfAmount == 0){
+                var i = sections[indexPath.section].cell[indexPath.row].typeOfCell
+                
+                 cell.Amount.text = String(listIn[i])
+            }else{
+                var i = sections[indexPath.section].cell[indexPath.row].typeOfCell
+                
+                cell.Amount.text = String(listEx[i])
+                
+            }
+            
+         //   cell.Amount.text = String(sections[indexPath.section].cell[indexPath.row].typeOfCell)
             
             //format
             let dateFormat = DateFormatter()
@@ -316,6 +332,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         self.viewDidAppear(true)
     }
     
+    @IBOutlet weak var descriptionLabel: UILabel!
     //Just Update
     @IBAction func changeMovies(_ sender: Any) {
         self.viewDidAppear(true)
@@ -686,6 +703,9 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
                   var weekExpense = expensePerDay * 7
                    var moneyWillLeft = WeekBudget - weekExpense
                print(expensePerDay)
+                    var text = "Your average daily spend in this week is $\(expensePerDay)"
+                    
+                    descriptionLabel.text = text
                     print(weekExpense)
                     print(moneyWillLeft)
 
@@ -724,7 +744,9 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
                     print(expensePerDay)
                     print(weekExpense)
                     print(moneyWillLeft)
-
+                    var text = "Your average daily spend in this month is $\(expensePerDay)"
+                    
+                    descriptionLabel.text = text
                     if moneyWillLeft > 0{
                         setBarChart(saved: moneyWillLeft, range: WeekGoal, color: NSUIColor.blue)
                          barChartView.notifyDataSetChanged()
