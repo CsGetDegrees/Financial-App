@@ -2,7 +2,7 @@
 
 //  Budgetable
 
-//
+// This class contains a set of simple calculator functions (+,-,*,/). It also contains a data time picker and a input arer.
 
 //  Created by Tengzhe Li on 22/09/17.
 
@@ -23,19 +23,11 @@ import UserNotifications
 class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
     
     
-    
+    // array of section cell
     var SavingCell: [sectionCell] = []
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    // income that'll be stored in the expense history.
     @IBOutlet weak var IncomeExpense: UISegmentedControl!
-    
+    // the number that'll be showed on the screen.
     @IBOutlet weak var CountShow: UIButton!
     
     
@@ -43,7 +35,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
     @IBOutlet weak var TimePick: UITextField!
     
     
-    
+    // description of the transaction
     @IBOutlet weak var Description: UITextField!
     
     
@@ -81,13 +73,15 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
     
     
     
-    
+    // type can be either income/ expense
     @IBOutlet weak var TypeTable: UITableView!
     
     var list: [String]! = [""]
     
+    // a list of expense types
     var listEx: [String]! = ["Bills","Transport","Clothes","EatingOut","Entertainment","Health","Food","Pet","House","Else"]
     
+    // imcome types array
     var listIn: [String]! = ["Deposits","Salary","Saving"]
     
     
@@ -99,7 +93,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
     var listCount: Int = 0
     
     
-    
+    // button onclick to switch type between income and expense.
     @IBAction func TypeSwitch(_ sender: UISegmentedControl) {
         
         TypeSwitch =  sender.selectedSegmentIndex
@@ -295,7 +289,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
     }
     
     
-    
+   // save the date user picked
     func saveDate(){
         
         //Save Date To Local Storage
@@ -327,7 +321,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
     }
     
     
-    
+   // notification
     func notificatonSender(UniqueID:String){
         
         let content = UNMutableNotificationContent()
@@ -406,7 +400,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
     }
     
     
-    
+    // save the expense value into the local memory.
     func saveAmount(){
         
         
@@ -596,7 +590,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
     
     
     
-    
+    // react to onclick events for operational buttons
     @IBAction func Count(_ sender: Any) {
         
         

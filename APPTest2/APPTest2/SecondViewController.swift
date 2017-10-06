@@ -1,7 +1,8 @@
 //
 //  SecondViewController.swift
 //  APPTest2
-//
+//  History page View Controller.
+
 //  Created by Tengzhe Li on 4/25/17.
 //  Copyright © 2017 Tengzhe Li. All rights reserved.
 //
@@ -30,7 +31,7 @@ import UIKit
 class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDataSource{
     
     // Also need a new switch for notifacation
-    
+    // the structure of a single expense
     struct CellStructure {
         var list:String
         var notificationID:String
@@ -91,6 +92,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
     
     
     //Refresh Local storage
+    
     public func refreshDate(){
         
         _ = UserDefaults.standard.object(forKey: "Add")
@@ -405,7 +407,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
         }
      
 
-        moneySpent()
+        moneySpent() // calculate the money spent on each category
         myTableView.reloadData()
         SegmentSwitch.reloadInputViews()
         

@@ -1,9 +1,11 @@
 //
 //  TotalView.swift
 //  Budgetable
-//
+
+//  This is the main page view controller.
+
 //  Created by Tengzhe Li on 21/09/17.
-//  Copyright © 2017 Tengzhe Li. All rights reserved.
+//  Copyright © 2017 TopCat. All rights reserved.
 //
 
 import Foundation
@@ -33,7 +35,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     var ArrayCell: [sectionCell] = []
     var IncomeCell: [sectionCell] = []
     var ExpenseCell: [sectionCell] = []
-  
+    
     var IncomeValue: Double = 0.0
     var ExpenseValue: Double = 0.0
 
@@ -57,7 +59,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
     @IBOutlet weak var IncomeTable: UITableView!
     
     var listCount: Int = 0
-    
+    // the number of sections would be appered on the first page
     public func numberOfSections(in tableView: UITableView) -> Int {
             return sections.count
        
@@ -154,6 +156,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         }
     }
     
+    // hide and show toggle.
     func toggleSection(header: ExpandableHeaderView, section: Int) {
         sections[section].expanded = !sections[section].expanded
         

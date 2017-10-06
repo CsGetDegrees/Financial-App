@@ -1,7 +1,9 @@
 //
 //  ViewController.swift
 //  APPTest2
-//
+
+//  Goal page View Controller.
+
 //  Created by Tengzhe Li on 4/22/17.
 //  Copyright © 2017 Tengzhe Li. All rights reserved.
 //
@@ -58,6 +60,8 @@ class ViewController: UIViewController {
     
     }
     
+    // reset all
+    
     @IBAction func resitGoal(_ sender: Any) {
         WeekGoal = 0.0
         WeekBudget = 0.0
@@ -71,7 +75,7 @@ class ViewController: UIViewController {
         FinalGoal.text = String(Goal)
 
     }
-    
+    // manage local storage.
     @IBAction func saveGoal(_ sender: Any) {
         //Key and persistent data
         _ = UserDefaults.standard.object(forKey: "Goal")
@@ -151,6 +155,10 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
+    // this is the cool animated bar chart behind the pig logo.
+    // saved : how much the user has saved.
+    // range : how much the user wants to save.
+    
     func setBarChart(saved: Double, range: Double){
         barChartView.drawBarShadowEnabled = false
         barChartView.drawValueAboveBarEnabled = false
@@ -196,7 +204,9 @@ class ViewController: UIViewController {
     }
     
     
-    
+    // support function for the bar chart.
+    // saved : how much the user has saved.
+    // range : how much the user wants to save.
     func setDataCount( saved: Double, range: Double){
         let barWidth = 9.0
         

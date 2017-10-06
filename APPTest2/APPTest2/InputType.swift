@@ -1,4 +1,7 @@
-//
+// Unused class. 
+
+
+
 //  InputType.swift
 //  Budgetable
 //
@@ -16,7 +19,7 @@ class InputType: UIViewController , UITableViewDelegate, UITableViewDataSource{
     
 
     @IBOutlet weak var TypeTable: UITableView!
-    
+    // could be
     let list: [String]! = ["a","b","b","c"]
     let listEx:[String]! = ["1","2","2"]
     

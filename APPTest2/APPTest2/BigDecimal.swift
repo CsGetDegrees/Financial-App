@@ -1,4 +1,7 @@
-//
+// Unused class. 
+
+
+
 //  BigDecimal.swift
 //  Budgetable
 //

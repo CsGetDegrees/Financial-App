@@ -1,7 +1,7 @@
 //
 //  HeaderViewCell.swift
 //  Budgetable
-//
+//  This is the header view for every page.
 //  Created by Tengzhe Li on 21/09/17.
 //  Copyright © 2017 Tengzhe Li. All rights reserved.
 //

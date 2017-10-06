@@ -1,7 +1,7 @@
 //
 //  CustomCell.swift
 //  APPTest2
-//
+//  A customizable cell that can be stored in the local storage.
 //  Created by Tengzhe Li on 4/30/17.
 //  Copyright © 2017 Tengzhe Li. All rights reserved.
 //
