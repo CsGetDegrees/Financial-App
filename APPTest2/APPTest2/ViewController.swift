@@ -60,8 +60,15 @@ class ViewController: UIViewController {
     
     }
     
-    // reset all
+   
     
+    
+    
+    func weeklyUpdate(){
+        
+    }
+    
+     // reset all
     @IBAction func resitGoal(_ sender: Any) {
         WeekGoal = 0.0
         WeekBudget = 0.0
@@ -114,6 +121,14 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+         var mondaysDate: NSDate {
+            let iso8601 =  NSCalendar(calendarIdentifier: NSCalendar.Identifier.ISO8601)!
+            return iso8601.date(from: iso8601.components([.yearForWeekOfYear, .weekOfYear], from: NSDate() as Date))! as NSDate
+        }
+        let timer = Timer(fireAt: mondaysDate as Date, interval: 0, target: self, selector: #selector(weeklyUpdate), userInfo: nil, repeats: false)
+        RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
+        
         setBarChart(saved:10, range:10)
        let goalObject = UserDefaults.standard.object(forKey: "Goal")
         if (goalObject as? Double) != nil{

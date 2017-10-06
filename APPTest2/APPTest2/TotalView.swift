@@ -15,6 +15,7 @@ import Charts
 
 class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate{
     
+    @IBOutlet weak var NavBar: UINavigationBar!
     @IBOutlet weak var AddButton: UIButton!
     
     @IBOutlet weak var TimePeriod: UILabel!
@@ -328,6 +329,7 @@ class TotalView: UIViewController , UITableViewDelegate, UITableViewDataSource, 
         print("ViewDidLoad")
 //        barChartView.notifyDataSetChanged()
             AddButton.layer.zPosition = 101;
+        NavBar.layer.zPosition = 1;
             print("ViewDidLoad")
      
     }

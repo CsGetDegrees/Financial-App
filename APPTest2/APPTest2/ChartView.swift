@@ -30,6 +30,10 @@ class ChartView:  UIViewController{
     var IncomeCell: [sectionCell] = []
     var ExpenseCell: [sectionCell] = []
     
+    var DateArrayCell: [sectionCell] = []
+    var DateIncomeCell:[sectionCell] = []
+    var DateExpenseCell:[sectionCell] = []
+    
     var tableShow: [Int] = []
     var timeTag: Int = 0
     
@@ -225,6 +229,34 @@ class ChartView:  UIViewController{
         print(tableShow)
     }
     
+    func transforDate(date:Date) -> Int {
+       let calendar = NSCalendar.current
+        if(timeTag == 2){
+            let FirstDayWeek = Date().startOfWeek()
+            //let date1 = calendar.startOfDay(for: Date())
+            let CurrentToStart = calendar.dateComponents([.day], from: FirstDayWeek, to:date)
+            let dayweek: Int = CurrentToStart.day!
+            print(dayweek)
+            return dayweek
+        }else{
+            let FirstDayMonth = Date().startOfMonth()
+           // let LastDayMonth = Date().endOfMonth()
+            
+            let CurrentToStart = calendar.dateComponents([.day], from: FirstDayMonth, to:date)
+          
+           // let start: Int = CurrentToStart.day!
+            let dayMonth: Int = CurrentToStart.day!
+            print(dayMonth)
+            return dayMonth
+            
+            //Geting How many days in this Month
+           // let MonthDay = calendar.dateComponents([.day], from: FirstDayMonth, to: LastDayMonth)
+           // print("There are\(MonthDay.day!) in this Month!")
+            
+        }
+       // return 0
+    }
+    
     func localstorage(){
         
         list = []
@@ -236,6 +268,9 @@ class ChartView:  UIViewController{
         tableShow = []
         
         ArrayCell = []
+        DateArrayCell = []
+        DateIncomeCell = []
+        DateExpenseCell = []
         IncomeCell = []
         ExpenseCell = []
         
@@ -301,6 +336,55 @@ class ChartView:  UIViewController{
         }
         
         
+        DateArrayCell = ArrayCell
+        
+        if timeTag != 1 && timeTag != 0{
+        if DateArrayCell.count > 0{
+            for i in 0..<DateArrayCell.count{
+                let a  = transforDate(date: DateArrayCell[i].dateInput)
+          // print("first\(a)")
+                for j in 0..<DateArrayCell.count{
+                    let b  = transforDate(date: DateArrayCell[j].dateInput)
+                 //  print("second\(b)")
+                    if a == b && DateArrayCell[i].notificationID != DateArrayCell[j].notificationID && DateArrayCell[i].tableShow != 1 && DateArrayCell[i].typeOfAmount == DateArrayCell[j].typeOfAmount{
+                        //Unique ID
+                        DateArrayCell[i].amountOfCell += DateArrayCell[j].amountOfCell
+                        DateArrayCell[i].dateInput = DateArrayCell[j].dateInput
+                        // ArrayCell[i].notificationID = ArrayCell[j].notificationID
+                        DateArrayCell[j].tableShow = 1
+                        DateArrayCell[i].list += DateArrayCell[j].list
+                        
+                    }
+                }
+            }
+            
+        }
+        for i in 0..<DateArrayCell.count{
+            if DateArrayCell[i].tableShow != 1{
+            print(DateArrayCell[i].dateInput)
+            }
+        }
+        
+            for i in 0..<DateArrayCell.count{
+                if DateArrayCell[i].tableShow != 1{
+                    if(DateArrayCell[i].typeOfAmount == 0){
+                        DateIncomeCell.append(DateArrayCell[i])
+                    }else{
+                        DateExpenseCell.append(DateArrayCell[i])
+                    }
+                }
+            }
+            
+            for i in 0..<DateIncomeCell.count{
+                print("InDate")
+                print(dateFormat.string(from: DateIncomeCell[i].dateInput))
+            }
+            for i in 0..<DateExpenseCell.count{
+                print("ExDate")
+                print(dateFormat.string(from: DateExpenseCell[i].dateInput))
+            }
+        }
+        
         /////
         if ArrayCell.count > 0{
             for i in 0..<ArrayCell.count{
@@ -346,40 +430,7 @@ class ChartView:  UIViewController{
 
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = UIColor.white
-       
-        localstorage()
-        
-        var CatEx: [String]! = ["Bills","Transport","Clothes","EatingOut","Entertainment","Health","Food","Pet","House","Else"]
-        var CatIn: [String]! = ["Deposits","Salary","Saving"]
-      
-        var CatShow: [String]! = []
-        var AmountNum: [Double]! = []
-        
-        for i in 0..<IncomeCell.count{
-            CatShow.append(String(CatIn[IncomeCell[i].typeOfCell]))
-            AmountNum.append(IncomeCell[i].amountOfCell)
-        }
-        print(CatShow)
-        
-        //////test mock data
-//        months = [generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!]
-//        let mock = [120.0,120.0,120.0,120.0,120.0,20.0]
-//        let type = ["Food", "Family", "Gas&Fuel", "CashFlow", "Pc", "Beer","6","7","else"]
-       // var moneySpent:[Double] = MoneySpent
-//        var total = 0.0;
-//        for i in 0..<moneySpent.count {
-//            total += moneySpent[i]
-//        }
-//        for i in 0..<moneySpent.count {
-//            moneySpent[i] = moneySpent[i]/total
-//        }
-       setPieChart(dataPoints: CatShow , values: AmountNum)
-//        setLineChart(dataPoints: months, values: mock)
-       pieChartView.notifyDataSetChanged() // to display the labels
-    }
+
     
     override func viewDidAppear(_ animated: Bool) {
         
@@ -418,6 +469,15 @@ class ChartView:  UIViewController{
 //        let type = ["Food", "Family", "Gas&Fuel", "CashFlow", "Pc", "Beer","6","7","else"]
 //        let mock = [120.0,120.0,120.0,120.0,120.0,20.0]
 //        months = [generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!]
+       
+        var Amount: [Double] = [0.0, 0.0 , 0.0 , 0.0, 0.0, 0.0,0.0]
+        let week: [Date] = [generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!, generateRandomDate(daysBack: 7)!]
+     
+        for i in 0..<DateIncomeCell.count {
+              Amount[transforDate(date: DateIncomeCell[i].dateInput)] = DateIncomeCell[i].amountOfCell
+        }
+       setLineChart(dataPoints: week, values: Amount)
+        
 //        var moneySpent:[Double] = MoneySpent
 //        print(moneySpent)
 //        var total = 0.0;
@@ -428,7 +488,7 @@ class ChartView:  UIViewController{
 //            moneySpent[i] = moneySpent[i]/total
 //        }
 //        setPieChart(dataPoints: type , values: moneySpent)
-//        setLineChart(dataPoints: months, values: mock)
+       
 //        pieChartView.notifyDataSetChanged() // to display the labels
     }
     

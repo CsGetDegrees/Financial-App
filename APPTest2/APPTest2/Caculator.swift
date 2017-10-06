@@ -155,10 +155,7 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
         cell.Name.text = list[indexPath.row]
         
         return(cell)
-        
-        
-        
-        
+
         
     }
     
@@ -168,13 +165,11 @@ class Caculator:  UIViewController,UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         
-        
-        
         print(indexPath[1])
         
         //same structure some information just does not showed
         
-        if(Description.text != ""){
+        if(true){
             
             print(2222)
             
