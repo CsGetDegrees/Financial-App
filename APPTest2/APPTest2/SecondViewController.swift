@@ -198,7 +198,7 @@ class SecondViewController:  UIViewController, UITableViewDelegate,UITableViewDa
     }
     func findDateNeedDelete(UniqueID: String){
      for  i in (0..<notificationID.count).reversed() {
-            if UniqueID.elementsEqual(notificationID[i]){
+            if UniqueID==notificationID[i]{
                 list.remove(at: i)
                 dateInput.remove(at: i)
                 typeOfCell.remove(at: i)
